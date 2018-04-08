@@ -1,4 +1,4 @@
 package com.dbms.project.moovi.data.entity;
 
-public class TheaterManager {
+public class TheaterManager extends User{
 }

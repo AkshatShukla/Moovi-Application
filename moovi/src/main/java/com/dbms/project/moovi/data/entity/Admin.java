@@ -1,4 +1,4 @@
 package com.dbms.project.moovi.data.entity;
 
-public class AdRecruiter extends User{
+public class Admin {
 }
