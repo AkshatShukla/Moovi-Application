@@ -11,28 +11,17 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int movieId;
-
-    @NotBlank
-    String name;
-
-    @NonNull
-    String imdbId;
-
-    String overview;
-
-    String posterSRC;
-
-    int runtime;
-
-    float imdbRating;
-
+    private int movieId;
+    private String name;
+    private String imdbId;
+    private String overview;
+    private String posterSRC;
+    private int runtime;
+    private float imdbRating;
     @Temporal(value = TemporalType.DATE)
-    Date releaseDate;
-
-    int revenue;
-
-    Boolean releaseStatus;
+    private Date releaseDate;
+    private int revenue;
+    private Boolean releaseStatus;
 
     public Movie() {
         super();
