@@ -13,10 +13,10 @@ public class UserService extends APICredentials {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/api/user")
-    public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
-    }
+//    @PostMapping("/api/user")
+//    public User createUser(@RequestBody User user) {
+//        return userRepository.save(user);
+//    }
 
     @GetMapping("/api/user")
     public Iterable<User> findAllUsers(@RequestParam(name = "username", required = false) String username) {
