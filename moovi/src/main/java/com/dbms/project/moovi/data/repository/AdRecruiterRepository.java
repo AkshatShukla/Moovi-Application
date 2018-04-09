@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface AdRecruiterRepository extends CrudRepository<AdRecruiter, Integer>{
 
     @Query("SELECT a FROM AdRecruiter a WHERE a.username=:username")
-    Iterable<AdRecruiter> findUserByUsername(@Param("username") String u);
+    Iterable<AdRecruiter> findAdRecruiterByUsername(@Param("username") String u);
 }
