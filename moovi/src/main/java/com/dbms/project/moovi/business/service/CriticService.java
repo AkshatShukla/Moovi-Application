@@ -1,0 +1,24 @@
+package com.dbms.project.moovi.business.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dbms.project.moovi.data.entity.Critic;
+import com.dbms.project.moovi.data.repository.CriticRepository;
+
+public class CriticService extends APICredentials {
+	
+	@Autowired
+    CriticRepository criticRepository;
+	
+	@GetMapping("/api/critic")
+    public Iterable<Critic> findAllCritics(@RequestParam(name = "username", required = false) String username) {
+        if (username != null)
+            return criticRepository.findCriticByUsername(username);
+        return criticRepository.findAll();
+    }
+	
+	
+
+}
