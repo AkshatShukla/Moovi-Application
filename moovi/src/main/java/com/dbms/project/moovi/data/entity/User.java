@@ -1,29 +1,24 @@
 package com.dbms.project.moovi.data.entity;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-@Table(name = "USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
     private int userId;
 
-    @NotBlank
     private String firstName;
 
     private String lastName;
 
-    @NotBlank
     private String username;
 
-    @NotBlank
     private String password;
-
 
     private String email;
 

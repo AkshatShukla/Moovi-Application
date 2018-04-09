@@ -1,7 +1,23 @@
 package com.dbms.project.moovi.data.entity;
 
-import javax.persistence.*;
+import org.springframework.lang.NonNull;
 
-public class Fan extends User{
+import javax.persistence.Entity;
 
+@Entity
+public class Fan extends User {
+
+    private String fanDescription;
+
+    public Fan() {
+        super();
+    }
+
+    public String getFanDescription() {
+        return fanDescription;
+    }
+
+    public void setFanDescription(String fanDescription) {
+        this.fanDescription = fanDescription;
+    }
 }

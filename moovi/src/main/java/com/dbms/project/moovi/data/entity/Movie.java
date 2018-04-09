@@ -7,12 +7,11 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-@Table(name = "MOVIE")
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int movie_id;
+    int movieId;
 
     @NotBlank
     String name;
@@ -40,11 +39,11 @@ public class Movie {
     }
 
     public int getMovie_id() {
-        return movie_id;
+        return movieId;
     }
 
-    public void setMovie_id(int movie_id) {
-        this.movie_id = movie_id;
+    public void setMovie_id(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getName() {
