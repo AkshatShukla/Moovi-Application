@@ -12,6 +12,7 @@ public interface CriticRepository extends CrudRepository<Critic, Integer> {
     Iterable<Critic> findCriticByUsername(@Param("username") String u);
 
     @Query("SELECT c FROM Critic c WHERE c.username=:username AND c.password=:password")
-    Iterable<Critic> findCriticByCredentials(@Param("username") String username, @Param("password") String password);
+    Iterable<Critic> findCriticByCredentials(
+    		@Param("username") String username, @Param("password") String password);
 
 }
