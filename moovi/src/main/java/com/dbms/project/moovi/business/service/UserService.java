@@ -14,19 +14,19 @@ public class UserService extends APICredentials {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/api/user", method = RequestMethod.POST)
+    @PostMapping("/api/user")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
-    public List<User> findAllUsers(@RequestParam(name = "username", required = false) String username) {
+    @GetMapping("/api/user")
+    public Iterable<User> findAllUsers(@RequestParam(name = "username", required = false) String username) {
         if (username != null)
-            return (List<User>) userRepository.findUserByUsername(username);
-        return (List<User>) userRepository.findAll();
+            return userRepository.findUserByUsername(username);
+        return userRepository.findAll();
     }
 
-    @RequestMapping(value = "/api/user/{userId}", method = RequestMethod.GET)
+    @GetMapping("/api/user/{userId}")
     public Optional<User> findUserByUserId(@PathVariable("userId") int userId) {
         return userRepository.findById(userId);
     }

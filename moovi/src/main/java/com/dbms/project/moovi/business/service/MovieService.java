@@ -6,10 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -61,6 +58,7 @@ public class MovieService extends APICredentials {
                     //System.out.println("Elements under results array");
                     System.out.println("\nMovie id: " +jsonobj_1.get("id"));
                     System.out.println("Movie name: " +jsonobj_1.get("original_title"));
+                    System.out.println("IMDb Rating: "+jsonobj_1.get("vote_average"));
                     //Get data for the Address Components array
 //                    System.out.println("Elements under address_components array");
 //                    System.out.println("The long names, short names and types are:");
@@ -90,4 +88,7 @@ public class MovieService extends APICredentials {
             e.printStackTrace();
         }
     }
+
+//    @GetMapping("/api/movie/upcoming")
+//    public void getUpcomingMovies()
 }
