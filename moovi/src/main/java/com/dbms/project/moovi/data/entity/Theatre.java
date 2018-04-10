@@ -66,6 +66,8 @@ public class Theatre {
 
 	public void setTheatreManager(TheatreManager theatreManager) {
 		this.theatreManager = theatreManager;
+		if(!theatreManager.getListOfTheatresManaged().contains(this))
+			theatreManager.getListOfTheatresManaged().add(this);
 	}
 
 //	public List<Screen> getListOfScreens() {
