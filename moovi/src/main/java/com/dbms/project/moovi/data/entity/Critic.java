@@ -23,9 +23,17 @@ public class Critic extends User{
     @JsonIgnore
     private List<Movie> recommendedMovies;
     
-    @ManyToMany(mappedBy = "criticsFollowed")
+    @ManyToMany(mappedBy="criticsFollowed")
     @JsonIgnore
-    private List<Fan> followedBy;
+    private List<Fan> criticsFollowedByFans;
+
+    public List<Fan> getCriticFollowedByFans() {
+        return criticsFollowedByFans;
+    }
+
+    public void setCriticFollowedByFans(List<Fan> followedByFans) {
+        this.criticsFollowedByFans = followedByFans;
+    }
 
     public Critic() {
         super();
@@ -37,14 +45,6 @@ public class Critic extends User{
 
     public void setRecommendedMovies(List<Movie> recommendedMovies) {
         this.recommendedMovies = recommendedMovies;
-    }
-
-    public List<Fan> getFollowedBy() {
-        return followedBy;
-    }
-
-    public void setFollowedBy(List<Fan> followedBy) {
-        this.followedBy = followedBy;
     }
 
     public String getCriticDescription() {

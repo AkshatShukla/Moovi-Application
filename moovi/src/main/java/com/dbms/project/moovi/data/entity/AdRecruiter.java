@@ -40,4 +40,12 @@ public class AdRecruiter extends User{
     public void setRecruitedActors(List<Actor> recruitedActors) {
         this.recruitedActors = recruitedActors;
     }
+
+	public void recruitsActor(Actor actor) {
+		this.recruitedActors.add(actor);
+		if(!actor.getRecruitedBy().contains(this)) {
+			actor.getRecruitedBy().add(this);
+		}	
+		
+	}
 }
