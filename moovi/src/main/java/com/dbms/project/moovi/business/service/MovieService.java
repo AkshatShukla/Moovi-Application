@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
-import java.util.Optional;
 import java.util.Scanner;
 
 @RestController
-public class MovieService extends APICredentials {
+public class MovieService extends Utils {
 
     @Autowired
     MovieRepository movieRepository;

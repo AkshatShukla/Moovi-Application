@@ -1,5 +1,7 @@
 package com.dbms.project.moovi.business.service;
 
-public class APICredentials {
+public class Utils {
+
     final String apiKey = "878a88feb1d8acab0c9883e805657264";
+    final String PATH = "/api/";
 }

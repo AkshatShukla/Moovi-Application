@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class FanService extends APICredentials{
+public class FanService extends Utils {
 
     @Autowired
     private FanRepository fanRepository;
