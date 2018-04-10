@@ -28,6 +28,17 @@ public class Fan extends User {
     @JsonIgnore
     private List<Critic> criticsFollowed;
     
+  /*  @ManyToMany
+    @JoinTable(name="FansFollowed",
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "fan_id", referencedColumnName="userId"))
+    @JsonIgnore
+    private List<Fan> fansFollowed;
+    
+    @ManyToMany(mappedBy="fansFollowed")
+    @JsonIgnore
+    private List<Fan> fansFollowedByOtherFans;*/
+    
     @ManyToMany
     @JoinTable(name="Likes",
     joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
@@ -86,6 +97,22 @@ public class Fan extends User {
 		this.dislikesMovies = dislikesMovies;
 	}
 	
+	/*public List<Fan> getFansFollowed() {
+		return fansFollowed;
+	}
+
+	public void setFansFollowed(List<Fan> fansFollowed) {
+		this.fansFollowed = fansFollowed;
+	}
+
+	public List<Fan> getFansFollowedByOtherFans() {
+		return fansFollowedByOtherFans;
+	}
+
+	public void setFansFollowedByOtherFans(List<Fan> fansFollowedByOtherFans) {
+		this.fansFollowedByOtherFans = fansFollowedByOtherFans;
+	}*/
+	
 	public void likesMovie(Movie movie) {
 		this.likesMovies.add(movie);
 		if(!movie.getLikedByFans().contains(this)) {
@@ -114,5 +141,13 @@ public class Fan extends User {
 		}
 		
 	}
+
+	/*public void followsFan(Fan fan) {
+		this.fansFollowed.add(fan);
+		if(!fan.getFansFollowedByOtherFans().contains(this)) {
+			fan.getFansFollowedByOtherFans().add(this);
+		}
+		
+	}*/
 	
 }
