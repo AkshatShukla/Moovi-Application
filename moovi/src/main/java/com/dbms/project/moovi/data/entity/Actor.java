@@ -39,7 +39,15 @@ public class Actor {
     @JsonIgnore
     private List<Movie> listOfMovies;
 
-    public List<Fan> getActorFollowedByFans() {
+    public List<Fan> getActorsFollowedByFans() {
+		return actorsFollowedByFans;
+	}
+
+	public void setActorsFollowedByFans(List<Fan> actorsFollowedByFans) {
+		this.actorsFollowedByFans = actorsFollowedByFans;
+	}
+
+	public List<Fan> getActorFollowedByFans() {
         return actorsFollowedByFans;
     }
 
@@ -114,4 +122,20 @@ public class Actor {
     public void setActorPopularity(float actorPopularity) {
         this.actorPopularity = actorPopularity;
     }
+
+	public void recruitedBy(AdRecruiter adRecruiter) {
+		this.recruitedBy.add(adRecruiter);
+        if(!adRecruiter.getRecruitedActors().contains(this)) {
+        	adRecruiter.getRecruitedActors().add(this);
+        }
+		
+	}
+
+	public void followedBy(Fan fan) {
+		this.actorsFollowedByFans.add(fan);
+        if(!fan.getActorsFollowed().contains(this)) {
+        	fan.getActorsFollowed().add(this);
+        }
+		
+	}
 }

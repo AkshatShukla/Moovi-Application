@@ -1,12 +1,17 @@
 package com.dbms.project.moovi.business.service;
 
 import com.dbms.project.moovi.data.entity.Actor;
+import com.dbms.project.moovi.data.entity.AdRecruiter;
+import com.dbms.project.moovi.data.entity.Fan;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dbms.project.moovi.data.repository.ActorRepository;
+import com.dbms.project.moovi.data.repository.AdRecruiterRepository;
 import com.dbms.project.moovi.data.repository.FanRepository;
 
 @RestController
@@ -16,12 +21,38 @@ public class ActorService extends Utils{
     private ActorRepository actorRepository;
 	
 	@Autowired
+    private AdRecruiterRepository adRecruiterRepository;
+	
+	@Autowired
     private FanRepository fanRepository;
 
 	@PostMapping("/api/actor")
     public Actor createActor(@RequestBody Actor actor) {
 	    return actorRepository.save(actor);
     }
+	
+	@PostMapping("api/recruit/actor/{actorId}/AdRecruiter/{username}")
+    public void AdRecruiterRecruitsActor(
+            @PathVariable("username") String username,
+            @PathVariable("actorId") long actorId){
+
+		Actor actor = (Actor) actorRepository.findActorById(actorId);
+        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
+        actor.recruitedBy(adRecruiter);
+        actorRepository.save(actor);
+    }
+
+	@PostMapping("api/recruit/actor/{actorId}/fan/{username}")
+    public void FanFollowsActor(
+            @PathVariable("username") String username,
+            @PathVariable("actorId") long actorId){
+
+		Actor actor = (Actor) actorRepository.findActorById(actorId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        actor.followedBy(fan);
+        actorRepository.save(actor);
+    }
+
 
 
 }
