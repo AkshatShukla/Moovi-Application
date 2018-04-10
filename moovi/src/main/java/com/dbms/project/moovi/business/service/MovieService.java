@@ -1,5 +1,6 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.Movie;
 import com.dbms.project.moovi.data.repository.MovieRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,11 +22,13 @@ public class MovieService extends APICredentials {
     MovieRepository movieRepository;
 
     @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
-    public void getMovies(@PathVariable("movieName") String movieName) {
-        String u = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&query="+movieName;
+    public JSONArray displayMovies(@PathVariable("movieName") String movieName) {
+        String searchUrlString = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&query="+movieName;
+        JSONObject jobj1;
+        JSONArray jsonArray = new JSONArray();
         try {
-            URL url = new URL(u);
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            URL searchMovieUrl = new URL(searchUrlString);
+            HttpURLConnection conn = (HttpURLConnection)searchMovieUrl.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
             int responseCode = conn.getResponseCode();
@@ -34,18 +37,19 @@ public class MovieService extends APICredentials {
             else
             {
                 String inline = "";
-                Scanner sc = new Scanner(url.openStream());
+                Scanner sc = new Scanner(searchMovieUrl.openStream());
                 while(sc.hasNext())
                 {
                     inline += sc.nextLine();
                 }
-                System.out.println("\nJSON data in string format");
-                System.out.println(inline);
+//                System.out.println("\nJSON data in string format");
+//                System.out.println(inline);
                 sc.close();
                 JSONParser parse = new JSONParser();
                 JSONObject jobj = (JSONObject)parse.parse(inline);
                 JSONArray jsonarr_1 = (JSONArray) jobj.get("results");
 
+                long[] idArray = new long[jsonarr_1.size()];
 
                 //Get data for Results array
                 for(int i=0;i<jsonarr_1.size();i++)
@@ -56,6 +60,8 @@ public class MovieService extends APICredentials {
                     //Store the JSON object in JSON array as objects (For level 2 array element i.e Address Components)
                     //JSONArray jsonarr_2 = (JSONArray) jsonobj_1.get("address_components");
                     //System.out.println("Elements under results array");
+
+                    idArray[i] = (long) jsonobj_1.get("id");
                     System.out.println("\nMovie id: " +jsonobj_1.get("id"));
                     System.out.println("Movie name: " +jsonobj_1.get("original_title"));
                     System.out.println("IMDb Rating: "+jsonobj_1.get("vote_average"));
@@ -77,16 +83,32 @@ public class MovieService extends APICredentials {
 //                    }
                 }
 
+                Movie movie = new Movie();
+                for (long movieId:idArray) {
+                    String findMovieUrlString = "https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey+"&language=en-US";
 
+                    URL findMovieUrl = new URL(findMovieUrlString);
+                    HttpURLConnection conn1 = (HttpURLConnection)findMovieUrl.openConnection();
+                    conn1.setRequestMethod("GET");
+                    conn1.connect();
 
+                    inline = "";
+                    Scanner scanner = new Scanner(findMovieUrl.openStream());
+                    while(scanner.hasNext())
+                    {
+                        inline += scanner.nextLine();
+                    }
+                    System.out.println("\nJSON data in string format");
+                    System.out.println(inline);
+                    scanner.close();
+                    jobj1 = (JSONObject)parse.parse(inline);
+                    jsonArray.add(jobj1);
+                }
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+        return jsonArray;
     }
 
 //    @GetMapping("/api/movie/upcoming")
