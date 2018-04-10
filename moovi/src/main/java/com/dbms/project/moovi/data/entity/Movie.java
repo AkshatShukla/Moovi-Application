@@ -3,7 +3,6 @@ package com.dbms.project.moovi.data.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,14 +12,47 @@ public class Movie {
     private long movieId;
     private String movieName;
     private String imdbId;
-    @Column(columnDefinition = "TEXT")
-    private String overview;
     private String posterSRC;
     private long runtime;
     private double imdbRating;
     private String releaseDate;
     private long revenue;
     private String releaseStatus;
+    
+    @Column(columnDefinition = "TEXT")
+    private String overview;
+    
+    public List<Critic> getRecommendedBy() {
+		return recommendedBy;
+	}
+
+	public void setRecommendedBy(List<Critic> recommendedBy) {
+		this.recommendedBy = recommendedBy;
+	}
+
+	public List<Fan> getLikedByFans() {
+		return likedByFans;
+	}
+
+	public void setLikedByFans(List<Fan> likedByFans) {
+		this.likedByFans = likedByFans;
+	}
+
+	public List<Fan> getDislikedByFans() {
+		return dislikedByFans;
+	}
+
+	public void setDislikedByFans(List<Fan> dislikedByFans) {
+		this.dislikedByFans = dislikedByFans;
+	}
+
+	public List<Actor> getListOfActors() {
+		return listOfActors;
+	}
+
+	public void setListOfActors(List<Actor> listOfActors) {
+		this.listOfActors = listOfActors;
+	}
     
     @ManyToMany(mappedBy = "recommendedMovies")
     @JsonIgnore
@@ -124,4 +156,12 @@ public class Movie {
     public void setReleaseStatus(String releaseStatus) {
         this.releaseStatus = releaseStatus;
     }
+    
+    public void likedByFan(Fan fan) {
+		this.likedByFans.add(fan);
+		if(!fan.getLikesMovies().contains(this)) {
+			fan.getLikesMovies().add(this);
+		}
+    }
+
 }

@@ -53,4 +53,44 @@ public class Fan extends User {
     public void setFanDescription(String fanDescription) {
         this.fanDescription = fanDescription;
     }
+
+	public List<Actor> getActorsFollowed() {
+		return actorsFollowed;
+	}
+
+	public void setActorsFollowed(List<Actor> actorsFollowed) {
+		this.actorsFollowed = actorsFollowed;
+	}
+
+	public List<Critic> getCriticsFollowed() {
+		return criticsFollowed;
+	}
+
+	public void setCriticsFollowed(List<Critic> criticsFollowed) {
+		this.criticsFollowed = criticsFollowed;
+	}
+
+	public List<Movie> getLikesMovies() {
+		return likesMovies;
+	}
+
+	public void setLikesMovies(List<Movie> likesMovies) {
+		this.likesMovies = likesMovies;
+	}
+
+	public List<Movie> getDislikesMovies() {
+		return dislikesMovies;
+	}
+
+	public void setDislikesMovies(List<Movie> dislikesMovies) {
+		this.dislikesMovies = dislikesMovies;
+	}
+	
+	public void likesMovie(Movie movie) {
+		this.likesMovies.add(movie);
+		if(!movie.getLikedByFans().contains(this)) {
+			movie.getLikedByFans().add(this);
+		}
+    }
+	
 }

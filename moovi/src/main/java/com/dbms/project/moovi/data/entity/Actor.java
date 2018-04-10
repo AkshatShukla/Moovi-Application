@@ -17,10 +17,13 @@ public class Actor {
     @Id
     private long actorId;
     private String actorName;
+    
     @Temporal(value = TemporalType.DATE)
     private Date dob;
+    
     @Temporal(value = TemporalType.DATE)
     private Date dod;
+    
     private String biography;
     private float actorPopularity;
     

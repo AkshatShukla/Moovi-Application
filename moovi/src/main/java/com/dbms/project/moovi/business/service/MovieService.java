@@ -1,6 +1,8 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
+import com.dbms.project.moovi.data.repository.FanRepository;
 import com.dbms.project.moovi.data.repository.MovieRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.Scanner;
 
 @RestController
@@ -20,6 +23,9 @@ public class MovieService extends APICredentials {
 
     @Autowired
     MovieRepository movieRepository;
+    
+    @Autowired
+    FanRepository fanRepository;
 
     @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
     public JSONArray displayMovies(@PathVariable("movieName") String movieName) {
@@ -137,8 +143,15 @@ public class MovieService extends APICredentials {
 //    @GetMapping("/api/movie/upcoming")
 //    public void getUpcomingMovies()
 
-    @PostMapping("/api/like/{username}/{movieId}")
-    public void likeMovie(@PathVariable("username") String username, @PathVariable("movieId") long movieId) {
+    @PostMapping("/api/like/movie/{movieId}/fan/{username}")
+    public void likeMovie(
+    		@PathVariable("username") String username,
+    		@PathVariable("movieId") long movieId) {
+    	
+    	Movie movie = (Movie) movieRepository.findMovieById(movieId);
+    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
+    	movie.likedByFan(fan);
+    	movieRepository.save(movie);
 
     }
 }
