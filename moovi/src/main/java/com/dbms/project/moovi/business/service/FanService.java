@@ -1,7 +1,6 @@
 package com.dbms.project.moovi.business.service;
 
 import com.dbms.project.moovi.data.entity.Actor;
-import com.dbms.project.moovi.data.entity.AdRecruiter;
 import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
@@ -29,9 +28,6 @@ public class FanService extends Utils {
     
     @Autowired
     private CriticRepository criticRepository;
-    
-    @Autowired
-    private AdRecruiterRepository adRecruiterRepository;
 
     @PostMapping("/api/fan")
     public Fan createFan(@RequestBody Fan fan) {
@@ -86,16 +82,5 @@ public class FanService extends Utils {
         Fan fan = (Fan) fanRepository.findFanByUsername(fan_username);
         fan.followsCritic(critic);
         fanRepository.save(fan);
-    }
-    
-    @PostMapping("api/recruit/AdRecruiter/{username}/actor/{actorId}")
-    public void AdRecruiterRecruitsActor(
-            @PathVariable("username") String username,
-            @PathVariable("actorId") long actorId){
-
-		Actor actor = (Actor) actorRepository.findActorById(actorId);
-        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
-        adRecruiter.recruitsActor(actor);
-        adRecruiterRepository.save(adRecruiter);
     }
 }
