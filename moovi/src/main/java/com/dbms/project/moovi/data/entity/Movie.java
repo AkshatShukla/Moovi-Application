@@ -72,8 +72,20 @@ public class Movie {
     inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actorId"))
     @JsonIgnore
     private List<Actor> listOfActors;
+    
+    @OneToMany(mappedBy = "movie")
+    @JsonIgnore
+    private List<Genre> listOfGenres;
 
-    public Movie() {
+    public List<Genre> getListOfGenres() {
+		return listOfGenres;
+	}
+
+	public void setListOfGenres(List<Genre> listOfGenres) {
+		this.listOfGenres = listOfGenres;
+	}
+
+	public Movie() {
         super();
     }
 

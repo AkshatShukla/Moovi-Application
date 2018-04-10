@@ -1,7 +1,11 @@
 package com.dbms.project.moovi.data.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
@@ -11,19 +15,39 @@ public class User {
     private int userId;
 
     private String firstName;
-
     private String lastName;
-
     private String username;
-
     private String password;
-
     private String email;
 
     @Temporal(value = TemporalType.DATE)
     private Date dob;
+    
+    @OneToMany(mappedBy = "AUser")
+    @JsonIgnore
+    private List<Address> userAddresses;
+    
+    @OneToMany(mappedBy = "PUser")
+    @JsonIgnore
+    private List<Phone> userPhoneNumbers;
 
-    public User() {
+	public List<Phone> getUserPhoneNumbers() {
+		return userPhoneNumbers;
+	}
+
+	public void setUserPhoneNumbers(List<Phone> userPhoneNumbers) {
+		this.userPhoneNumbers = userPhoneNumbers;
+	}
+
+	public List<Address> getUserAddresses() {
+		return userAddresses;
+	}
+
+	public void setUserAddresses(List<Address> userAddresses) {
+		this.userAddresses = userAddresses;
+	}
+
+	public User() {
         super();
     }
 
