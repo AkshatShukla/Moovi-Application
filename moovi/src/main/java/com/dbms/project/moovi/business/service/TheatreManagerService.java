@@ -13,7 +13,7 @@ public class TheatreManagerService extends Utils {
     @Autowired
     private TheatreManagerRepository theatreManagerRepository;
 
-    @PostMapping("/api/critic")
+    @PostMapping("/api/theatremanager")
     public TheatreManager createTheatreManager(@RequestBody TheatreManager theatreManager) {
         return theatreManagerRepository.save(theatreManager);
     }

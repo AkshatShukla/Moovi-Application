@@ -25,6 +25,7 @@ public class Review {
     private Movie Rmovie;
 
     public Review() {
+        super();
     }
 
     public Rating getRating() {

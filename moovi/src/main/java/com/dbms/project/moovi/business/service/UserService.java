@@ -26,7 +26,7 @@ public class UserService extends Utils {
     }
 
     @GetMapping("/api/user/{userId}")
-    public Optional<User> findUserByUserId(@PathVariable("userId") int userId) {
+    public Optional<User> findUserByUserId(@PathVariable("userId") long userId) {
         return userRepository.findById(userId);
     }
 

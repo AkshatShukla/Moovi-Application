@@ -11,28 +11,28 @@ public class Theatre {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int theatreId;
+    private long theatreId;
 	
 	private String theatreName;
-	private int totalScreens;
+	//private Long totalScreens;
 	private String location;
 	
 	@ManyToOne()
 	@JsonIgnore
 	private TheatreManager theatreManager;
 	
-	@OneToMany(mappedBy = "theatre")
-    @JsonIgnore
-    private List<Screen> listOfScreens;
+//	@OneToMany(mappedBy = "theatre")
+//    @JsonIgnore
+//    private List<Screen> listOfScreens;
 
 	public Theatre() {
 	}
 
-	public int getTheatreId() {
+	public long getTheatreId() {
 		return theatreId;
 	}
 
-	public void setTheatreId(int theatreId) {
+	public void setTheatreId(long theatreId) {
 		this.theatreId = theatreId;
 	}
 
@@ -44,13 +44,13 @@ public class Theatre {
 		this.theatreName = theatreName;
 	}
 
-	public int getTotalScreens() {
-		return totalScreens;
-	}
-
-	public void setTotalScreens(int totalScreens) {
-		this.totalScreens = totalScreens;
-	}
+//	public int getTotalScreens() {
+//		return totalScreens;
+//	}
+//
+//	public void setTotalScreens(int totalScreens) {
+//		this.totalScreens = totalScreens;
+//	}
 
 	public String getLocation() {
 		return location;
@@ -68,11 +68,11 @@ public class Theatre {
 		this.theatreManager = theatreManager;
 	}
 
-	public List<Screen> getListOfScreens() {
-		return listOfScreens;
-	}
-
-	public void setListOfScreens(List<Screen> listOfScreens) {
-		this.listOfScreens = listOfScreens;
-	}
+//	public List<Screen> getListOfScreens() {
+//		return listOfScreens;
+//	}
+//
+//	public void setListOfScreens(List<Screen> listOfScreens) {
+//		this.listOfScreens = listOfScreens;
+//	}
 }
