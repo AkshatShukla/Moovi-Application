@@ -49,7 +49,19 @@ public class Movie {
     @JsonIgnore
     private List<Review> movieReview;
     
-    public List<Critic> getRecommendedBy() {
+    @OneToOne
+    @JoinColumn(name = "movieId", nullable = false)
+    private Screen moviePlayingInScreen;
+    
+    public Screen getMoviePlayingInScreen() {
+		return moviePlayingInScreen;
+	}
+
+	public void setMoviePlayingInScreen(Screen moviePlayingInScreen) {
+		this.moviePlayingInScreen = moviePlayingInScreen;
+	}
+
+	public List<Critic> getRecommendedBy() {
 		return recommendedBy;
 	}
 
