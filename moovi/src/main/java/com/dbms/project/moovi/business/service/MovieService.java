@@ -112,20 +112,31 @@ public class MovieService extends Utils {
                     scanner.close();
                     jobj1 = (JSONObject)parse.parse(inline.toString());
                     JSONObject jsonObject = new JSONObject();
+                    long l = 0;
 
+                    if (jobj1.get("title") == null)
+                        jsonObject.put("title","-");
+                    else
+                        jsonObject.put("movieName",jobj1.get("title"));
                     if (jobj1.get("imdb_id") == null)
-                        continue;
+                        jsonObject.put("imdbId","-");
                     else
                         jsonObject.put("imdbId",jobj1.get("imdb_id"));
                     if ((Long) jobj1.get("revenue") == 0)
-                        continue;
+                        jsonObject.put("revenue",l);
                     else
                         jsonObject.put("revenue",jobj1.get("revenue"));
+                    if (jobj1.get("runtime") == null)
+                        jsonObject.put("runtime",l);
+                    else
+                        jsonObject.put("runtime",jobj1.get("runtime"));
                     jsonObject.put("movieId",jobj1.get("id"));
-                    jsonObject.put("movieName",jobj1.get("title"));
-                    jsonObject.put("overview",jobj1.get("overview"));
+                    if (jobj1.get("overview") == "")
+                        jsonObject.put("overview","-");
+                    else
+                        jsonObject.put("overview",jobj1.get("overview"));
                     jsonObject.put("posterSRC",jobj1.get("poster_path"));
-                    jsonObject.put("runtime",jobj1.get("runtime"));
+
                     jsonObject.put("imdbRating",jobj1.get("vote_average"));
                     jsonObject.put("releaseDate",jobj1.get("release_date"));
                     jsonObject.put("releaseStatus",jobj1.get("status"));
@@ -170,8 +181,8 @@ public class MovieService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        Movie movie = movieRepository.findMovieById(movieId);
+        Fan fan = fanRepository.findFanByUsername(username);
         movie.dislikedByFan(fan);
         movieRepository.save(movie);
     }
@@ -181,8 +192,8 @@ public class MovieService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        Movie movie = movieRepository.findMovieById(movieId);
+        Critic critic = criticRepository.findCriticByUsername(username);
         movie.recommendedByCritic(critic);
         movieRepository.save(movie);
     }
