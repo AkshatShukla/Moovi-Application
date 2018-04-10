@@ -37,6 +37,14 @@ public class TheatreManager extends User {
 		return theatreManagerId;
 	}
 
+	public List<Theatre> getListOfTheatresManaged() {
+		return listOfTheatresManaged;
+	}
+
+	public void setListOfTheatresManaged(List<Theatre> listOfTheatresManaged) {
+		this.listOfTheatresManaged = listOfTheatresManaged;
+	}
+
 	public void setTheatreManagerId(int theatreManagerId) {
 		this.theatreManagerId = theatreManagerId;
 	}

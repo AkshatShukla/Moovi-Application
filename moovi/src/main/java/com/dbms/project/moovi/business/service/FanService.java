@@ -11,7 +11,7 @@ import java.util.List;
 public class FanService extends APICredentials{
 
     @Autowired
-    FanRepository fanRepository;
+    private FanRepository fanRepository;
 
     @PostMapping("/api/fan")
     public Fan createFan(@RequestBody Fan fan) {

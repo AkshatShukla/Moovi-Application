@@ -11,7 +11,7 @@ import java.util.List;
 public class AdRecruiterService extends APICredentials {
 
     @Autowired
-    AdRecruiterRepository adRecruiterRepository;
+    private AdRecruiterRepository adRecruiterRepository;
 
     @PostMapping("/api/adrecruiter")
     public AdRecruiter createAdRecruiter(@RequestBody AdRecruiter adRecruiter){

@@ -31,6 +31,22 @@ public class Critic extends User{
         super();
     }
 
+    public List<Movie> getRecommendedMovies() {
+        return recommendedMovies;
+    }
+
+    public void setRecommendedMovies(List<Movie> recommendedMovies) {
+        this.recommendedMovies = recommendedMovies;
+    }
+
+    public List<Fan> getFollowedBy() {
+        return followedBy;
+    }
+
+    public void setFollowedBy(List<Fan> followedBy) {
+        this.followedBy = followedBy;
+    }
+
     public String getCriticDescription() {
         return criticDescription;
     }

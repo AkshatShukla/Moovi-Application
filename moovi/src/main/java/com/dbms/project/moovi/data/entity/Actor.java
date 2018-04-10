@@ -30,7 +30,31 @@ public class Actor {
     @ManyToMany(mappedBy="actorsFollowed")
     @JsonIgnore
     private List<Fan> followedByFans;
-    
+
+    public List<Fan> getFollowedByFans() {
+        return followedByFans;
+    }
+
+    public void setFollowedByFans(List<Fan> followedByFans) {
+        this.followedByFans = followedByFans;
+    }
+
+    public List<AdRecruiter> getRecruitedBy() {
+        return recruitedBy;
+    }
+
+    public void setRecruitedBy(List<AdRecruiter> recruitedBy) {
+        this.recruitedBy = recruitedBy;
+    }
+
+    public List<Movie> getListOfMovies() {
+        return listOfMovies;
+    }
+
+    public void setListOfMovies(List<Movie> listOfMovies) {
+        this.listOfMovies = listOfMovies;
+    }
+
     @ManyToMany(mappedBy="recruitedActors")
     @JsonIgnore
     private List<AdRecruiter> recruitedBy;

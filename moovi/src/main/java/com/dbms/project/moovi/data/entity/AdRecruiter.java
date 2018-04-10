@@ -25,11 +25,19 @@ public class AdRecruiter extends User{
         super();
     }
 
-    public String getrecruiterDescription() {
+    public String getRecruiterDescription() {
         return recruiterDescription;
     }
 
-    public void setrecruiterDescription(String recruiterDescription) {
+    public void setRecruiterDescription(String recruiterDescription) {
         this.recruiterDescription = recruiterDescription;
+    }
+
+    public List<Actor> getRecruitedActors() {
+        return recruitedActors;
+    }
+
+    public void setRecruitedActors(List<Actor> recruitedActors) {
+        this.recruitedActors = recruitedActors;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 public class UserService extends APICredentials {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 //    @PostMapping("/api/user")
 //    public User createUser(@RequestBody User user) {

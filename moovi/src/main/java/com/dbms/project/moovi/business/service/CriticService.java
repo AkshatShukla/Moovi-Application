@@ -14,7 +14,7 @@ import com.dbms.project.moovi.data.repository.CriticRepository;
 public class CriticService extends APICredentials {
 	
 	@Autowired
-    CriticRepository criticRepository;
+    private CriticRepository criticRepository;
 	
 	@PostMapping("/api/critic")
 	public Critic createCritic(@RequestBody Critic critic) {
