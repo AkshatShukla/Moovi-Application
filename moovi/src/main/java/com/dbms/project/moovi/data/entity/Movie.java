@@ -1,11 +1,8 @@
 package com.dbms.project.moovi.data.entity;
 
-import org.springframework.lang.NonNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +23,17 @@ public class Movie {
     private int revenue;
     private Boolean releaseStatus;
     
-    @ManyToMany(mappedBy="likedMovies")
+    @ManyToMany(mappedBy = "recommendedMovies")
+    @JsonIgnore
+    private List<Critic> recommendedBy;
+    
+    @ManyToMany(mappedBy = "likedMovies")
     @JsonIgnore
     private List<Fan> likedByFans;
+
+    @ManyToMany(mappedBy = "dislikedMovies")
+    @JsonIgnore
+    private List<Fan> dislikedByFans;
 
     public Movie() {
         super();

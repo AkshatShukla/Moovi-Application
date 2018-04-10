@@ -1,7 +1,5 @@
 package com.dbms.project.moovi.data.entity;
 
-import org.springframework.lang.NonNull;
-
 import javax.persistence.*;
 import java.util.Date;
 

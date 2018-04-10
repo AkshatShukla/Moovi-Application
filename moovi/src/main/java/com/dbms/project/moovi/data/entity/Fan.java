@@ -1,7 +1,5 @@
 package com.dbms.project.moovi.data.entity;
 
-import org.springframework.lang.NonNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -17,11 +15,25 @@ public class Fan extends User {
     private String fanDescription;
     
     @ManyToMany
-    @JoinTable(name="LIKE",
-    joinColumns= @JoinColumn(name="FAN_ID", referencedColumnName="ID"),
-    inverseJoinColumns= @JoinColumn(name= "MOVIE_ID", referencedColumnName="ID"))
+    @JoinTable(name="ActorsFollowed",
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
+    inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actor_id"))
+    @JsonIgnore
+    private List<Actor> actorsFollowed;
+    
+    @ManyToMany
+    @JoinTable(name="Like",
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
+    inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movie_id"))
     @JsonIgnore
     private List<Movie> likedMovies;
+
+    @ManyToMany
+    @JoinTable(name = "Dislike", 
+    joinColumns = @JoinColumn(name = "fan_id", referencedColumnName = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"))
+    @JsonIgnore
+    private List<Movie> dislikedMovies;
 
     public Fan() {
         super();
