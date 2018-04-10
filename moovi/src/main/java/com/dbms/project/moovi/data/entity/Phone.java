@@ -1,26 +1,36 @@
 package com.dbms.project.moovi.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Phone {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String phoneNumber;
-	private boolean primary;
+	private boolean isPrimary;
 	
 	@ManyToOne()
 	@JsonIgnore
 	private User PUser;
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public User getPUser() {
 		return PUser;
 	}
 
-	public void setPUser(User pUser) {
-		PUser = pUser;
+	public void setPUser(User PUser) {
+		this.PUser = PUser;
 	}
 
 	public Phone() {
@@ -35,12 +45,11 @@ public class Phone {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public boolean isPrimary() {
-		return primary;
-	}
+    public boolean isPrimary() {
+        return isPrimary;
+    }
 
-	public void setPrimary(boolean primary) {
-		this.primary = primary;
-	}
-
+    public void setPrimary(boolean primary) {
+        isPrimary = primary;
+    }
 }

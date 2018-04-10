@@ -16,9 +16,11 @@ public class Screen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int screenId;
 	
-	@OneToOne(mappedBy = "moviePlayingInScreen")
-	@JsonIgnore
-	private Movie screenHasMovie;
+//	@OneToOne(mappedBy = "moviePlayingInScreen")
+//	@JsonIgnore
+//	private Movie screenHasMovie;
+
+	// need to add one to one relationship
 	
 	@ManyToOne()
 	@JsonIgnore
@@ -36,13 +38,13 @@ public class Screen {
 		this.screenId = screenId;
 	}
 
-	public Movie getScreenHasMovie() {
-		return screenHasMovie;
-	}
-
-	public void setScreenHasMovie(Movie screenHasMovie) {
-		this.screenHasMovie = screenHasMovie;
-	}
+//	public Movie getScreenHasMovie() {
+//		return screenHasMovie;
+//	}
+//
+//	public void setScreenHasMovie(Movie screenHasMovie) {
+//		this.screenHasMovie = screenHasMovie;
+//	}
 
 	public Theatre getTheatre() {
 		return theatre;

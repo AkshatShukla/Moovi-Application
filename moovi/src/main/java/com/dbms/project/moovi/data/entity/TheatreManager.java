@@ -13,28 +13,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class TheatreManager extends User {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int theatreManagerId;
-	
+
 	@OneToMany(mappedBy = "theatreManager")
     @JsonIgnore
     private List<Theatre> listOfTheatresManaged;
 	
 	public TheatreManager() {
 		super();
-	}
-	
-	public List<Theatre> getTheatresManaged() {
-		return listOfTheatresManaged;
-	}
-
-	public void setTheatresManaged(List<Theatre> listOfTheatresManaged) {
-		this.listOfTheatresManaged = listOfTheatresManaged;
-	}
-
-	public int getTheatreManagerId() {
-		return theatreManagerId;
 	}
 
 	public List<Theatre> getListOfTheatresManaged() {
@@ -44,10 +29,5 @@ public class TheatreManager extends User {
 	public void setListOfTheatresManaged(List<Theatre> listOfTheatresManaged) {
 		this.listOfTheatresManaged = listOfTheatresManaged;
 	}
-
-	public void setTheatreManagerId(int theatreManagerId) {
-		this.theatreManagerId = theatreManagerId;
-	}
-	
-
 }
+

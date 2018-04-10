@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Genre {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int genreId;
 	
 	@ManyToOne()
