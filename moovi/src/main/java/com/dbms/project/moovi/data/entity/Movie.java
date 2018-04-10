@@ -26,18 +26,18 @@ public class Movie {
     @JsonIgnore
     private List<Critic> recommendedBy;
     
-    @ManyToMany(mappedBy = "likedMovies")
+    @ManyToMany(mappedBy = "likesMovies")
     @JsonIgnore
     private List<Fan> likedByFans;
 
-    @ManyToMany(mappedBy = "dislikedMovies")
+    @ManyToMany(mappedBy = "dislikesMovies")
     @JsonIgnore
     private List<Fan> dislikedByFans;
     
     @ManyToMany
     @JoinTable(name = "MovieCast", 
-    joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"),
-    inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"))
+    joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"),
+    inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actorId"))
     @JsonIgnore
     private List<Actor> listOfActors;
 
