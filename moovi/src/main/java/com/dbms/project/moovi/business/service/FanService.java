@@ -31,12 +31,22 @@ public class FanService extends APICredentials{
     }
 
     @PostMapping("api/like/fan/{username}/movie/{movieId}")
-    public void fanLikesMovie(
+    public void fanlikesMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId){
         Movie movie = (Movie) movieRepository.findMovieById(movieId);
         Fan fan = (Fan) fanRepository.findFanByUsername(username);
         fan.likesMovie(movie);
+        fanRepository.save(fan);
+    }
+
+    @PostMapping("api/dislike/fan/{username}/movie/{movieId}")
+    public void fandislikesMovie(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId){
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        fan.dislikesMovie(movie);
         fanRepository.save(fan);
     }
 }

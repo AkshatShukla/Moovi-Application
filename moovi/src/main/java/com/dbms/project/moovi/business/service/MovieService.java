@@ -153,4 +153,15 @@ public class MovieService extends APICredentials {
     	movie.likedByFan(fan);
     	movieRepository.save(movie);
     }
+
+    @PostMapping("/api/dislike/movie/{movieId}/fan/{username}")
+    public void dislikeMovie(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId) {
+
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        movie.dislikedByFan(fan);
+        movieRepository.save(movie);
+    }
 }

@@ -21,6 +21,29 @@ public class Movie {
     
     @Column(columnDefinition = "TEXT")
     private String overview;
+
+    @ManyToMany(mappedBy = "recommendedMovies")
+    @JsonIgnore
+    private List<Critic> recommendedBy;
+
+    @ManyToMany(mappedBy = "likesMovies")
+    @JsonIgnore
+    private List<Fan> likedByFans;
+
+    @ManyToMany(mappedBy = "dislikesMovies")
+    @JsonIgnore
+    private List<Fan> dislikedByFans;
+
+    @ManyToMany
+    @JoinTable(name = "MovieCast",
+            joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actorId"))
+    @JsonIgnore
+    private List<Actor> listOfActors;
+
+    @OneToMany(mappedBy = "movie")
+    @JsonIgnore
+    private List<Genre> listOfGenres;
     
     public List<Critic> getRecommendedBy() {
 		return recommendedBy;
@@ -53,29 +76,6 @@ public class Movie {
 	public void setListOfActors(List<Actor> listOfActors) {
 		this.listOfActors = listOfActors;
 	}
-    
-    @ManyToMany(mappedBy = "recommendedMovies")
-    @JsonIgnore
-    private List<Critic> recommendedBy;
-    
-    @ManyToMany(mappedBy = "likesMovies")
-    @JsonIgnore
-    private List<Fan> likedByFans;
-
-    @ManyToMany(mappedBy = "dislikesMovies")
-    @JsonIgnore
-    private List<Fan> dislikedByFans;
-    
-    @ManyToMany
-    @JoinTable(name = "MovieCast", 
-    joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"),
-    inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actorId"))
-    @JsonIgnore
-    private List<Actor> listOfActors;
-    
-    @OneToMany(mappedBy = "movie")
-    @JsonIgnore
-    private List<Genre> listOfGenres;
 
     public List<Genre> getListOfGenres() {
 		return listOfGenres;
@@ -176,4 +176,10 @@ public class Movie {
 		}
     }
 
+    public void dislikedByFan(Fan fan) {
+        this.dislikedByFans.add(fan);
+        if(!fan.getDislikesMovies().contains(this)) {
+            fan.getDislikesMovies().add(this);
+        }
+    }
 }

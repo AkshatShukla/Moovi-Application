@@ -92,5 +92,12 @@ public class Fan extends User {
 			movie.getLikedByFans().add(this);
 		}
     }
+
+	public void dislikesMovie(Movie movie) {
+		this.dislikesMovies.add(movie);
+		if(!movie.getDislikedByFans().contains(this)) {
+			movie.getDislikedByFans().add(this);
+		}
+	}
 	
 }
