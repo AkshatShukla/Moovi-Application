@@ -13,14 +13,14 @@ public class Movie {
     private long movieId;
     private String movieName;
     private String imdbId;
+    @Column(columnDefinition = "TEXT")
     private String overview;
     private String posterSRC;
-    private int runtime;
-    private float imdbRating;
-    @Temporal(value = TemporalType.DATE)
-    private Date releaseDate;
-    private int revenue;
-    private Boolean releaseStatus;
+    private long runtime;
+    private double imdbRating;
+    private String releaseDate;
+    private long revenue;
+    private String releaseStatus;
     
     @ManyToMany(mappedBy = "recommendedMovies")
     @JsonIgnore
@@ -45,19 +45,19 @@ public class Movie {
         super();
     }
 
-    public long getMovie_id() {
+    public long getMovieId() {
         return movieId;
     }
 
-    public void setMovie_id(int movieId) {
+    public void setMovieId(long movieId) {
         this.movieId = movieId;
     }
 
-    public String getName() {
+    public String getMovieName() {
         return movieName;
     }
 
-    public void setName(String name) {
+    public void setMovieName(String name) {
         this.movieName = name;
     }
 
@@ -85,43 +85,43 @@ public class Movie {
         this.posterSRC = posterSRC;
     }
 
-    public int getRuntime() {
+    public long getRuntime() {
         return runtime;
     }
 
-    public void setRuntime(int runtime) {
+    public void setRuntime(long runtime) {
         this.runtime = runtime;
     }
 
-    public float getImdbRating() {
+    public double getImdbRating() {
         return imdbRating;
     }
 
-    public void setImdbRating(float imdbRating) {
+    public void setImdbRating(double imdbRating) {
         this.imdbRating = imdbRating;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public int getRevenue() {
+    public long getRevenue() {
         return revenue;
     }
 
-    public void setRevenue(int revenue) {
+    public void setRevenue(long revenue) {
         this.revenue = revenue;
     }
 
-    public Boolean getReleaseStatus() {
+    public String getReleaseStatus() {
         return releaseStatus;
     }
 
-    public void setReleaseStatus(Boolean releaseStatus) {
+    public void setReleaseStatus(String releaseStatus) {
         this.releaseStatus = releaseStatus;
     }
 }

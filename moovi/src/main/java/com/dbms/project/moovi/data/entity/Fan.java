@@ -24,7 +24,7 @@ public class Fan extends User {
     @ManyToMany
     @JoinTable(name="CriticsFollowed",
     joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
-    inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="criticId"))
+    inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="userId"))
     @JsonIgnore
     private List<Critic> criticsFollowed;
     

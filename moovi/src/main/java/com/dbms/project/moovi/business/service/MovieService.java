@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Scanner;
 
 @RestController
@@ -36,17 +36,15 @@ public class MovieService extends APICredentials {
                 throw new RuntimeException("HttpResponseCode: " +responseCode);
             else
             {
-                String inline = "";
+                StringBuilder inline = new StringBuilder();
                 Scanner sc = new Scanner(searchMovieUrl.openStream());
                 while(sc.hasNext())
                 {
-                    inline += sc.nextLine();
+                    inline.append(sc.nextLine());
                 }
-//                System.out.println("\nJSON data in string format");
-//                System.out.println(inline);
                 sc.close();
                 JSONParser parse = new JSONParser();
-                JSONObject jobj = (JSONObject)parse.parse(inline);
+                JSONObject jobj = (JSONObject)parse.parse(inline.toString());
                 JSONArray jsonarr_1 = (JSONArray) jobj.get("results");
 
                 long[] idArray = new long[jsonarr_1.size()];
@@ -92,17 +90,42 @@ public class MovieService extends APICredentials {
                     conn1.setRequestMethod("GET");
                     conn1.connect();
 
-                    inline = "";
+                    inline = new StringBuilder();
                     Scanner scanner = new Scanner(findMovieUrl.openStream());
                     while(scanner.hasNext())
                     {
-                        inline += scanner.nextLine();
+                        inline.append(scanner.nextLine());
                     }
                     System.out.println("\nJSON data in string format");
                     System.out.println(inline);
                     scanner.close();
-                    jobj1 = (JSONObject)parse.parse(inline);
-                    jsonArray.add(jobj1);
+                    jobj1 = (JSONObject)parse.parse(inline.toString());
+                    JSONObject jsonObject = new JSONObject();
+
+                    jsonObject.put("movieId",jobj1.get("id"));
+                    jsonObject.put("movieName",jobj1.get("title"));
+                    jsonObject.put("imdbId",jobj1.get("imdb_id"));
+                    jsonObject.put("overview",jobj1.get("overview"));
+                    jsonObject.put("posterSRC",jobj1.get("poster_path"));
+                    jsonObject.put("runtime",jobj1.get("runtime"));
+                    jsonObject.put("imdbRating",jobj1.get("vote_average"));
+                    jsonObject.put("releaseDate",jobj1.get("release_date"));
+                    jsonObject.put("revenue",jobj1.get("revenue"));
+                    jsonObject.put("releaseStatus",jobj1.get("status"));
+
+                    movie.setMovieId((Long) jsonObject.get("movieId"));
+                    movie.setMovieName((String) jsonObject.get("movieName"));
+                    movie.setImdbId((String) jsonObject.get("imdbId"));
+                    movie.setOverview((String) jsonObject.get("overview"));
+                    movie.setPosterSRC((String) jsonObject.get("posterSRC"));
+                    movie.setRuntime((Long) jsonObject.get("runtime"));
+                    movie.setImdbRating((Double) jsonObject.get("imdbRating"));
+                    movie.setReleaseDate((String) jsonObject.get("releaseDate"));
+                    movie.setRevenue((Long) jsonObject.get("revenue"));
+                    movie.setReleaseStatus((String) jsonObject.get("releaseStatus"));
+
+                    movieRepository.save(movie);
+                    jsonArray.add(jsonObject);
                 }
             }
         } catch (ParseException | IOException e) {
@@ -113,4 +136,9 @@ public class MovieService extends APICredentials {
 
 //    @GetMapping("/api/movie/upcoming")
 //    public void getUpcomingMovies()
+
+    @PostMapping("/api/like/{username}/{movieId}")
+    public void likeMovie(@PathVariable("username") String username, @PathVariable("movieId") long movieId) {
+
+    }
 }
