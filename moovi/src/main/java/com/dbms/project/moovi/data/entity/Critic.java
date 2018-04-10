@@ -63,4 +63,11 @@ public class Critic extends User{
     public void setWebsiteUrl(String websiteUrl) {
         this.websiteUrl = websiteUrl;
     }
+
+	public void recommends(Movie movie) {
+		this.recommendedMovies.add(movie);
+		if(!movie.getRecommendedBy().contains(this)) {
+			movie.getRecommendedBy().add(this);
+		}
+	}
 }
