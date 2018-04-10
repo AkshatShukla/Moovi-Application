@@ -7,16 +7,12 @@ import com.dbms.project.moovi.data.repository.ActorRepository;
 import com.dbms.project.moovi.data.repository.FanRepository;
 
 @RestController
-public class ActorService extends APICredentials{
+public class ActorService extends Utils{
 	
 	@Autowired
     private ActorRepository actorRepository;
 	
 	@Autowired
     private FanRepository fanRepository;
-	
-	
-	
-	
 
 }
