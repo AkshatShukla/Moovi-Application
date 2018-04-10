@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface CriticRepository extends CrudRepository<Critic, Integer> {
+public interface CriticRepository extends CrudRepository<Critic, Long> {
 	
 	@Query("SELECT c FROM Critic c WHERE c.username=:username")
     Critic findCriticByUsername(@Param("username") String u);

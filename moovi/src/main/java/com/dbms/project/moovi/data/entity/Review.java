@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Review {
 
+    @EmbeddedId
+    private ReviewCompositePK compositePK;
+
     @Column(columnDefinition = "TEXT")
     private String review;
 
@@ -21,12 +24,9 @@ public class Review {
     @JoinColumn(name = "movie_id", referencedColumnName = "movieId")
     private Movie Rmovie;
 
-    @EmbeddedId
-    private ReviewCompositePK compositePK;
-
     public Review() {
     }
-    
+
     public Rating getRating() {
         return rating;
     }
