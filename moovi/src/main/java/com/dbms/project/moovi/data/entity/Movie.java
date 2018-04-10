@@ -44,6 +44,10 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     @JsonIgnore
     private List<Genre> listOfGenres;
+
+    @OneToMany(mappedBy = "Rmovie")
+    @JsonIgnore
+    private List<Review> movieReview;
     
     public List<Critic> getRecommendedBy() {
 		return recommendedBy;

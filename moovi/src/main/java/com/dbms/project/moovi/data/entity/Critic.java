@@ -2,10 +2,7 @@ package com.dbms.project.moovi.data.entity;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,6 +23,10 @@ public class Critic extends User{
     @ManyToMany(mappedBy = "criticsFollowed")
     @JsonIgnore
     private List<Fan> followedBy;
+
+    @OneToMany(mappedBy = "critic")
+    @JsonIgnore
+    private List<Review> reviewedMovie;
 
     public Critic() {
         super();
