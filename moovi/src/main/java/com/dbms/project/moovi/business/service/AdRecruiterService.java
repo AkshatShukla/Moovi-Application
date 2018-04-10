@@ -1,6 +1,8 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.Actor;
 import com.dbms.project.moovi.data.entity.AdRecruiter;
+import com.dbms.project.moovi.data.repository.ActorRepository;
 import com.dbms.project.moovi.data.repository.AdRecruiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,9 @@ public class AdRecruiterService extends Utils {
 
     @Autowired
     private AdRecruiterRepository adRecruiterRepository;
+    
+    @Autowired
+    private ActorRepository actorRepository;
 
     @PostMapping("/api/adrecruiter")
     public AdRecruiter createAdRecruiter(@RequestBody AdRecruiter adRecruiter){
@@ -25,4 +30,14 @@ public class AdRecruiterService extends Utils {
         return (List<AdRecruiter>) adRecruiterRepository.findAll();
     }
 
+    @PostMapping("api/recruit/AdRecruiter/{username}/actor/{actorId}")
+    public void AdRecruiterRecruitsActor(
+            @PathVariable("username") String username,
+            @PathVariable("actorId") long actorId){
+
+		Actor actor = (Actor) actorRepository.findActorById(actorId);
+        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
+        adRecruiter.recruitsActor(actor);
+        adRecruiterRepository.save(adRecruiter);
+    }
 }

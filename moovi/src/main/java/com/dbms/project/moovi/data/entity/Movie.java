@@ -186,4 +186,11 @@ public class Movie {
             fan.getDislikesMovies().add(this);
         }
     }
+    
+    public void recommendedByCritic(Critic critic) {
+        this.recommendedBy.add(critic);
+        if(!critic.getRecommendedMovies().contains(this)) {
+            critic.getRecommendedMovies().add(this);
+        }
+    }
 }

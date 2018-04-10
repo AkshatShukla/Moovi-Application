@@ -27,16 +27,24 @@ public class Actor {
     private String biography;
     private float actorPopularity;
     
+    @ManyToMany(mappedBy="recruitedActors")
+    @JsonIgnore
+    private List<AdRecruiter> recruitedBy;
+    
     @ManyToMany(mappedBy="actorsFollowed")
     @JsonIgnore
-    private List<Fan> followedByFans;
+    private List<Fan> actorsFollowedByFans;
+    
+    @ManyToMany(mappedBy="listOfActors")
+    @JsonIgnore
+    private List<Movie> listOfMovies;
 
-    public List<Fan> getFollowedByFans() {
-        return followedByFans;
+    public List<Fan> getActorFollowedByFans() {
+        return actorsFollowedByFans;
     }
 
-    public void setFollowedByFans(List<Fan> followedByFans) {
-        this.followedByFans = followedByFans;
+    public void setActorFollowedByFans(List<Fan> followedByFans) {
+        this.actorsFollowedByFans = followedByFans;
     }
 
     public List<AdRecruiter> getRecruitedBy() {
@@ -54,14 +62,6 @@ public class Actor {
     public void setListOfMovies(List<Movie> listOfMovies) {
         this.listOfMovies = listOfMovies;
     }
-
-    @ManyToMany(mappedBy="recruitedActors")
-    @JsonIgnore
-    private List<AdRecruiter> recruitedBy;
-    
-    @ManyToMany(mappedBy="listOfActors")
-    @JsonIgnore
-    private List<Movie> listOfMovies;
 
     public Actor() {
         super();

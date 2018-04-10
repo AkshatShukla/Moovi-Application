@@ -1,7 +1,9 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
+import com.dbms.project.moovi.data.repository.CriticRepository;
 import com.dbms.project.moovi.data.repository.FanRepository;
 import com.dbms.project.moovi.data.repository.MovieRepository;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,6 +27,9 @@ public class MovieService extends Utils {
     
     @Autowired
     FanRepository fanRepository;
+    
+    @Autowired
+    CriticRepository criticRepository;
 
     @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -168,6 +173,17 @@ public class MovieService extends Utils {
         Movie movie = (Movie) movieRepository.findMovieById(movieId);
         Fan fan = (Fan) fanRepository.findFanByUsername(username);
         movie.dislikedByFan(fan);
+        movieRepository.save(movie);
+    }
+    
+    @PostMapping("/api/recommend/movie/{movieId}/critic/{username}")
+    public void recommendMovie(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId) {
+
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        movie.recommendedByCritic(critic);
         movieRepository.save(movie);
     }
 }
