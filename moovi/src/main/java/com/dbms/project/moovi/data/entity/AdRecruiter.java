@@ -16,8 +16,8 @@ public class AdRecruiter extends User{
     
     @ManyToMany
     @JoinTable(name="Recruit",
-    joinColumns= @JoinColumn(name="recruiter_id", referencedColumnName="user_id"),
-    inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actor_id"))
+    joinColumns= @JoinColumn(name="recruiter_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actorId"))
     @JsonIgnore
     private List<Actor> recruitedActors;
 
