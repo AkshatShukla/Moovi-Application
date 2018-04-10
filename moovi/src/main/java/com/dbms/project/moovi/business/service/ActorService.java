@@ -5,14 +5,13 @@ import com.dbms.project.moovi.data.entity.AdRecruiter;
 import com.dbms.project.moovi.data.entity.Fan;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.dbms.project.moovi.data.repository.ActorRepository;
 import com.dbms.project.moovi.data.repository.AdRecruiterRepository;
 import com.dbms.project.moovi.data.repository.FanRepository;
+
+import java.util.List;
 
 @RestController
 public class ActorService extends Utils{
@@ -29,6 +28,16 @@ public class ActorService extends Utils{
 	@PostMapping("/api/actor")
     public Actor createActor(@RequestBody Actor actor) {
 	    return actorRepository.save(actor);
+    }
+
+    @GetMapping("/api/actor")
+    public List<Actor> findAllActors(){
+	    return (List<Actor>) actorRepository.findAll();
+    }
+
+    @GetMapping("/api/actor/{actorId}")
+    public Actor findActorById(@PathVariable(name = "actorId") long actorId) {
+	    return actorRepository.findActorById(actorId);
     }
 	
 	@PostMapping("api/recruit/actor/{actorId}/AdRecruiter/{username}")
