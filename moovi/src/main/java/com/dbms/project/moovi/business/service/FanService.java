@@ -77,13 +77,13 @@ public class FanService extends Utils {
         fanRepository.save(fan);
     }
     
-    @PostMapping("api/follow/fan/{username}/critic/{criticId}")
+    @PostMapping("api/follow/fan/{FanUsername}/critic/{CriticUsername}")
     public void fanFollowsCritic(
-            @PathVariable("username") String username,
-            @PathVariable("criticId") long criticId){
+            @PathVariable("FanUsername") String fan_username,
+            @PathVariable("CriticUsername") String critic_username){
 
-		Critic critic = (Critic) criticRepository.findCriticById(criticId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+		Critic critic = (Critic) criticRepository.findCriticByUsername(critic_username);
+        Fan fan = (Fan) fanRepository.findFanByUsername(fan_username);
         fan.followsCritic(critic);
         fanRepository.save(fan);
     }
