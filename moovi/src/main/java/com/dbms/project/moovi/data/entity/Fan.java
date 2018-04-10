@@ -22,6 +22,13 @@ public class Fan extends User {
     private List<Actor> actorsFollowed;
     
     @ManyToMany
+    @JoinTable(name="CriticsFollowed",
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
+    inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="critic_id"))
+    @JsonIgnore
+    private List<Critic> criticsFollowed;
+    
+    @ManyToMany
     @JoinTable(name="Like",
     joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
     inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movie_id"))

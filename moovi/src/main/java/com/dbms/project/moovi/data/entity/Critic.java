@@ -22,6 +22,10 @@ public class Critic extends User{
     inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movie_id"))
     @JsonIgnore
     private List<Movie> recommendedMovies;
+    
+    @ManyToMany(mappedBy = "criticsFollowed")
+    @JsonIgnore
+    private List<Fan> followedBy;
 
     public Critic() {
         super();
