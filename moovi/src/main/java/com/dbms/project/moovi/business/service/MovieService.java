@@ -4,6 +4,7 @@ import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
 import com.dbms.project.moovi.data.repository.FanRepository;
 import com.dbms.project.moovi.data.repository.MovieRepository;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +29,7 @@ public class MovieService extends APICredentials {
     FanRepository fanRepository;
 
     @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public JSONArray displayMovies(@PathVariable("movieName") String movieName) {
         String searchUrlString = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&query="+movieName;
         JSONObject jobj1;
@@ -108,15 +110,21 @@ public class MovieService extends APICredentials {
                     jobj1 = (JSONObject)parse.parse(inline.toString());
                     JSONObject jsonObject = new JSONObject();
 
+                    if (jobj1.get("imdb_id") == null)
+                        continue;
+                    else
+                        jsonObject.put("imdbId",jobj1.get("imdb_id"));
+                    if ((Long) jobj1.get("revenue") == 0)
+                        continue;
+                    else
+                        jsonObject.put("revenue",jobj1.get("revenue"));
                     jsonObject.put("movieId",jobj1.get("id"));
                     jsonObject.put("movieName",jobj1.get("title"));
-                    jsonObject.put("imdbId",jobj1.get("imdb_id"));
                     jsonObject.put("overview",jobj1.get("overview"));
                     jsonObject.put("posterSRC",jobj1.get("poster_path"));
                     jsonObject.put("runtime",jobj1.get("runtime"));
                     jsonObject.put("imdbRating",jobj1.get("vote_average"));
                     jsonObject.put("releaseDate",jobj1.get("release_date"));
-                    jsonObject.put("revenue",jobj1.get("revenue"));
                     jsonObject.put("releaseStatus",jobj1.get("status"));
 
                     movie.setMovieId((Long) jsonObject.get("movieId"));
@@ -148,8 +156,8 @@ public class MovieService extends APICredentials {
     		@PathVariable("username") String username,
     		@PathVariable("movieId") long movieId) {
     	
-    	Movie movie = (Movie) movieRepository.findMovieById(movieId);
-    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
+    	Movie movie = movieRepository.findMovieById(movieId);
+    	Fan fan = fanRepository.findFanByUsername(username);
     	movie.likedByFan(fan);
     	movieRepository.save(movie);
     }
