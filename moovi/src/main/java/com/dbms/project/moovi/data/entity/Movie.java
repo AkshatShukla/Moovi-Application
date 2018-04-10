@@ -2,9 +2,12 @@ package com.dbms.project.moovi.data.entity;
 
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -12,7 +15,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int movieId;
-    private String name;
+    private String movieName;
     private String imdbId;
     private String overview;
     private String posterSRC;
@@ -22,6 +25,10 @@ public class Movie {
     private Date releaseDate;
     private int revenue;
     private Boolean releaseStatus;
+    
+    @ManyToMany(mappedBy="likedMovies")
+    @JsonIgnore
+    private List<Fan> likedByFans;
 
     public Movie() {
         super();
@@ -36,11 +43,11 @@ public class Movie {
     }
 
     public String getName() {
-        return name;
+        return movieName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.movieName = name;
     }
 
     public String getImdbId() {
