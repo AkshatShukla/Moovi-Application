@@ -41,7 +41,7 @@ public class Fan extends User {
     inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"))
     @JsonIgnore
     private List<Movie> dislikesMovies;
-
+    
     public Fan() {
         super();
     }
@@ -98,6 +98,13 @@ public class Fan extends User {
 		if(!movie.getDislikedByFans().contains(this)) {
 			movie.getDislikedByFans().add(this);
 		}
+	}
+
+	public void followsActor(Actor actor) {
+		this.actorsFollowed.add(actor);
+		if(!actor.getFollowedByFans().contains(this)) {
+			actor.getFollowedByFans().add(this);
+		}	
 	}
 	
 }
