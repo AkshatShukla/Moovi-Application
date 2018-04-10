@@ -10,8 +10,7 @@ import java.util.List;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int movieId;
+    private long movieId;
     private String movieName;
     private String imdbId;
     private String overview;
@@ -39,7 +38,7 @@ public class Movie {
         super();
     }
 
-    public int getMovie_id() {
+    public long getMovie_id() {
         return movieId;
     }
 
