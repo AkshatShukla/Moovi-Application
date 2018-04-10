@@ -11,7 +11,7 @@ import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.repository.CriticRepository;
 
 @RestController
-public class CriticService extends APICredentials {
+public class CriticService extends Utils {
 	
 	@Autowired
     private CriticRepository criticRepository;

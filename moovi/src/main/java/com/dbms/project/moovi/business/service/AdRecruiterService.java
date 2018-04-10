@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AdRecruiterService extends APICredentials {
+public class AdRecruiterService extends Utils {
 
     @Autowired
     private AdRecruiterRepository adRecruiterRepository;
