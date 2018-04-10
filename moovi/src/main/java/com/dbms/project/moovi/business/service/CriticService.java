@@ -30,5 +30,4 @@ public class CriticService extends Utils {
             return (List<Critic>) criticRepository.findCriticByUsername(username);
         return (List<Critic>) criticRepository.findAll();
     }
-
 }

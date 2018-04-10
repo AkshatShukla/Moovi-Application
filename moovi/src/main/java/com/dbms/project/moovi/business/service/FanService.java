@@ -46,8 +46,8 @@ public class FanService extends Utils {
     public void fanLikesMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId){
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        Movie movie = movieRepository.findMovieById(movieId);
+        Fan fan = fanRepository.findFanByUsername(username);
         fan.likesMovie(movie);
         fanRepository.save(fan);
     }
@@ -56,8 +56,8 @@ public class FanService extends Utils {
     public void fanDislikesMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId){
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        Movie movie = movieRepository.findMovieById(movieId);
+        Fan fan = fanRepository.findFanByUsername(username);
         fan.dislikesMovie(movie);
         fanRepository.save(fan);
     }
@@ -67,8 +67,8 @@ public class FanService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-		Actor actor = (Actor) actorRepository.findActorById(actorId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+		Actor actor = actorRepository.findActorById(actorId);
+        Fan fan = fanRepository.findFanByUsername(username);
         fan.followsActor(actor);
         fanRepository.save(fan);
     }
@@ -78,8 +78,8 @@ public class FanService extends Utils {
             @PathVariable("FanUsername") String fan_username,
             @PathVariable("CriticUsername") String critic_username){
 
-		Critic critic = (Critic) criticRepository.findCriticByUsername(critic_username);
-        Fan fan = (Fan) fanRepository.findFanByUsername(fan_username);
+		Critic critic = criticRepository.findCriticByUsername(critic_username);
+        Fan fan = fanRepository.findFanByUsername(fan_username);
         fan.followsCritic(critic);
         fanRepository.save(fan);
     }

@@ -1,7 +1,6 @@
 package com.dbms.project.moovi.data.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 public class Review {
@@ -14,16 +13,16 @@ public class Review {
 
     @MapsId("critic")
     @ManyToOne
-    @JoinColumn(name = "critic_id", referencedColumnName = "userId")
+    @JoinColumn(name = "critic_id")
     private Critic critic;
 
     @MapsId("movie")
     @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "movieId")
+    @JoinColumn(name = "movie_id")
     private Movie Rmovie;
 
     @EmbeddedId
-    private CompositePK compositePK;
+    private ReviewCompositePK compositePK;
 
     public Review() {
     }
@@ -60,25 +59,13 @@ public class Review {
         Rmovie = rmovie;
     }
 
-    public CompositePK getCompositePK() {
+    public ReviewCompositePK getCompositePK() {
         return compositePK;
     }
 
-    public void setCompositePK(CompositePK compositePK) {
+    public void setCompositePK(ReviewCompositePK compositePK) {
         this.compositePK = compositePK;
     }
 }
 
-@Embeddable
-class CompositePK implements Serializable {
-
-    //these fields should have the same type as the ID field of the corresponding entities
-    //assuming Long but you have ommitted the ID fields
-
-    private Long critic;
-
-    private Long movie;
-
-    //implement equals() and hashcode() as per the JPA spec
-}
 
