@@ -2,12 +2,10 @@ package com.dbms.project.moovi.business.service;
 
 import java.util.List;
 
+import com.dbms.project.moovi.data.entity.Movie;
+import com.dbms.project.moovi.data.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.repository.CriticRepository;
@@ -17,6 +15,9 @@ public class CriticService extends Utils {
 	
 	@Autowired
     private CriticRepository criticRepository;
+
+	@Autowired
+    private MovieRepository movieRepository;
 	
 	@PostMapping("/api/critic")
 	public Critic createCritic(@RequestBody Critic critic) {
