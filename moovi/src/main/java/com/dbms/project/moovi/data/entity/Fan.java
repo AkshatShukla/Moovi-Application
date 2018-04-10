@@ -16,31 +16,31 @@ public class Fan extends User {
     
     @ManyToMany
     @JoinTable(name="ActorsFollowed",
-    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
-    inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actor_id"))
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actorId"))
     @JsonIgnore
     private List<Actor> actorsFollowed;
     
     @ManyToMany
     @JoinTable(name="CriticsFollowed",
-    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
-    inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="critic_id"))
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="criticId"))
     @JsonIgnore
     private List<Critic> criticsFollowed;
     
     @ManyToMany
-    @JoinTable(name="Like",
-    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="user_id"),
-    inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movie_id"))
+    @JoinTable(name="Likes",
+    joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movieId"))
     @JsonIgnore
-    private List<Movie> likedMovies;
+    private List<Movie> likesMovies;
 
     @ManyToMany
-    @JoinTable(name = "Dislike", 
-    joinColumns = @JoinColumn(name = "fan_id", referencedColumnName = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"))
+    @JoinTable(name = "Dislikes",
+    joinColumns = @JoinColumn(name = "fan_id", referencedColumnName = "userId"),
+    inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"))
     @JsonIgnore
-    private List<Movie> dislikedMovies;
+    private List<Movie> dislikesMovies;
 
     public Fan() {
         super();

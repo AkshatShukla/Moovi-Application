@@ -18,8 +18,8 @@ public class Critic extends User{
     
     @ManyToMany
     @JoinTable(name="Recommend",
-    joinColumns= @JoinColumn(name="critic_id", referencedColumnName="user_id"),
-    inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movie_id"))
+    joinColumns= @JoinColumn(name="critic_id", referencedColumnName="userId"),
+    inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movieId"))
     @JsonIgnore
     private List<Movie> recommendedMovies;
     
