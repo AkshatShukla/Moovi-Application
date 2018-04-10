@@ -2,9 +2,14 @@ package com.dbms.project.moovi.data.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Actor {
@@ -18,6 +23,18 @@ public class Actor {
     private Date dod;
     private String biography;
     private float actorPopularity;
+    
+    @ManyToMany(mappedBy="actorsFollowed")
+    @JsonIgnore
+    private List<Fan> followedByFans;
+    
+    @ManyToMany(mappedBy="recruitedActors")
+    @JsonIgnore
+    private List<AdRecruiter> recruitedBy;
+    
+    @ManyToMany(mappedBy="listOfActors")
+    @JsonIgnore
+    private List<Movie> listOfMovies;
 
     public Actor() {
         super();

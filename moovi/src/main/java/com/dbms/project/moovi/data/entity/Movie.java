@@ -33,6 +33,13 @@ public class Movie {
     @ManyToMany(mappedBy = "dislikedMovies")
     @JsonIgnore
     private List<Fan> dislikedByFans;
+    
+    @ManyToMany
+    @JoinTable(name = "MovieCast", 
+    joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movie_id"),
+    inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"))
+    @JsonIgnore
+    private List<Actor> listOfActors;
 
     public Movie() {
         super();
