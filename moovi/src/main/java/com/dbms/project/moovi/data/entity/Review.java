@@ -13,12 +13,12 @@ public class Review {
 
     @MapsId("critic")
     @ManyToOne
-    @JoinColumn(name = "critic_id")
+    @JoinColumn(name = "critic_id", referencedColumnName = "userId")
     private Critic critic;
 
     @MapsId("movie")
     @ManyToOne
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movie_id", referencedColumnName = "movieId")
     private Movie Rmovie;
 
     @EmbeddedId
@@ -26,21 +26,21 @@ public class Review {
 
     public Review() {
     }
-
-    public String getOverview() {
-        return review;
-    }
-
-    public void setOverview(String review) {
-        this.review = review;
-    }
-
+    
     public Rating getRating() {
         return rating;
     }
 
     public void setRating(Rating rating) {
         this.rating = rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
     }
 
     public Critic getCritic() {
