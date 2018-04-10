@@ -152,6 +152,5 @@ public class MovieService extends APICredentials {
     	Fan fan = (Fan) fanRepository.findFanByUsername(username);
     	movie.likedByFan(fan);
     	movieRepository.save(movie);
-
     }
 }

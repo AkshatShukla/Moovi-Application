@@ -1,7 +1,9 @@
 package com.dbms.project.moovi.business.service;
 
 import com.dbms.project.moovi.data.entity.Fan;
+import com.dbms.project.moovi.data.entity.Movie;
 import com.dbms.project.moovi.data.repository.FanRepository;
+import com.dbms.project.moovi.data.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class FanService extends APICredentials{
     @Autowired
     private FanRepository fanRepository;
 
+    @Autowired
+    private MovieRepository movieRepository;
+
     @PostMapping("/api/fan")
     public Fan createFan(@RequestBody Fan fan) {
         return fanRepository.save(fan);
@@ -23,5 +28,15 @@ public class FanService extends APICredentials{
         if (username != null)
             return (List<Fan>) fanRepository.findFanByUsername(username);
         return (List<Fan>) fanRepository.findAll();
+    }
+
+    @PostMapping("api/like/fan/{username}/movie/{movieId}")
+    public void fanLikesMovie(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId){
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        fan.likesMovie(movie);
+        fanRepository.save(fan);
     }
 }
