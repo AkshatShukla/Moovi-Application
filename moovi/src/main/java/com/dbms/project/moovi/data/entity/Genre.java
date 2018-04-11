@@ -36,6 +36,9 @@ public class Genre {
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;
+		if(!movie.getListOfGenres().contains(this)) {
+        	movie.getListOfGenres().add(this);
+        }
 	}
 
 }

@@ -14,16 +14,16 @@ public class Theatre {
     private long theatreId;
 	
 	private String theatreName;
-	//private Long totalScreens;
+	private Long totalScreens;
 	private String location;
 	
 	@ManyToOne()
 	@JsonIgnore
 	private TheatreManager theatreManager;
 	
-//	@OneToMany(mappedBy = "theatre")
-//    @JsonIgnore
-//    private List<Screen> listOfScreens;
+	@OneToMany(mappedBy = "theatre")
+    @JsonIgnore
+    private List<Screen> listOfScreens;
 
 	public Theatre() {
 	}
@@ -44,13 +44,13 @@ public class Theatre {
 		this.theatreName = theatreName;
 	}
 
-//	public int getTotalScreens() {
-//		return totalScreens;
-//	}
-//
-//	public void setTotalScreens(int totalScreens) {
-//		this.totalScreens = totalScreens;
-//	}
+	public long getTotalScreens() {
+		return totalScreens;
+	}
+
+	public void setTotalScreens(long totalScreens) {
+		this.totalScreens = totalScreens;
+	}
 
 	public String getLocation() {
 		return location;
@@ -70,11 +70,12 @@ public class Theatre {
 			theatreManager.getListOfTheatresManaged().add(this);
 	}
 
-//	public List<Screen> getListOfScreens() {
-//		return listOfScreens;
-//	}
-//
-//	public void setListOfScreens(List<Screen> listOfScreens) {
-//		this.listOfScreens = listOfScreens;
-//	}
+	public List<Screen> getListOfScreens() {
+		return listOfScreens;
+	}
+
+	public void setListOfScreens(List<Screen> listOfScreens) {
+		this.listOfScreens = listOfScreens;
+	}
+	
 }

@@ -58,6 +58,10 @@ public class Review {
 
     public void setRmovie(Movie rmovie) {
         Rmovie = rmovie;
+        if(!rmovie.getMovieReview().contains(this)) {
+        	rmovie.getMovieReview().add(this);
+        }
+
     }
 
     public ReviewCompositePK getCompositePK() {

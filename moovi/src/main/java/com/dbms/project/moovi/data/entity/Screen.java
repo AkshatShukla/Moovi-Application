@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,7 +18,7 @@ public class Screen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int screenId;
 	
-	@OneToOne(mappedBy = "moviePlayingInScreen")
+	@ManyToOne()
 	@JsonIgnore
 	private Movie screenHasMovie;
 	
@@ -37,13 +38,16 @@ public class Screen {
 		this.screenId = screenId;
 	}
 
-//	public Movie getScreenHasMovie() {
-//		return screenHasMovie;
-//	}
-//
-//	public void setScreenHasMovie(Movie screenHasMovie) {
-//		this.screenHasMovie = screenHasMovie;
-//	}
+	public Movie getScreenHasMovie() {
+		return screenHasMovie;
+	}
+
+	public void setScreenHasMovie(Movie screenHasMovie) {
+		this.screenHasMovie = screenHasMovie;
+		if(!screenHasMovie.getMoviePlayingInScreen().contains(this)) {
+			screenHasMovie.getMoviePlayingInScreen().add(this);
+		}
+	}
 
 	public Theatre getTheatre() {
 		return theatre;

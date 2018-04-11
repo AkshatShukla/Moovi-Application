@@ -49,15 +49,23 @@ public class Movie {
     @JsonIgnore
     private List<Review> movieReview;
     
-    @OneToOne
-    @JoinColumn(name = "movieId", nullable = false)
-    private Screen moviePlayingInScreen;
+    @OneToMany(mappedBy = "screenHasMovie")
+    @JsonIgnore
+    private List<Screen> moviePlayingInScreen;
     
-    public Screen getMoviePlayingInScreen() {
+	public List<Review> getMovieReview() {
+		return movieReview;
+	}
+
+	public void setMovieReview(List<Review> movieReview) {
+		this.movieReview = movieReview;
+	}
+
+	public List<Screen> getMoviePlayingInScreen() {
 		return moviePlayingInScreen;
 	}
 
-	public void setMoviePlayingInScreen(Screen moviePlayingInScreen) {
+	public void setMoviePlayingInScreen(List<Screen> moviePlayingInScreen) {
 		this.moviePlayingInScreen = moviePlayingInScreen;
 	}
 
@@ -205,4 +213,26 @@ public class Movie {
             critic.getRecommendedMovies().add(this);
         }
     }
+    
+    public void screenedIn (Screen screen) {
+    		this.moviePlayingInScreen.add(screen);
+    		if(screen.getScreenHasMovie() != this) {
+    			screen.setScreenHasMovie(this);
+    		}
+    }
+   
+    public void hasReviews (Review review) {
+        	this.movieReview.add(review);
+        	if(review.getRmovie() != this) {
+        		review.setRmovie(this);
+        }
+    }
+    
+    public void hasGenres (Genre genre) {
+    	this.listOfGenres.add(genre);
+    	if(genre.getMovie() != this) {
+    		genre.setMovie(this);
+    }
+}
+    		
 }
