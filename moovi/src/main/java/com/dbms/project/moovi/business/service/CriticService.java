@@ -67,4 +67,12 @@ public class CriticService extends Utils {
         Critic critic = (Critic) criticRepository.findCriticByUsername(username);
         return critic.getFansFollowingCritics();
     }
+
+    @GetMapping("/api/recommend/critic/{username}/recommendedmovies")
+    public List<Movie> listOfRecommendedMovies(
+            @PathVariable("username") String username){
+
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        return critic.getRecommendedMovies();
+	}
 }

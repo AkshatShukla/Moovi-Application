@@ -223,20 +223,25 @@ public class MovieService extends Utils {
         movie.hasReviews(review);
         movieRepository.save(movie);
     }
-    
-    @GetMapping("api/dislike/fan/{username}/moviesdisliked")
-    public List<Movie> listOfMoviesDisliked(
-            @PathVariable("username") String username) {
 
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
-        return fan.getDislikesMovies();
+    @GetMapping("/api/recommend/movie/{movieId}/recommendedby")
+    public List<Critic> listOfCriticsRecommended(
+            @PathVariable("movieId") long movieId){
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        return movie.getRecommendedBy();
     }
-    
-    @GetMapping("api/like/fan/{username}/moviesliked")
-    public List<Movie> listOfMoviesLiked(
-            @PathVariable("username") String username) {
 
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
-        return fan.getLikesMovies();
+    @GetMapping("/api/like/movie/{movieId}/likedbyfans")
+    public List<Fan> listOfFansLikedMovie(
+            @PathVariable("movieID") long movieId){
+        Movie movie  = (Movie) movieRepository.findMovieById(movieId);
+        return movie.getLikedByFans();
+    }
+
+    @GetMapping("/api/dislike/movie/{movieId}/dislikedbyfans")
+    public List<Fan> listOfFansDislikedMovie(
+            @PathVariable("movieId") long movieId){
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        return movie.getDislikedByFans();
     }
 }
