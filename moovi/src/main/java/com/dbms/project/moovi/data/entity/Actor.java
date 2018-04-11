@@ -123,7 +123,7 @@ public class Actor {
         this.actorPopularity = actorPopularity;
     }
 
-	public void recruitedBy(AdRecruiter adRecruiter) {
+	public void actorRecruitedBy(AdRecruiter adRecruiter) {
 		this.recruitedBy.add(adRecruiter);
         if(!adRecruiter.getRecruitedActors().contains(this)) {
         	adRecruiter.getRecruitedActors().add(this);

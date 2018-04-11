@@ -30,7 +30,7 @@ public class AdRecruiterService extends Utils {
         return (List<AdRecruiter>) adRecruiterRepository.findAll();
     }
 
-    @PostMapping("api/recruit/AdRecruiter/{username}/actor/{actorId}")
+    @PostMapping("api/recruit/adrecruiter/{username}/actor/{actorId}")
     public void AdRecruiterRecruitsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
