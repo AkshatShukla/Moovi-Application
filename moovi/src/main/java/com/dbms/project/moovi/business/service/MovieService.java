@@ -36,10 +36,21 @@ public class MovieService extends Utils {
     @Autowired
     ReviewRepository reviewRepository;
 
-    @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
+    @GetMapping("/api/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public JSONArray displayMovies(@PathVariable("movieName") String movieName) {
-        String searchUrlString = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&query="+movieName;
+    public JSONArray getMovies(@RequestParam(name = "movieName",required = false) String movieName,
+                               @RequestParam(name = "nowPlaying",required = false,defaultValue = "false") Boolean nowPlaying,
+                               @RequestParam(name = "getTopRated", required = false, defaultValue = "false") Boolean getTopRated) {
+        String searchUrlString;
+        if ((movieName != null)&&(!nowPlaying)) {
+            searchUrlString = "https://api.themoviedb.org/3/search/movie?api_key="+apiKey+"&query=" + movieName.replace(" ","+");
+        }
+        else if ((getTopRated)&&(!nowPlaying))
+            searchUrlString = "https://api.themoviedb.org/3/movie/top_rated?api_key="+apiKey+"&language=en-US&page=1";
+        else if (nowPlaying)
+            searchUrlString = "https://api.themoviedb.org/3/movie/now_playing?api_key="+apiKey+"&language=en-US&page=1";
+        else
+            searchUrlString = "https://api.themoviedb.org/3/movie/upcoming?api_key=" +apiKey+"&language=en-US&page=1";
         JSONObject jobj1;
         JSONArray jsonArray = new JSONArray();
         try {
@@ -97,7 +108,7 @@ public class MovieService extends Utils {
 //                    }
                 }
 
-                Movie movie = new Movie();
+                //Movie movie = new Movie();
                 for (long movieId:idArray) {
                     String findMovieUrlString = "https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey+"&language=en-US";
 
@@ -120,7 +131,7 @@ public class MovieService extends Utils {
                     long l = 0;
 
                     if (jobj1.get("title") == null)
-                        jsonObject.put("title","-");
+                        jsonObject.put("movieName","-");
                     else
                         jsonObject.put("movieName",jobj1.get("title"));
                     if (jobj1.get("imdb_id") == null)
@@ -135,17 +146,18 @@ public class MovieService extends Utils {
                         jsonObject.put("runtime",l);
                     else
                         jsonObject.put("runtime",jobj1.get("runtime"));
-                    jsonObject.put("movieId",jobj1.get("id"));
                     if (jobj1.get("overview") == "")
                         jsonObject.put("overview","-");
                     else
                         jsonObject.put("overview",jobj1.get("overview"));
+                    jsonObject.put("movieId",jobj1.get("id"));
                     jsonObject.put("posterSRC",jobj1.get("poster_path"));
-
                     jsonObject.put("imdbRating",jobj1.get("vote_average"));
                     jsonObject.put("releaseDate",jobj1.get("release_date"));
                     jsonObject.put("releaseStatus",jobj1.get("status"));
 
+                    //Movie Saving to Database Code
+                    /*
                     movie.setMovieId((Long) jsonObject.get("movieId"));
                     movie.setMovieName((String) jsonObject.get("movieName"));
                     movie.setImdbId((String) jsonObject.get("imdbId"));
@@ -156,8 +168,8 @@ public class MovieService extends Utils {
                     movie.setReleaseDate((String) jsonObject.get("releaseDate"));
                     movie.setRevenue((Long) jsonObject.get("revenue"));
                     movie.setReleaseStatus((String) jsonObject.get("releaseStatus"));
-
                     movieRepository.save(movie);
+                    */
                     jsonArray.add(jsonObject);
                 }
             }
@@ -166,9 +178,6 @@ public class MovieService extends Utils {
         }
         return jsonArray;
     }
-
-//    @GetMapping("/api/movie/upcoming")
-//    public void getUpcomingMovies()
 
     @PostMapping("/api/like/movie/{movieId}/fan/{username}")
     public void likeMovie(

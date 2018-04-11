@@ -163,4 +163,11 @@ public class ActorService extends Utils{
         }
         return jsonArray;
     }
+
+    @GetMapping("/api/recruit/actor/{actorId}/recruitedby")
+    public List<AdRecruiter> getListOfAdrecruiters(
+            @PathVariable("actorId") long actorId){
+        Actor actor = (Actor) actorRepository.findActorById(actorId);
+        return actor.getRecruitedBy();
+    }
 }
