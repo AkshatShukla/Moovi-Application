@@ -153,7 +153,7 @@ public class MovieService extends Utils {
                     else
                         jsonObject.put("overview",jobj1.get("overview"));
                     jsonObject.put("movieId",jobj1.get("id"));
-                    jsonObject.put("posterSRC",jobj1.get("poster_path"));
+                    jsonObject.put("posterSRC",imgUrl+jobj1.get("poster_path").toString());
                     jsonObject.put("imdbRating",jobj1.get("vote_average"));
                     jsonObject.put("releaseDate",jobj1.get("release_date"));
                     jsonObject.put("releaseStatus",jobj1.get("status"));
