@@ -35,8 +35,8 @@ public class AdRecruiterService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-		Actor actor = (Actor) actorRepository.findActorById(actorId);
-        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
+		Actor actor = actorRepository.findActorById(actorId);
+        AdRecruiter adRecruiter = adRecruiterRepository.findAdRecruiterByUsername(username);
         adRecruiter.recruitsActor(actor);
         adRecruiterRepository.save(adRecruiter);
     }

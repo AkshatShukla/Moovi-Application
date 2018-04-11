@@ -17,42 +17,34 @@ public class Actor {
     @Id
     private long actorId;
     private String actorName;
-    
+
     @Temporal(value = TemporalType.DATE)
     private Date dob;
-    
+
     @Temporal(value = TemporalType.DATE)
     private Date dod;
-    
+
     private String biography;
     private float actorPopularity;
-    
+
     @ManyToMany(mappedBy="recruitedActors")
     @JsonIgnore
     private List<AdRecruiter> recruitedBy;
-    
+
     @ManyToMany(mappedBy="actorsFollowed")
     @JsonIgnore
-    private List<Fan> actorsFollowedByFans;
-    
+    private List<Fan> fansFollowingActor;
+
     @ManyToMany(mappedBy="listOfActors")
     @JsonIgnore
     private List<Movie> listOfMovies;
 
-    public List<Fan> getActorsFollowedByFans() {
-		return actorsFollowedByFans;
-	}
-
-	public void setActorsFollowedByFans(List<Fan> actorsFollowedByFans) {
-		this.actorsFollowedByFans = actorsFollowedByFans;
-	}
-
-	public List<Fan> getActorFollowedByFans() {
-        return actorsFollowedByFans;
+    public List<Fan> getFansFollowingActor() {
+        return fansFollowingActor;
     }
 
-    public void setActorFollowedByFans(List<Fan> followedByFans) {
-        this.actorsFollowedByFans = followedByFans;
+    public void setFansFollowingActor(List<Fan> fansFollowingActor) {
+        this.fansFollowingActor = fansFollowingActor;
     }
 
     public List<AdRecruiter> getRecruitedBy() {
@@ -123,19 +115,19 @@ public class Actor {
         this.actorPopularity = actorPopularity;
     }
 
-	public void actorRecruitedBy(AdRecruiter adRecruiter) {
-		this.recruitedBy.add(adRecruiter);
+    public void actorRecruitedBy(AdRecruiter adRecruiter) {
+        this.recruitedBy.add(adRecruiter);
         if(!adRecruiter.getRecruitedActors().contains(this)) {
-        	adRecruiter.getRecruitedActors().add(this);
+            adRecruiter.getRecruitedActors().add(this);
         }
-		
-	}
 
-	public void followedBy(Fan fan) {
-		this.actorsFollowedByFans.add(fan);
+    }
+
+    public void followedBy(Fan fan) {
+        this.fansFollowingActor.add(fan);
         if(!fan.getActorsFollowed().contains(this)) {
-        	fan.getActorsFollowed().add(this);
+            fan.getActorsFollowed().add(this);
         }
-		
-	}
+
+    }
 }

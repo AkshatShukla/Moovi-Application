@@ -22,10 +22,10 @@ public class FanService extends Utils {
 
     @Autowired
     private MovieRepository movieRepository;
-    
+
     @Autowired
     private ActorRepository actorRepository;
-    
+
     @Autowired
     private CriticRepository criticRepository;
 
@@ -34,8 +34,7 @@ public class FanService extends Utils {
         return fanRepository.save(fan);
     }
 
-    @SuppressWarnings("unchecked")
-	@GetMapping("/api/fan")
+    @GetMapping("/api/fan")
     public List<Fan> findAllFans(@RequestParam(name = "username", required = false) String username) {
         if (username != null)
             return (List<Fan>) fanRepository.findFanByUsername(username);
@@ -67,20 +66,27 @@ public class FanService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-		Actor actor = actorRepository.findActorById(actorId);
+        Actor actor = actorRepository.findActorById(actorId);
         Fan fan = fanRepository.findFanByUsername(username);
         fan.followsActor(actor);
         fanRepository.save(fan);
     }
-    
+
     @PostMapping("api/follow/fan/{FanUsername}/critic/{CriticUsername}")
     public void fanFollowsCritic(
             @PathVariable("FanUsername") String fan_username,
             @PathVariable("CriticUsername") String critic_username){
 
-		Critic critic = criticRepository.findCriticByUsername(critic_username);
+        Critic critic = criticRepository.findCriticByUsername(critic_username);
         Fan fan = fanRepository.findFanByUsername(fan_username);
         fan.followsCritic(critic);
         fanRepository.save(fan);
+    }
+
+    @GetMapping("api/follow/fan/{username}/actorfollowed")
+    public List<Actor> listOfActorFollowed(
+            @PathVariable("username") String username){
+        Fan fan = fanRepository.findFanByUsername(username);
+        return fan.getActorsFollowed();
     }
 }

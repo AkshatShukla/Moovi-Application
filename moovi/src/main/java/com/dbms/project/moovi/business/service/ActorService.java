@@ -15,53 +15,58 @@ import java.util.List;
 
 @RestController
 public class ActorService extends Utils{
-	
-	@Autowired
+
+    @Autowired
     private ActorRepository actorRepository;
-	
-	@Autowired
+
+    @Autowired
     private AdRecruiterRepository adRecruiterRepository;
-	
-	@Autowired
+
+    @Autowired
     private FanRepository fanRepository;
 
-	@PostMapping("/api/actor")
+    @PostMapping("/api/actor")
     public Actor createActor(@RequestBody Actor actor) {
-	    return actorRepository.save(actor);
+        return actorRepository.save(actor);
     }
 
     @GetMapping("/api/actor")
     public List<Actor> findAllActors(){
-	    return (List<Actor>) actorRepository.findAll();
+        return (List<Actor>) actorRepository.findAll();
     }
 
     @GetMapping("/api/actor/{actorId}")
     public Actor findActorById(@PathVariable(name = "actorId") long actorId) {
-	    return actorRepository.findActorById(actorId);
+        return actorRepository.findActorById(actorId);
     }
-	
-	@PostMapping("api/recruit/actor/{actorId}/adrecruiter/{username}")
+
+    @PostMapping("api/recruit/actor/{actorId}/adrecruiter/{username}")
     public void AdRecruiterRecruitsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-		Actor actor =  actorRepository.findActorById(actorId);
+        Actor actor =  actorRepository.findActorById(actorId);
         AdRecruiter adRecruiter = adRecruiterRepository.findAdRecruiterByUsername(username);
         actor.actorRecruitedBy(adRecruiter);
         actorRepository.save(actor);
     }
 
-	@PostMapping("api/follow/actor/{actorId}/fan/{username}")
+    @PostMapping("api/follow/actor/{actorId}/fan/{username}")
     public void FanFollowsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-		Actor actor = actorRepository.findActorById(actorId);
+        Actor actor = actorRepository.findActorById(actorId);
         Fan fan = fanRepository.findFanByUsername(username);
         actor.followedBy(fan);
         actorRepository.save(actor);
     }
 
+    @GetMapping("api/follow/actor/{actorId}/fanfollowing")
+    public List<Fan> listOfFansFollowing(
+            @PathVariable("actorId") long actorId) {
 
-
+        Actor actor = actorRepository.findActorById(actorId);
+        return actor.getFansFollowingActor();
+    }
 }

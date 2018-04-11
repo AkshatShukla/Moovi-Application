@@ -42,8 +42,8 @@ public class CriticService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        Movie movie = movieRepository.findMovieById(movieId);
+        Critic critic = criticRepository.findCriticByUsername(username);
         critic.recommends(movie);
         criticRepository.save(critic);
     }
