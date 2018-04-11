@@ -9,7 +9,9 @@ import com.dbms.project.moovi.data.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.dbms.project.moovi.data.entity.Actor;
 import com.dbms.project.moovi.data.entity.Critic;
+import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.repository.CriticRepository;
 
 @RestController
@@ -56,5 +58,13 @@ public class CriticService extends Utils {
         Review review = (Review) reviewRepository.findReviewById(reviewId);
         critic.reviews(review);
         criticRepository.save(critic);
+    }
+    
+    @GetMapping("api/follow/critic/{username}/fanfollowing")
+    public List<Fan> listOfFansFollowing(
+            @PathVariable("username") String username) {
+
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        return critic.getFansFollowingCritics();
     }
 }

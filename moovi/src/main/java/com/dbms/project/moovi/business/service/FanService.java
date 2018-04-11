@@ -89,4 +89,25 @@ public class FanService extends Utils {
         Fan fan = (Fan) fanRepository.findFanByUsername(username);
         return fan.getActorsFollowed();
     }
+    
+    @GetMapping("api/follow/fan/{username}/criticfollowed")
+    public List<Critic> listOfCriticFollowed(
+            @PathVariable("username") String username){
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        return fan.getCriticsFollowed();
+    }
+    
+    @GetMapping("api/follow/fan/{username}/moviesliked")
+    public List<Movie> listOfMoviesLiked(
+            @PathVariable("username") String username){
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        return fan.getLikesMovies();
+    }
+    
+    @GetMapping("api/follow/fan/{username}/moviesdisliked")
+    public List<Movie> listOfMoviesDisliked(
+            @PathVariable("username") String username){
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        return fan.getDislikesMovies();
+    }
 }

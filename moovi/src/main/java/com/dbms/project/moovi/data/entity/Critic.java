@@ -22,7 +22,7 @@ public class Critic extends User{
     
     @ManyToMany(mappedBy="criticsFollowed")
     @JsonIgnore
-    private List<Fan> criticsFollowedByFans;
+    private List<Fan> fansFollowingCritics;
 
     @OneToMany(mappedBy = "critic")
     @JsonIgnore
@@ -32,15 +32,15 @@ public class Critic extends User{
         super();
     }
 
-    public List<Fan> getCriticsFollowedByFans() {
-        return criticsFollowedByFans;
-    }
+    public List<Fan> getFansFollowingCritics() {
+		return fansFollowingCritics;
+	}
 
-    public void setCriticsFollowedByFans(List<Fan> followedByFans) {
-        this.criticsFollowedByFans = followedByFans;
-    }
+	public void setFansFollowingCritics(List<Fan> fansFollowingCritics) {
+		this.fansFollowingCritics = fansFollowingCritics;
+	}
 
-    public List<Movie> getRecommendedMovies() {
+	public List<Movie> getRecommendedMovies() {
         return recommendedMovies;
     }
 
