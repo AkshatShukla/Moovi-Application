@@ -36,7 +36,7 @@ public class MovieService extends Utils {
     @Autowired
     ReviewRepository reviewRepository;
 
-    @GetMapping("/api/movie")
+    @GetMapping("/api/search/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public JSONArray getMovies(@RequestParam(name = "movieName",required = false) String movieName,
                                @RequestParam(name = "nowPlaying",required = false,defaultValue = "false") Boolean nowPlaying,
