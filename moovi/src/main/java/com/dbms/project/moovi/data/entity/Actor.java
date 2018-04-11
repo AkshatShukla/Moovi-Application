@@ -17,15 +17,11 @@ public class Actor {
     @Id
     private long actorId;
     private String actorName;
-
-    @Temporal(value = TemporalType.DATE)
-    private Date dob;
-
-    @Temporal(value = TemporalType.DATE)
-    private Date dod;
-
+    private String dob;
+    private String dod;
+    private String imdbId;
     private String biography;
-    private float actorPopularity;
+    private String actorPopularity;
 
     @ManyToMany(mappedBy="recruitedActors")
     @JsonIgnore
@@ -83,20 +79,28 @@ public class Actor {
         this.actorName = actorName;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
-    public Date getDod() {
+    public String getDod() {
         return dod;
     }
 
-    public void setDod(Date dod) {
+    public void setDod(String dod) {
         this.dod = dod;
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 
     public String getBiography() {
@@ -107,11 +111,11 @@ public class Actor {
         this.biography = biography;
     }
 
-    public float getActorPopularity() {
+    public String getActorPopularity() {
         return actorPopularity;
     }
 
-    public void setActorPopularity(float actorPopularity) {
+    public void setActorPopularity(String actorPopularity) {
         this.actorPopularity = actorPopularity;
     }
 
