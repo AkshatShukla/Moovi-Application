@@ -3,7 +3,9 @@ package com.dbms.project.moovi.business.service;
 import java.util.List;
 
 import com.dbms.project.moovi.data.entity.Movie;
+import com.dbms.project.moovi.data.entity.Review;
 import com.dbms.project.moovi.data.repository.MovieRepository;
+import com.dbms.project.moovi.data.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ public class CriticService extends Utils {
 
 	@Autowired
     private MovieRepository movieRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 	
 	@PostMapping("/api/critic")
 	public Critic createCritic(@RequestBody Critic critic) {
@@ -40,6 +45,16 @@ public class CriticService extends Utils {
         Movie movie = (Movie) movieRepository.findMovieById(movieId);
         Critic critic = (Critic) criticRepository.findCriticByUsername(username);
         critic.recommends(movie);
+        criticRepository.save(critic);
+    }
+
+    @PostMapping("/api/reviews/critic/{username}/review/{reviewId}")
+    public void reviewMovie(
+            @PathVariable("username") String username,
+            @PathVariable("reviewId") long reviewId) {
+        Critic critic = criticRepository.findCriticByUsername(username);
+        Review review = reviewRepository.findReviewById(reviewId);
+        critic.reviews(review);
         criticRepository.save(critic);
     }
 }

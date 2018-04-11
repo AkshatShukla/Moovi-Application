@@ -3,9 +3,11 @@ package com.dbms.project.moovi.business.service;
 import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
+import com.dbms.project.moovi.data.entity.Review;
 import com.dbms.project.moovi.data.repository.CriticRepository;
 import com.dbms.project.moovi.data.repository.FanRepository;
 import com.dbms.project.moovi.data.repository.MovieRepository;
+import com.dbms.project.moovi.data.repository.ReviewRepository;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +32,9 @@ public class MovieService extends Utils {
     
     @Autowired
     CriticRepository criticRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
 
     @RequestMapping(value = "/api/movie/{movieName}", method = RequestMethod.GET)
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -195,6 +200,16 @@ public class MovieService extends Utils {
         Movie movie = movieRepository.findMovieById(movieId);
         Critic critic = criticRepository.findCriticByUsername(username);
         movie.recommendedByCritic(critic);
+        movieRepository.save(movie);
+    }
+
+    @PostMapping("/api/reviews/movie/{movieId}/review/{reviewId}")
+    public void reviewMovie(
+            @PathVariable("movieId") long movieId,
+            @PathVariable("reviewId") long reviewId) {
+        Movie movie = movieRepository.findMovieById(movieId);
+        Review review = reviewRepository.findReviewById(reviewId);
+        movie.hasReviews(review);
         movieRepository.save(movie);
     }
 }

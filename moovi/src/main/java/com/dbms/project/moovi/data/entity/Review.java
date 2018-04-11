@@ -9,7 +9,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long reviewId;
 
     @Column(columnDefinition = "TEXT")
     private String review;
@@ -30,12 +30,12 @@ public class Review {
     public Review() {
     }
 
-    public long getId() {
-        return id;
+    public long getReviewId() {
+        return reviewId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setReviewId(long reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getReview() {
