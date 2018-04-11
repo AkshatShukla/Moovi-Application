@@ -136,8 +136,8 @@ public class Fan extends User {
 
 	public void followsCritic(Critic critic) {
 		this.criticsFollowed.add(critic);
-		if(!critic.getCriticsFollowedByFans().contains(this)) {
-			critic.getCriticsFollowedByFans().add(this);
+		if(!critic.getFansFollowingCritics().contains(this)) {
+			critic.getFansFollowingCritics().add(this);
 		}
 		
 	}
