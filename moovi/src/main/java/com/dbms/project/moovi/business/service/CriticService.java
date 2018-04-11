@@ -42,8 +42,8 @@ public class CriticService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = movieRepository.findMovieById(movieId);
-        Critic critic = criticRepository.findCriticByUsername(username);
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
         critic.recommends(movie);
         criticRepository.save(critic);
     }
@@ -52,8 +52,8 @@ public class CriticService extends Utils {
     public void reviewMovie(
             @PathVariable("username") String username,
             @PathVariable("reviewId") long reviewId) {
-        Critic critic = criticRepository.findCriticByUsername(username);
-        Review review = reviewRepository.findReviewById(reviewId);
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        Review review = (Review) reviewRepository.findReviewById(reviewId);
         critic.reviews(review);
         criticRepository.save(critic);
     }

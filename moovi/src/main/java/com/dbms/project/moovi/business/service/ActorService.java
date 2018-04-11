@@ -37,7 +37,7 @@ public class ActorService extends Utils{
 
     @GetMapping("/api/actor/{actorId}")
     public Actor findActorById(@PathVariable(name = "actorId") long actorId) {
-        return actorRepository.findActorById(actorId);
+        return (Actor) actorRepository.findActorById(actorId);
     }
 
     @PostMapping("api/recruit/actor/{actorId}/adrecruiter/{username}")
@@ -45,8 +45,8 @@ public class ActorService extends Utils{
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-        Actor actor =  actorRepository.findActorById(actorId);
-        AdRecruiter adRecruiter = adRecruiterRepository.findAdRecruiterByUsername(username);
+        Actor actor = (Actor) actorRepository.findActorById(actorId);
+        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
         actor.actorRecruitedBy(adRecruiter);
         actorRepository.save(actor);
     }
@@ -56,8 +56,8 @@ public class ActorService extends Utils{
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
 
-        Actor actor = actorRepository.findActorById(actorId);
-        Fan fan = fanRepository.findFanByUsername(username);
+        Actor actor = (Actor) actorRepository.findActorById(actorId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
         actor.followedBy(fan);
         actorRepository.save(actor);
     }
@@ -66,7 +66,7 @@ public class ActorService extends Utils{
     public List<Fan> listOfFansFollowing(
             @PathVariable("actorId") long actorId) {
 
-        Actor actor = actorRepository.findActorById(actorId);
+        Actor actor = (Actor) actorRepository.findActorById(actorId);
         return actor.getFansFollowingActor();
     }
 }

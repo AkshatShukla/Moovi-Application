@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface TheatreRepository extends CrudRepository<Theatre, Long>{
 
     @Query("SELECT t FROM Theatre t WHERE t.theatreId=:theatreId")
-    Theatre findTheatreById(@Param("theatreId") long t);
+    Iterable<Theatre> findTheatreById(@Param("theatreId") long t);
 }

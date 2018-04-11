@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface ReviewRepository extends CrudRepository<Review, Long> {
 
     @Query("SELECT r FROM Review r WHERE r.reviewId=:reviewId")
-    Review findReviewById(@Param("reviewId") long r);
+    Iterable<Review> findReviewById(@Param("reviewId") long r);
 }

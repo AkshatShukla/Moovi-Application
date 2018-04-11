@@ -9,5 +9,5 @@ import org.springframework.data.repository.query.Param;
 public interface ActorRepository extends CrudRepository<Actor, Long> {
 	
 	@Query("SELECT a FROM Actor a WHERE a.actorId=:actorId")
-    Actor findActorById(@Param("actorId") long a);
+    Iterable<Actor> findActorById(@Param("actorId") long a);
 }

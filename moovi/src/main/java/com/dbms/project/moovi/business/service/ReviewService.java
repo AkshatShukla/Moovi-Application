@@ -32,8 +32,8 @@ public class ReviewService {
     public void reviwedMovie(
             @PathVariable("movieId") long movieId,
             @PathVariable("reviewId") long reviewId){
-        Movie movie = movieRepository.findMovieById(movieId);
-        Review review = reviewRepository.findReviewById(reviewId);
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Review review = (Review) reviewRepository.findReviewById(reviewId);
         review.setRmovie(movie);
         reviewRepository.save(review);
     }
@@ -42,8 +42,8 @@ public class ReviewService {
     public void reviewedByCritic(
             @PathVariable("username") String username,
             @PathVariable("reviewId") long reviewId){
-        Critic critic = criticRepository.findCriticByUsername(username);
-        Review review = reviewRepository.findReviewById(reviewId);
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+        Review review = (Review) reviewRepository.findReviewById(reviewId);
         review.setCritic(critic);
         reviewRepository.save(review);
     }

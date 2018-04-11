@@ -175,8 +175,8 @@ public class MovieService extends Utils {
     		@PathVariable("username") String username,
     		@PathVariable("movieId") long movieId) {
     	
-    	Movie movie = movieRepository.findMovieById(movieId);
-    	Fan fan = fanRepository.findFanByUsername(username);
+    	Movie movie = (Movie) movieRepository.findMovieById(movieId);
+    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
     	movie.likedByFan(fan);
     	movieRepository.save(movie);
     }
@@ -186,8 +186,8 @@ public class MovieService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = movieRepository.findMovieById(movieId);
-        Fan fan = fanRepository.findFanByUsername(username);
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
         movie.dislikedByFan(fan);
         movieRepository.save(movie);
     }
@@ -197,8 +197,8 @@ public class MovieService extends Utils {
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
 
-        Movie movie = movieRepository.findMovieById(movieId);
-        Critic critic = criticRepository.findCriticByUsername(username);
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
         movie.recommendedByCritic(critic);
         movieRepository.save(movie);
     }
@@ -207,8 +207,8 @@ public class MovieService extends Utils {
     public void reviewMovie(
             @PathVariable("movieId") long movieId,
             @PathVariable("reviewId") long reviewId) {
-        Movie movie = movieRepository.findMovieById(movieId);
-        Review review = reviewRepository.findReviewById(reviewId);
+        Movie movie = (Movie) movieRepository.findMovieById(movieId);
+        Review review = (Review) reviewRepository.findReviewById(reviewId);
         movie.hasReviews(review);
         movieRepository.save(movie);
     }

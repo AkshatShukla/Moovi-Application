@@ -5,8 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface FanRepository extends CrudRepository<Fan, Long> {
 
     @Query("SELECT f FROM Fan f WHERE f.username=:username")
-    Fan findFanByUsername(@Param("username") String u);
+    Iterable<Fan> findFanByUsername(@Param("username") String u);
 }

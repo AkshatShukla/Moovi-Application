@@ -28,8 +28,8 @@ public class TheatreService {
     public void theatreManagedBy(
             @PathVariable("username") String username,
             @PathVariable("theatreId") long theatreId){
-        Theatre theatre = theatreRepository.findTheatreById(theatreId);
-        TheatreManager theatreManager = theatreManagerRepository.findManagerByUsername(username);
+        Theatre theatre = (Theatre) theatreRepository.findTheatreById(theatreId);
+        TheatreManager theatreManager = (TheatreManager) theatreManagerRepository.findManagerByUsername(username);
         theatreManager.managedTheatres(theatre);
         theatreRepository.save(theatre);
     }

@@ -8,5 +8,5 @@ import org.springframework.data.repository.query.Param;
 public interface TheatreManagerRepository extends CrudRepository<TheatreManager, Long> {
 
     @Query("SELECT t FROM TheatreManager t WHERE t.username=:username")
-    TheatreManager findManagerByUsername(@Param("username") String u);
+    Iterable<TheatreManager> findManagerByUsername(@Param("username") String u);
 }
