@@ -17,14 +17,4 @@ public class ReviewService {
     public Review createUser(@RequestBody Review review) {
         return reviewRepository.save(review);
     }
-
-    @GetMapping("/api/review")
-    public List<Review> findAllReview(){
-        return (List<Review>) reviewRepository.findAll();
-    }
-
-    @GetMapping("/api/review/{movieId}")
-    public List<Review> findAllReviewByMovieId(@PathVariable(name = "movieId") long movieId){
-        return (List<Review>) reviewRepository.findReviewByMovieId(movieId);
-    }
 }

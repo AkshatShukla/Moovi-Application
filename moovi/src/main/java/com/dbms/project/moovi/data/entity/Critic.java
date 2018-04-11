@@ -24,20 +24,20 @@ public class Critic extends User{
     @JsonIgnore
     private List<Fan> criticsFollowedByFans;
 
-    public List<Fan> getCriticFollowedByFans() {
-        return criticsFollowedByFans;
-    }
-
-    public void setCriticFollowedByFans(List<Fan> followedByFans) {
-        this.criticsFollowedByFans = followedByFans;
-    }
-
     @OneToMany(mappedBy = "critic")
     @JsonIgnore
     private List<Review> reviewedMovie;
 
     public Critic() {
         super();
+    }
+
+    public List<Fan> getCriticsFollowedByFans() {
+        return criticsFollowedByFans;
+    }
+
+    public void setCriticsFollowedByFans(List<Fan> followedByFans) {
+        this.criticsFollowedByFans = followedByFans;
     }
 
     public List<Movie> getRecommendedMovies() {
@@ -64,10 +64,25 @@ public class Critic extends User{
         this.websiteUrl = websiteUrl;
     }
 
-	public void recommends(Movie movie) {
+    public List<Review> getReviewedMovie() {
+        return reviewedMovie;
+    }
+
+    public void setReviewedMovie(List<Review> reviewedMovie) {
+        this.reviewedMovie = reviewedMovie;
+    }
+
+    public void recommends(Movie movie) {
 		this.recommendedMovies.add(movie);
 		if(!movie.getRecommendedBy().contains(this)) {
 			movie.getRecommendedBy().add(this);
 		}
 	}
+
+	public void reviews(Review review){
+        this.getReviewedMovie().add(review);
+        if(review.getCritic()!= this) {
+            review.setCritic(this);
+        }
+    }
 }

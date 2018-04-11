@@ -1,12 +1,15 @@
 package com.dbms.project.moovi.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 public class Review {
 
-    @EmbeddedId
-    private ReviewCompositePK compositePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(columnDefinition = "TEXT")
     private String review;
@@ -14,26 +17,25 @@ public class Review {
     @Enumerated(EnumType.STRING)
     private Rating rating;
 
-    @MapsId("critic")
-    @ManyToOne
-    @JoinColumn(name = "critic_id", referencedColumnName = "userId")
+    @ManyToOne()
+    @JoinColumn(name = "critic_id")
+    @JsonIgnore
     private Critic critic;
 
-    @MapsId("movie")
-    @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "movieId")
-    private Movie Rmovie;
+    @ManyToOne()
+    @JoinColumn(name = "movie_id")
+    @JsonIgnore
+    private Movie rmovie;
 
     public Review() {
-        super();
     }
 
-    public Rating getRating() {
-        return rating;
+    public long getId() {
+        return id;
     }
 
-    public void setRating(Rating rating) {
-        this.rating = rating;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getReview() {
@@ -44,32 +46,32 @@ public class Review {
         this.review = review;
     }
 
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
     public Critic getCritic() {
         return critic;
     }
 
     public void setCritic(Critic critic) {
         this.critic = critic;
+        if(!critic.getReviewedMovie().contains(this))
+            critic.getReviewedMovie().add(this);
     }
 
     public Movie getRmovie() {
-        return Rmovie;
+        return rmovie;
     }
 
     public void setRmovie(Movie rmovie) {
-        Rmovie = rmovie;
-        if(!rmovie.getMovieReview().contains(this)) {
-        	rmovie.getMovieReview().add(this);
-        }
-
-    }
-
-    public ReviewCompositePK getCompositePK() {
-        return compositePK;
-    }
-
-    public void setCompositePK(ReviewCompositePK compositePK) {
-        this.compositePK = compositePK;
+        this.rmovie = rmovie;
+        if(!rmovie.getMovieReview().contains(this))
+            rmovie.getMovieReview().add(this);
     }
 }
 

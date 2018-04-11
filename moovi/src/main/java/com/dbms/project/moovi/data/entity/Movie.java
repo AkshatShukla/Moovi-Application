@@ -45,7 +45,7 @@ public class Movie {
     @JsonIgnore
     private List<Genre> listOfGenres;
 
-    @OneToMany(mappedBy = "Rmovie")
+    @OneToMany(mappedBy = "rmovie")
     @JsonIgnore
     private List<Review> movieReview;
     
@@ -221,7 +221,7 @@ public class Movie {
     		}
     }
    
-    public void hasReviews (Review review) {
+    public void hasReviews(Review review) {
         	this.movieReview.add(review);
         	if(review.getRmovie() != this) {
         		review.setRmovie(this);
