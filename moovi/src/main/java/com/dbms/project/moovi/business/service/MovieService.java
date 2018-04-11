@@ -1,5 +1,6 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.Actor;
 import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 
 @RestController
@@ -220,5 +222,21 @@ public class MovieService extends Utils {
         Review review = (Review) reviewRepository.findReviewById(reviewId);
         movie.hasReviews(review);
         movieRepository.save(movie);
+    }
+    
+    @GetMapping("api/dislike/fan/{username}/moviesdisliked")
+    public List<Movie> listOfMoviesDisliked(
+            @PathVariable("username") String username) {
+
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        return fan.getDislikesMovies();
+    }
+    
+    @GetMapping("api/like/fan/{username}/moviesliked")
+    public List<Movie> listOfMoviesLiked(
+            @PathVariable("username") String username) {
+
+        Fan fan = (Fan) fanRepository.findFanByUsername(username);
+        return fan.getLikesMovies();
     }
 }
