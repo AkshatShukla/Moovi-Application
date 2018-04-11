@@ -27,16 +27,16 @@ import java.util.Scanner;
 public class MovieService extends Utils {
 
     @Autowired
-    MovieRepository movieRepository;
+    private MovieRepository movieRepository;
     
     @Autowired
-    FanRepository fanRepository;
+    private FanRepository fanRepository;
     
     @Autowired
-    CriticRepository criticRepository;
+    private CriticRepository criticRepository;
 
     @Autowired
-    ReviewRepository reviewRepository;
+    private ReviewRepository reviewRepository;
 
     @GetMapping("/api/search/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
