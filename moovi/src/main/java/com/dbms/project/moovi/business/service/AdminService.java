@@ -44,9 +44,27 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    @DeleteMapping("/api/delete/fan/{userId}")
+    @DeleteMapping("/api/delete/fan/{username}")
     public void deleteFan(
-            @PathVariable("userId") long userId){
-        fanRepository.deleteById(userId);
+            @PathVariable("username") String username){
+        fanRepository.deleteById(fanRepository.findFanIdByUsername(username));
+    }
+
+    @DeleteMapping("/api/delete/critic/{username}")
+    public void deleteCritic(
+            @PathVariable("username") String username){
+        criticRepository.deleteById(criticRepository.findCriticIdByUsername(username));
+    }
+
+    @DeleteMapping("/api/delete/adrecruiter/{username}")
+    public void deleteAdRecruiter(
+            @PathVariable("username") String username){
+        adRecruiterRepository.deleteById(adRecruiterRepository.findAdRecruiterIdByUsername(username));
+    }
+
+    @DeleteMapping("/api/delete/theatre/{username}")
+    public void deleteTheatre(
+            @PathVariable("username") String username){
+        theatreRepository.deleteById(theatreManagerRepository.findManagerIdByUsername(username));
     }
 }

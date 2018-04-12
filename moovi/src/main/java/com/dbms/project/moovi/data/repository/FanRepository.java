@@ -11,4 +11,7 @@ public interface FanRepository extends CrudRepository<Fan, Long> {
 
     @Query("SELECT f FROM Fan f WHERE f.username=:username")
     Iterable<Fan> findFanByUsername(@Param("username") String u);
+
+    @Query("SELECT f.userId FROM Fan f where f.username=:username")
+    long findFanIdByUsername(@Param("username") String u);
 }
