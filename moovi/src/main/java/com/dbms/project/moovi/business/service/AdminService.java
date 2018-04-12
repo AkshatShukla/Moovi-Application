@@ -76,7 +76,7 @@ public class AdminService {
     public Fan updateFan(
             @PathVariable("username") String username,
             @RequestBody Fan newFan) {
-    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
+    	Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
     	fan.set(newFan);
         return fanRepository.save(fan);
     }

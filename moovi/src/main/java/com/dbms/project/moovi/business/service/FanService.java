@@ -125,4 +125,20 @@ public class FanService extends Utils {
             fanRepository.save(fan1);
         }
     }
+
+    @GetMapping("/api/follow/fan/{username}/fansfollowing")
+    public List<Fan> getListOfFansFollowing(
+            @PathVariable("username") String username){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            return fan.getFollowingFans();
+        }
+        return null;
+    }
+
+    @GetMapping("/api/follow/fan/{username}/followedby")
+    public List<Fan> getListOfFollowedByFans(@PathVariable("username") String username){
+        Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+        return fan.getFollowedByFans();
+    }
 }

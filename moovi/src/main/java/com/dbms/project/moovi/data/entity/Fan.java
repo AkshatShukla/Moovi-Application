@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class Fan extends User {
@@ -45,6 +42,7 @@ public class Fan extends User {
 	@ManyToMany
 	@JoinTable(name = "FansFollowed",
 			joinColumns = @JoinColumn(name = "userId1", referencedColumnName = "userId"))
+	@JsonIgnore
 	private List<Fan> followingFans;
 
 	@ManyToMany(mappedBy = "followingFans")
@@ -141,6 +139,8 @@ public class Fan extends User {
 
 	public void followsFan(Fan fan){
 		this.getFollowingFans().add(fan);
+		if(!fan.getFollowedByFans().contains(this))
+			fan.getFollowedByFans().add(this);
 	}
 
 	public void set(Fan newFan) {
