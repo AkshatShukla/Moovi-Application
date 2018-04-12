@@ -77,5 +77,18 @@ public class Theatre {
 	public void setListOfScreens(List<Screen> listOfScreens) {
 		this.listOfScreens = listOfScreens;
 	}
+
+	public void set(Theatre newTheatre) {
+		this.theatreName = newTheatre.theatreName != null?
+				newTheatre.theatreName : this.theatreName;
+		this.totalScreens = newTheatre.totalScreens != null?
+				newTheatre.totalScreens : this.totalScreens;
+		this.location = newTheatre.location != null?
+				newTheatre.location : this.location;
+		this.theatreManager = newTheatre.theatreManager != null?
+				newTheatre.theatreManager : this.theatreManager;
+		this.listOfScreens = newTheatre.listOfScreens != null?
+				newTheatre.listOfScreens : this.listOfScreens;
+	}
 	
 }

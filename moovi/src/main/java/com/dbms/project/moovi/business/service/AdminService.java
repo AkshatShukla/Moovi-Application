@@ -4,6 +4,7 @@ import com.dbms.project.moovi.data.entity.AdRecruiter;
 import com.dbms.project.moovi.data.entity.Admin;
 import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
+import com.dbms.project.moovi.data.entity.Theatre;
 import com.dbms.project.moovi.data.entity.TheatreManager;
 import com.dbms.project.moovi.data.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +106,14 @@ public class AdminService {
     	TheatreManager theatreManager = (TheatreManager) theatreManagerRepository.findManagerByUsername(username);
     	theatreManager.set(newtheatreManager);
         return theatreManagerRepository.save(theatreManager);
+    }
+    
+    @PutMapping("/api/edit/theatre/{theatreId}")
+    public Theatre updateTheatre(
+            @PathVariable("theatreId") long theatreId,
+            @RequestBody Theatre newTheatre) {
+    	Theatre theatre = (Theatre) theatreRepository.findTheatreById(theatreId);
+    	theatre.set(newTheatre);
+        return theatreRepository.save(theatre);
     }
 }
