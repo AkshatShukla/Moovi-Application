@@ -117,9 +117,12 @@ public class FanService extends Utils {
     public void fansFollowingfan(
             @PathVariable(name = "username1") String username1,
             @PathVariable(name = "username2" ) String username2){
-        Fan fan1 = fanRepository.findById(fanRepository.findFanIdByUsername(username1)).get();
-        Fan fan2 = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
-        fan1.followsFan(fan2);
-        fanRepository.save(fan1);
+        if ((fanRepository.findById(fanRepository.findFanIdByUsername(username1)).isPresent())
+                &&(fanRepository.findById(fanRepository.findFanIdByUsername(username2)).isPresent())) {
+            Fan fan1 = fanRepository.findById(fanRepository.findFanIdByUsername(username1)).get();
+            Fan fan2 = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
+            fan1.followsFan(fan2);
+            fanRepository.save(fan1);
+        }
     }
 }
