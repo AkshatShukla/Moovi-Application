@@ -48,4 +48,27 @@ public class AdRecruiter extends User{
 		}	
 		
 	}
+
+	public void set(AdRecruiter newAdrecruiter) {
+		this.firstName = newAdrecruiter.firstName != null? 
+				newAdrecruiter.firstName : this.firstName;
+		this.lastName = newAdrecruiter.lastName != null? 
+				newAdrecruiter.lastName : this.lastName;
+		this.username = newAdrecruiter.username != null? 
+				newAdrecruiter.username : this.username;
+		this.password = newAdrecruiter.password != null? 
+				newAdrecruiter.password : this.password;
+		this.email = newAdrecruiter.email != null? 
+				newAdrecruiter.email : this.email;
+		this.dob = newAdrecruiter.dob != null? 
+				newAdrecruiter.dob : this.dob;
+		this.userAddresses = newAdrecruiter.userAddresses != null? 
+				newAdrecruiter.userAddresses : this.userAddresses;
+		this.userPhoneNumbers = newAdrecruiter.userPhoneNumbers != null? 
+				newAdrecruiter.userPhoneNumbers : this.userPhoneNumbers;	
+		this.recruiterDescription = newAdrecruiter.recruiterDescription != null? 
+				newAdrecruiter.recruiterDescription : this.recruiterDescription;
+		this.recruitedActors = newAdrecruiter.recruitedActors != null? 
+				newAdrecruiter.recruitedActors : this.recruitedActors;	
+	}
 }

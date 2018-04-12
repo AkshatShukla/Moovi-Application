@@ -49,7 +49,7 @@ public class Fan extends User {
 
 	@ManyToMany(mappedBy = "followingFans")
 	@JsonIgnore
-	private List<Fan> follwedByFans;
+	private List<Fan> followedByFans;
 
 	public Fan() {
 		super();
@@ -103,12 +103,12 @@ public class Fan extends User {
 		this.followingFans = followingFans;
 	}
 
-	public List<Fan> getFollwedByFans() {
-		return follwedByFans;
+	public List<Fan> getFollowedByFans() {
+		return followedByFans;
 	}
 
-	public void setFollwedByFans(List<Fan> follwedByFans) {
-		this.follwedByFans = follwedByFans;
+	public void setFollowedByFans(List<Fan> followedByFans) {
+		this.followedByFans = followedByFans;
 	}
 
 	public void likesMovie(Movie movie) {
@@ -141,5 +141,38 @@ public class Fan extends User {
 
 	public void followsFan(Fan fan){
 		this.getFollowingFans().add(fan);
+	}
+
+	public void set(Fan newFan) {
+		this.firstName = newFan.firstName != null? 
+				newFan.firstName : this.firstName;
+		this.lastName = newFan.lastName != null? 
+				newFan.lastName : this.lastName;
+		this.username = newFan.username != null? 
+				newFan.username : this.username;
+		this.password = newFan.password != null? 
+				newFan.password : this.password;
+		this.email = newFan.email != null? 
+				newFan.email : this.email;
+		this.dob = newFan.dob != null? 
+				newFan.dob : this.dob;
+		this.userAddresses = newFan.userAddresses != null? 
+				newFan.userAddresses : this.userAddresses;
+		this.userPhoneNumbers = newFan.userPhoneNumbers != null? 
+				newFan.userPhoneNumbers : this.userPhoneNumbers;	
+		this.fanDescription = newFan.fanDescription != null? 
+				newFan.fanDescription : this.fanDescription;
+		this.actorsFollowed = newFan.actorsFollowed != null? 
+				newFan.actorsFollowed : this.actorsFollowed;
+		this.criticsFollowed = newFan.criticsFollowed != null? 
+				newFan.criticsFollowed : this.criticsFollowed;
+		this.likesMovies = newFan.likesMovies != null? 
+				newFan.likesMovies : this.likesMovies;
+		this.dislikesMovies = newFan.dislikesMovies != null? 
+				newFan.dislikesMovies : this.dislikesMovies;
+		this.followingFans = newFan.followingFans != null? 
+				newFan.followingFans : this.followingFans;
+		this.followedByFans = newFan.followedByFans != null? 
+				newFan.followedByFans : this.followedByFans;
 	}
 }

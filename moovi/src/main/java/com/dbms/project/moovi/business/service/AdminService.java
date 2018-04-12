@@ -1,7 +1,10 @@
 package com.dbms.project.moovi.business.service;
 
+import com.dbms.project.moovi.data.entity.AdRecruiter;
 import com.dbms.project.moovi.data.entity.Admin;
+import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
+import com.dbms.project.moovi.data.entity.TheatreManager;
 import com.dbms.project.moovi.data.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -62,9 +65,45 @@ public class AdminService {
         adRecruiterRepository.deleteById(adRecruiterRepository.findAdRecruiterIdByUsername(username));
     }
 
-    @DeleteMapping("/api/delete/theatre/{username}")
-    public void deleteTheatre(
+    @DeleteMapping("/api/delete/theatremanager/{username}")
+    public void deleteTheatreManager(
             @PathVariable("username") String username){
-        theatreRepository.deleteById(theatreManagerRepository.findManagerIdByUsername(username));
+        theatreManagerRepository.deleteById(theatreManagerRepository.findManagerIdByUsername(username));
+    }
+    
+    @PutMapping("/api/edit/fan/{username}")
+    public Fan updateFan(
+            @PathVariable("username") String username,
+            @RequestBody Fan newFan) {
+    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
+    	fan.set(newFan);
+        return fanRepository.save(fan);
+    }
+    
+    @PutMapping("/api/edit/critic/{username}")
+    public Critic updateCritic(
+            @PathVariable("username") String username,
+            @RequestBody Critic newCritic) {
+    	Critic critic = (Critic) criticRepository.findCriticByUsername(username);
+    	critic.set(newCritic);
+        return criticRepository.save(critic);
+    }
+    
+    @PutMapping("/api/edit/adrecruiter/{username}")
+    public AdRecruiter updateAdrecruiter(
+            @PathVariable("username") String username,
+            @RequestBody AdRecruiter newAdrecruiter) {
+    	AdRecruiter adr = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
+    	adr.set(newAdrecruiter);
+        return adRecruiterRepository.save(adr);
+    }
+    
+    @PutMapping("/api/edit/theatremanager/{username}")
+    public TheatreManager updateTheatreManager(
+            @PathVariable("username") String username,
+            @RequestBody TheatreManager newtheatreManager) {
+    	TheatreManager theatreManager = (TheatreManager) theatreManagerRepository.findManagerByUsername(username);
+    	theatreManager.set(newtheatreManager);
+        return theatreManagerRepository.save(theatreManager);
     }
 }

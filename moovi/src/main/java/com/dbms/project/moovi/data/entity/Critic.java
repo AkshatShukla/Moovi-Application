@@ -85,4 +85,33 @@ public class Critic extends User{
             review.setCritic(this);
         }
     }
+	
+	public void set(Critic newCritic) {
+		this.firstName = newCritic.firstName != null? 
+				newCritic.firstName : this.firstName;
+		this.lastName = newCritic.lastName != null? 
+				newCritic.lastName : this.lastName;
+		this.username = newCritic.username != null? 
+				newCritic.username : this.username;
+		this.password = newCritic.password != null? 
+				newCritic.password : this.password;
+		this.email = newCritic.email != null? 
+				newCritic.email : this.email;
+		this.dob = newCritic.dob != null? 
+				newCritic.dob : this.dob;
+		this.userAddresses = newCritic.userAddresses != null? 
+				newCritic.userAddresses : this.userAddresses;
+		this.userPhoneNumbers = newCritic.userPhoneNumbers != null? 
+				newCritic.userPhoneNumbers : this.userPhoneNumbers;	
+		this.criticDescription = newCritic.criticDescription != null? 
+				newCritic.criticDescription : this.criticDescription;
+		this.websiteUrl = newCritic.websiteUrl != null? 
+				newCritic.websiteUrl : this.websiteUrl;
+		this.fansFollowingCritics = newCritic.fansFollowingCritics != null?
+				newCritic.fansFollowingCritics : this.fansFollowingCritics;
+		this.reviewedMovie = newCritic.reviewedMovie != null?
+				newCritic.reviewedMovie : this.reviewedMovie;
+		this.recommendedMovies = newCritic.recommendedMovies != null?
+				newCritic.recommendedMovies : this.recommendedMovies;
+	}
 }

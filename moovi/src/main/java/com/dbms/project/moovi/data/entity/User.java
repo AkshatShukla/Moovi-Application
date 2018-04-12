@@ -14,22 +14,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String email;
+    protected String firstName;
+    protected String lastName;
+    protected String username;
+    protected String password;
+    protected String email;
 
     @Temporal(value = TemporalType.DATE)
-    private Date dob;
+    protected Date dob;
     
     @OneToMany(mappedBy = "AUser")
     @JsonIgnore
-    private List<Address> userAddresses;
+    protected List<Address> userAddresses;
     
     @OneToMany(mappedBy = "PUser")
     @JsonIgnore
-    private List<Phone> userPhoneNumbers;
+    protected List<Phone> userPhoneNumbers;
 
 	public List<Phone> getUserPhoneNumbers() {
 		return userPhoneNumbers;

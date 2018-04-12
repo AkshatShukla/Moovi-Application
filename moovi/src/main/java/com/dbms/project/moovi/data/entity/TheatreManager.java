@@ -31,5 +31,26 @@ public class TheatreManager extends User {
 		if(theatre.getTheatreManager() != this)
 			theatre.setTheatreManager(this);
 	}
+
+	public void set(TheatreManager newtheatreManager) {
+		this.firstName = newtheatreManager.firstName != null? 
+				newtheatreManager.firstName : this.firstName;
+		this.lastName = newtheatreManager.lastName != null? 
+				newtheatreManager.lastName : this.lastName;
+		this.username = newtheatreManager.username != null? 
+				newtheatreManager.username : this.username;
+		this.password = newtheatreManager.password != null? 
+				newtheatreManager.password : this.password;
+		this.email = newtheatreManager.email != null? 
+				newtheatreManager.email : this.email;
+		this.dob = newtheatreManager.dob != null? 
+				newtheatreManager.dob : this.dob;
+		this.userAddresses = newtheatreManager.userAddresses != null? 
+				newtheatreManager.userAddresses : this.userAddresses;
+		this.userPhoneNumbers = newtheatreManager.userPhoneNumbers != null? 
+				newtheatreManager.userPhoneNumbers : this.userPhoneNumbers;	
+		this.listOfTheatresManaged = newtheatreManager.listOfTheatresManaged != null?
+				newtheatreManager.listOfTheatresManaged : this.listOfTheatresManaged;
+	}
 }
 
