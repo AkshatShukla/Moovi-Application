@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @RestController
+@CrossOrigin
 public class MovieService extends Utils {
 
     @Autowired
@@ -152,8 +153,11 @@ public class MovieService extends Utils {
                         jsonObject.put("overview","-");
                     else
                         jsonObject.put("overview",jobj1.get("overview"));
+                    if (jobj1.get("poster_path") == null)
+                        jsonObject.put("posterSRC","-");
+                    else
+                        jsonObject.put("posterSRC",imgUrl+jobj1.get("poster_path").toString());
                     jsonObject.put("movieId",jobj1.get("id"));
-                    jsonObject.put("posterSRC",imgUrl+jobj1.get("poster_path").toString());
                     jsonObject.put("imdbRating",jobj1.get("vote_average"));
                     jsonObject.put("releaseDate",jobj1.get("release_date"));
                     jsonObject.put("releaseStatus",jobj1.get("status"));

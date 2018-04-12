@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Scanner;
 
 @RestController
+@CrossOrigin
 public class ActorService extends Utils{
 
     @Autowired

@@ -15,6 +15,7 @@ import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.repository.CriticRepository;
 
 @RestController
+@CrossOrigin
 public class CriticService extends Utils {
 	
 	@Autowired

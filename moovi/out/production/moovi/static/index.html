@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MooviApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="app.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="MovieSearchController as model">
+    <div class="container-fluid">
+    <h1>Movie Search</h1>
+        <div class="input-group mb-3">
+            <input ng-model="title" type="text" class="form-control" placeholder="Search Movie" aria-label="Search Movie" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button ng-click="model.searchMovieByTitle(title)" class="btn btn-outline-secondary" type="button">Search</button>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">IMDb Id</th>
+                        <th scope="col">IMDb Rating</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Overview</th>
+                        <th scope="col">Poster</th>
+                        <th scope="col">Release Date</th>
+                        <th scope="col">Release Status</th>
+                        <th scope="col">Revenue</th>
+                        <th scope="col">Runtime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "movie in movies">
+                        <td>{{movie.imdbId}}</td>
+                        <td>{{movie.imdbRating}}</td>
+                        <td>{{movie.movieName}}</td>
+                        <td>{{movie.overview}}</td>
+                        <td><img ng-src="{{movie.posterSRC}}" height="150px"></td>
+                        <td>{{movie.releaseDate}}</td>
+                        <td>{{movie.releaseStatus}}</td>
+                        <td>{{movie.revenue}}</td>
+                        <td>{{movie.runtime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
