@@ -60,7 +60,7 @@ public class CriticService extends Utils {
         criticRepository.save(critic);
     }
     
-    @GetMapping("api/follow/critic/{username}/fanfollowing")
+    @GetMapping("/api/follow/critic/{username}/fanfollowing")
     public List<Fan> listOfFansFollowing(
             @PathVariable("username") String username) {
 

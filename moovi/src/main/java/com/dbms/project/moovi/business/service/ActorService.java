@@ -49,7 +49,7 @@ public class ActorService extends Utils{
         return (Actor) actorRepository.findActorById(actorId);
     }
 
-    @PostMapping("api/recruit/actor/{actorId}/adrecruiter/{username}")
+    @PostMapping("/api/recruit/actor/{actorId}/adrecruiter/{username}")
     public void AdRecruiterRecruitsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
@@ -60,7 +60,7 @@ public class ActorService extends Utils{
         actorRepository.save(actor);
     }
 
-    @PostMapping("api/follow/actor/{actorId}/fan/{username}")
+    @PostMapping("/api/follow/actor/{actorId}/fan/{username}")
     public void FanFollowsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
@@ -71,7 +71,7 @@ public class ActorService extends Utils{
         actorRepository.save(actor);
     }
 
-    @GetMapping("api/follow/actor/{actorId}/fanfollowing")
+    @GetMapping("/api/follow/actor/{actorId}/fanfollowing")
     public List<Fan> listOfFansFollowing(
             @PathVariable("actorId") long actorId) {
 

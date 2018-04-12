@@ -24,7 +24,7 @@ public class TheatreService {
         return theatreRepository.save(theatre);
     }
 
-    @PostMapping("api/manage/theatre/{theatreId}/manager/{username}")
+    @PostMapping("/api/manage/theatre/{theatreId}/manager/{username}")
     public void theatreManagedBy(
             @PathVariable("username") String username,
             @PathVariable("theatreId") long theatreId){
