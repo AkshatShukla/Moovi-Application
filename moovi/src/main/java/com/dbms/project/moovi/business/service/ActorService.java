@@ -54,30 +54,36 @@ public class ActorService extends Utils{
     public void AdRecruiterRecruitsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
-
-        Actor actor = (Actor) actorRepository.findActorById(actorId);
-        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
-        actor.actorRecruitedBy(adRecruiter);
-        actorRepository.save(actor);
+        if(actorRepository.findById(actorId).isPresent()
+                && adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).isPresent()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            AdRecruiter adRecruiter = adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).get();
+            actor.actorRecruitedBy(adRecruiter);
+            actorRepository.save(actor);
+        }
     }
 
     @PostMapping("/api/follow/actor/{actorId}/fan/{username}")
     public void FanFollowsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
-
-        Actor actor = (Actor) actorRepository.findActorById(actorId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
-        actor.followedBy(fan);
-        actorRepository.save(actor);
+        if(actorRepository.findById(actorId).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            actor.followedBy(fan);
+            actorRepository.save(actor);
+        }
     }
 
     @GetMapping("/api/follow/actor/{actorId}/fanfollowing")
     public List<Fan> listOfFansFollowing(
             @PathVariable("actorId") long actorId) {
-
-        Actor actor = (Actor) actorRepository.findActorById(actorId);
-        return actor.getFansFollowingActor();
+        if(actorRepository.findById(actorId).isPresent()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            return actor.getFansFollowingActor();
+        }
+        return null;
     }
 
     @GetMapping("/api/search/actor")
@@ -168,7 +174,10 @@ public class ActorService extends Utils{
     @GetMapping("/api/recruit/actor/{actorId}/recruitedby")
     public List<AdRecruiter> getListOfAdrecruiters(
             @PathVariable("actorId") long actorId){
-        Actor actor = (Actor) actorRepository.findActorById(actorId);
-        return actor.getRecruitedBy();
+        if(actorRepository.findById(actorId).isPresent()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            return actor.getRecruitedBy();
+        }
+        return null;
     }
 }
