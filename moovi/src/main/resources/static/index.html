@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="MooviApp">
-	<head>
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
-	    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="app.js"></script>
-	    <meta charset="UTF-8">
-	    <title>Moovi</title>
-	</head>
-	
-	<body>
-		<div class="container" style = "padding-left: 0; margin-left:0;">
-			<ng-include src="/partials/navigation.html"></ng-include>
-			
-			<div class="row" style="margin-top : 8%;">
-				<div data-ng-view></div>
-			</div>
-		</div>
-			
-		<script src="js/angular-route.min.js"></script>
-		<script src="app.js"></script>
-	</body>
-</html> 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="controllers/moviesearch.controller.js"></script>
+    <script src="controllers/actorsearch.controller.js"></script>
+    <script src="controllers/criticsearch.controller.js"></script>
+    <script src="controllers/moviedetails.controller.js"></script>
+    <meta charset="UTF-8">
+    <title>Moovi</title>
+</head>
+<body>
+
+<!-- NAVIGATION BAR CODE -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Moovi</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#/!">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!searchMovie">Search Movie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!searchActor">Search Actor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!searchCritic">Search Critic</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Search Theatre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Registration</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- END OF NAVIGATION BAR CODE -->
+
+<div class="view-animate-container">
+    <div ng-view class="view-animate"></div>
+</div>
+
+
+</body>
+</html>
