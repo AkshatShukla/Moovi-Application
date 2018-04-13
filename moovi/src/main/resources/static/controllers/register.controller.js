@@ -6,7 +6,7 @@
     function RegisterController($http, $scope) {
         var vm = this;
         var localpath = "http://localhost:8080/";
-        var url = "api/";
+        var url = "/api/";
         vm.registerUserInDb = registerUserInDb;
 
         /*$scope.$on('$viewContentLoaded', function()
@@ -79,12 +79,14 @@
                 };
             }
 
+            var redirectToURL = "#!/login";
             $http
                 .post(localpath+url+userType, newUser)
                 .then(function (response) {
                     $scope.user = response.data;
                     alert("Successfully registered!");
-                    window.location = "../views/login.html";
+                    //window.location = "../views/login.html";
+                    window.location = redirectToURL;
                 });
 
             console.log(username);

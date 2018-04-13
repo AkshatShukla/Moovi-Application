@@ -26,14 +26,14 @@
             if (keyEvent.which === 13)
                 searchMovieByTitle(title);
         };*/
-        var redirectToURL = localpath+"index.html";
+        var redirectToURL = "../index.html";
         function checkIfValidUser(username, password, userType) {
 
             $http
                 .get(localpath+url+userType+"?username="+username)
                 .then(function (response) {
                     $scope.user = response.data;
-                    if ($scope.data == null){
+                    if ($scope.user == null){
                         alert ("Please register first!");
                     }
                     else
