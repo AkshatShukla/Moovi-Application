@@ -33,14 +33,14 @@
                 .get(localpath+url+userType+"?username="+username)
                 .then(function (response) {
                     $scope.user = response.data;
-                    if ($scope.user == null){
-                        alert ("Please register first!");
+                    if (response.data.length === 0){
+                        alert ("Incorrect Login, Please register first!");
+                        console.log(response);
                     }
                     else
                     {
                         alert("Successfully logged in as " + username);
                         console.log(response);
-                        //$scope.user = response.data;
                         window.location = redirectToURL;
                     }
 
