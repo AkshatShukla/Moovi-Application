@@ -33,19 +33,25 @@ public class ReviewService {
     public void reviwedMovie(
             @PathVariable("movieId") long movieId,
             @PathVariable("reviewId") long reviewId){
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Review review = (Review) reviewRepository.findReviewById(reviewId);
-        review.setRmovie(movie);
-        reviewRepository.save(review);
+        if(movieRepository.findById(movieId).isPresent()
+                && reviewRepository.findById(reviewId).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Review review = reviewRepository.findById(reviewId).get();
+            review.setRmovie(movie);
+            reviewRepository.save(review);
+        }
     }
 
     @PostMapping("/api/reviews/review/{reviewId}/critic/{username}")
     public void reviewedByCritic(
             @PathVariable("username") String username,
             @PathVariable("reviewId") long reviewId){
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        Review review = (Review) reviewRepository.findReviewById(reviewId);
-        review.setCritic(critic);
-        reviewRepository.save(review);
+        if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()
+                && reviewRepository.findById(reviewId).isPresent()) {
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            Review review = reviewRepository.findById(reviewId).get();
+            review.setCritic(critic);
+            reviewRepository.save(review);
+        }
     }
 }

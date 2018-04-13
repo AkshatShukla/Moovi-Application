@@ -156,23 +156,7 @@ public class Fan extends User {
 				newFan.email : this.email;
 		this.dob = newFan.dob != null? 
 				newFan.dob : this.dob;
-		this.userAddresses = newFan.userAddresses != null? 
-				newFan.userAddresses : this.userAddresses;
-		this.userPhoneNumbers = newFan.userPhoneNumbers != null? 
-				newFan.userPhoneNumbers : this.userPhoneNumbers;	
-		this.fanDescription = newFan.fanDescription != null? 
+		this.fanDescription = newFan.fanDescription != null?
 				newFan.fanDescription : this.fanDescription;
-		this.actorsFollowed = newFan.actorsFollowed != null? 
-				newFan.actorsFollowed : this.actorsFollowed;
-		this.criticsFollowed = newFan.criticsFollowed != null? 
-				newFan.criticsFollowed : this.criticsFollowed;
-		this.likesMovies = newFan.likesMovies != null? 
-				newFan.likesMovies : this.likesMovies;
-		this.dislikesMovies = newFan.dislikesMovies != null? 
-				newFan.dislikesMovies : this.dislikesMovies;
-		this.followingFans = newFan.followingFans != null? 
-				newFan.followingFans : this.followingFans;
-		this.followedByFans = newFan.followedByFans != null? 
-				newFan.followedByFans : this.followedByFans;
 	}
 }

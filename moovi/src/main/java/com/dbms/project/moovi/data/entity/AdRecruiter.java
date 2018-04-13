@@ -62,13 +62,7 @@ public class AdRecruiter extends User{
 				newAdrecruiter.email : this.email;
 		this.dob = newAdrecruiter.dob != null? 
 				newAdrecruiter.dob : this.dob;
-		this.userAddresses = newAdrecruiter.userAddresses != null? 
-				newAdrecruiter.userAddresses : this.userAddresses;
-		this.userPhoneNumbers = newAdrecruiter.userPhoneNumbers != null? 
-				newAdrecruiter.userPhoneNumbers : this.userPhoneNumbers;	
-		this.recruiterDescription = newAdrecruiter.recruiterDescription != null? 
+		this.recruiterDescription = newAdrecruiter.recruiterDescription != null?
 				newAdrecruiter.recruiterDescription : this.recruiterDescription;
-		this.recruitedActors = newAdrecruiter.recruitedActors != null? 
-				newAdrecruiter.recruitedActors : this.recruitedActors;	
 	}
 }

@@ -45,12 +45,6 @@ public class TheatreManager extends User {
 				newtheatreManager.email : this.email;
 		this.dob = newtheatreManager.dob != null? 
 				newtheatreManager.dob : this.dob;
-		this.userAddresses = newtheatreManager.userAddresses != null? 
-				newtheatreManager.userAddresses : this.userAddresses;
-		this.userPhoneNumbers = newtheatreManager.userPhoneNumbers != null? 
-				newtheatreManager.userPhoneNumbers : this.userPhoneNumbers;	
-		this.listOfTheatresManaged = newtheatreManager.listOfTheatresManaged != null?
-				newtheatreManager.listOfTheatresManaged : this.listOfTheatresManaged;
 	}
 }
 

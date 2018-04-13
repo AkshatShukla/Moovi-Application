@@ -26,9 +26,12 @@ public class TheatreManagerService extends Utils {
     public void theatreManagedBy(
             @PathVariable("username") String username,
             @PathVariable("theatreId") long theatreId){
-        Theatre theatre = (Theatre) theatreRepository.findTheatreById(theatreId);
-        TheatreManager theatreManager = (TheatreManager) theatreManagerRepository.findManagerByUsername(username);
-        theatre.setTheatreManager(theatreManager);
-        theatreManagerRepository.save(theatreManager);
+        if(theatreRepository.findById(theatreId).isPresent()
+                && theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).isPresent()) {
+            Theatre theatre = theatreRepository.findById(theatreId).get();
+            TheatreManager theatreManager = theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).get();
+            theatre.setTheatreManager(theatreManager);
+            theatreManagerRepository.save(theatreManager);
+        }
     }
 }

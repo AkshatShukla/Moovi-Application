@@ -2,23 +2,26 @@ var app = angular.module("MooviApp", ['ngRoute']);
 
 app.config(function ($routeProvider) {
 	$routeProvider
-		.when('/searchMovie', {
-			template: 'partials/searchMovie.html',
+		.when('/SearchMovie', {
+			template: '/partials/searchMovie.html',
 			controller: 'MovieSearchController'
 		})
-		.when('/login', {
-			template: 'partials/login.html',
+		.when('/Login', {
+			template: '/partials/login.html',
 			controller: 'LoginController'
 		})
-		.when('/register', {
-			template: 'partials/register.html',
+		.when('/Register', {
+			template: '/partials/register.html',
 			controller: 'RegisterController',
-			redirectTo: 'partials/login.html'
+			redirectTo: '/Login'
 		})
 		.when('/', {
-			template: 'index.html',
+			template: '/index.html',
 			controller: 'initiator'
 		})
+		.otherwise({
+			redirectTo: '/'
+		});
 });
 
 app.controller('MovieSearchController' , function MovieSearchController($http, $scope, $window) {
