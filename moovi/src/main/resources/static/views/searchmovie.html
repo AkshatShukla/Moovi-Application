@@ -20,6 +20,7 @@
             <th scope="col">Runtime</th>
             <th scope="col">Release Status</th>
             <th scope="col">IMDb Link</th>
+            <th scope="col">Like Movie</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
             <td>{{movie.runtime}} minutes</td>
             <td>{{movie.releaseStatus}}</td>
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
+            <td><button type="button" class="btn btn-success" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
         </tr>
         </tbody>
     </table>

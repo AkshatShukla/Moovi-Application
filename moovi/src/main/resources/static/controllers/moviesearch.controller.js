@@ -49,7 +49,21 @@
                     $scope.movies = response.data;
                 });
             console.log(title);
-            console.log(localStorage.getItem();
+            console.log(localStorage.getItem("username"));
+        }
+
+        vm.likeThisMovie = likeThisMovie;
+
+        function likeThisMovie(movieId) {
+            var username = localStorage.getItem("username");
+            var likeUrl = localpath+"api/like/fan/"+username+"/movie/"+movieId;
+
+            $http
+                .post(likeUrl)
+                .then(function (response) {
+
+                    alert("Movie Liked");
+                })
         }
 
     }
