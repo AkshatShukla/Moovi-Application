@@ -85,10 +85,6 @@ public class Theatre {
 				newTheatre.totalScreens : this.totalScreens;
 		this.location = newTheatre.location != null?
 				newTheatre.location : this.location;
-		this.theatreManager = newTheatre.theatreManager != null?
-				newTheatre.theatreManager : this.theatreManager;
-		this.listOfScreens = newTheatre.listOfScreens != null?
-				newTheatre.listOfScreens : this.listOfScreens;
 	}
 	
 }
