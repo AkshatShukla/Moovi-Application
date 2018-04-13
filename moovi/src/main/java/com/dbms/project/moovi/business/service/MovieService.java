@@ -189,63 +189,81 @@ public class MovieService extends Utils {
     public void likeMovie(
     		@PathVariable("username") String username,
     		@PathVariable("movieId") long movieId) {
-    	
-    	Movie movie = (Movie) movieRepository.findMovieById(movieId);
-    	Fan fan = (Fan) fanRepository.findFanByUsername(username);
-    	movie.likedByFan(fan);
-    	movieRepository.save(movie);
+    	if(movieRepository.findById(movieId).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            movie.likedByFan(fan);
+            movieRepository.save(movie);
+        }
     }
 
     @PostMapping("/api/dislike/movie/{movieId}/fan/{username}")
     public void dislikeMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
-
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Fan fan = (Fan) fanRepository.findFanByUsername(username);
-        movie.dislikedByFan(fan);
-        movieRepository.save(movie);
+        if(movieRepository.findById(movieId).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            movie.dislikedByFan(fan);
+            movieRepository.save(movie);
+        }
     }
     
     @PostMapping("/api/recommend/movie/{movieId}/critic/{username}")
     public void recommendMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
-
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        movie.recommendedByCritic(critic);
-        movieRepository.save(movie);
+        if(movieRepository.findById(movieId).isPresent()
+                && criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            movie.recommendedByCritic(critic);
+            movieRepository.save(movie);
+        }
     }
 
     @PostMapping("/api/reviews/movie/{movieId}/review/{reviewId}")
     public void reviewMovie(
             @PathVariable("movieId") long movieId,
             @PathVariable("reviewId") long reviewId) {
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Review review = (Review) reviewRepository.findReviewById(reviewId);
-        movie.hasReviews(review);
-        movieRepository.save(movie);
+        if(movieRepository.findById(movieId).isPresent()
+                && reviewRepository.findById(reviewId).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Review review = reviewRepository.findById(reviewId).get();
+            movie.hasReviews(review);
+            movieRepository.save(movie);
+        }
     }
 
     @GetMapping("/api/recommend/movie/{movieId}/recommendedby")
     public List<Critic> listOfCriticsRecommended(
             @PathVariable("movieId") long movieId){
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        return movie.getRecommendedBy();
+        if(movieRepository.findById(movieId).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            return movie.getRecommendedBy();
+        }
+        return null;
     }
 
     @GetMapping("/api/like/movie/{movieId}/likedbyfans")
     public List<Fan> listOfFansLikedMovie(
             @PathVariable("movieID") long movieId){
-        Movie movie  = (Movie) movieRepository.findMovieById(movieId);
-        return movie.getLikedByFans();
+        if(movieRepository.findById(movieId).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            return movie.getLikedByFans();
+        }
+        return null;
     }
 
     @GetMapping("/api/dislike/movie/{movieId}/dislikedbyfans")
     public List<Fan> listOfFansDislikedMovie(
             @PathVariable("movieId") long movieId){
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        return movie.getDislikedByFans();
+        if(movieRepository.findById(movieId).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            return movie.getDislikedByFans();
+        }
+        return null;
     }
 }
