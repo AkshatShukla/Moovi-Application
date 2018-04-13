@@ -44,36 +44,45 @@ public class CriticService extends Utils {
     public void recommendMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
-
-        Movie movie = (Movie) movieRepository.findMovieById(movieId);
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        critic.recommends(movie);
-        criticRepository.save(critic);
+        if(movieRepository.findById(movieId).isPresent()
+                && criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            critic.recommends(movie);
+            criticRepository.save(critic);
+        }
     }
 
     @PostMapping("/api/reviews/critic/{username}/review/{reviewId}")
     public void reviewMovie(
             @PathVariable("username") String username,
             @PathVariable("reviewId") long reviewId) {
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        Review review = (Review) reviewRepository.findReviewById(reviewId);
-        critic.reviews(review);
-        criticRepository.save(critic);
+	    if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()
+                && reviewRepository.findById(reviewId).isPresent()) {
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            Review review = reviewRepository.findById(reviewId).get();
+            critic.reviews(review);
+            criticRepository.save(critic);
+        }
     }
     
     @GetMapping("/api/follow/critic/{username}/fanfollowing")
     public List<Fan> listOfFansFollowing(
             @PathVariable("username") String username) {
-
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        return critic.getFansFollowingCritics();
+        if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()) {
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            return critic.getFansFollowingCritics();
+        }
+        return null;
     }
 
     @GetMapping("/api/recommend/critic/{username}/recommendedmovies")
     public List<Movie> listOfRecommendedMovies(
             @PathVariable("username") String username){
-
-        Critic critic = (Critic) criticRepository.findCriticByUsername(username);
-        return critic.getRecommendedMovies();
+        if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()) {
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            return critic.getRecommendedMovies();
+        }
+        return null;
 	}
 }
