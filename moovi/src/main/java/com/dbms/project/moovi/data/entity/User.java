@@ -21,6 +21,9 @@ public class User {
     protected String username;
     protected String password;
 
+    @Column(insertable = false, updatable = false)
+    private String dtype;
+
     @Column(unique = true)
     protected String email;
 
@@ -35,7 +38,15 @@ public class User {
     @JsonIgnore
     protected List<Phone> userPhoneNumbers;
 
-	public List<Phone> getUserPhoneNumbers() {
+    public String getDtype() {
+        return dtype;
+    }
+
+    public void setDtype(String dtype) {
+        this.dtype = dtype;
+    }
+
+    public List<Phone> getUserPhoneNumbers() {
 		return userPhoneNumbers;
 	}
 
