@@ -12,4 +12,7 @@ public interface TheatreManagerRepository extends CrudRepository<TheatreManager,
 
     @Query("SELECT t.userId FROM TheatreManager t WHERE t.username=:username")
     long findManagerIdByUsername(@Param("username") String u);
+
+    @Query("SELECT tm FROM TheatreManager tm where tm.username=:username and tm.password=:password")
+    Iterable<TheatreManager> findManagerByCredential(@Param("username") String username, @Param("password") String password);
 }

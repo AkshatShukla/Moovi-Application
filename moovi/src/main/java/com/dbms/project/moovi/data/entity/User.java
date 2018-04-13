@@ -16,8 +16,12 @@ public class User {
 
     protected String firstName;
     protected String lastName;
+
+    @Column(unique = true)
     protected String username;
     protected String password;
+
+    @Column(unique = true)
     protected String email;
 
     @Temporal(value = TemporalType.DATE)

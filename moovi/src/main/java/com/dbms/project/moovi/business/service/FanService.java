@@ -35,9 +35,10 @@ public class FanService extends Utils {
     }
 
     @GetMapping("/api/fan")
-    public List<Fan> findAllFans(@RequestParam(name = "username", required = false) String username) {
-        if (username != null)
-            return (List<Fan>) fanRepository.findFanByUsername(username);
+    public List<Fan> findAllFans(@RequestParam(name = "username", required = false) String username,
+                                 @RequestParam(name = "password", required = false) String password) {
+        if (username != null && password != null)
+            return (List<Fan>) fanRepository.findFanByCredential(username, password);
         return (List<Fan>) fanRepository.findAll();
     }
 
