@@ -25,6 +25,16 @@
                 templateUrl: "views/moviedetails.html",
                 controller: "MovieDetailsController",
                 controllerAs: "md"
-            });
+            })
+            .when("/login", {
+                    templateUrl: "views/login.html",
+                    controller: "LoginController",
+                    controllerAs: "login"
+            })
+            .when("/register", {
+                    templateUrl: "views/register.html",
+                    controller: "RegisterController",
+                    controllerAs: "register",
+            })
     }
 })();
