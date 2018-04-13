@@ -1,0 +1,12 @@
+<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+	<form method="post" action="login" accept-charset="UTF-8">
+		<input style="margin-bottom: 15px;" ng-model = "username" type="text" placeholder="Username" id="username" name="username">
+		<input style="margin-bottom: 15px;" ng-model = "password" type="password" placeholder="Password" id="password" name="password">
+		<input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+		<label class="string optional" for="user_remember_me"> Remember me</label>
+		<button ng-click="model.checkIfValidUser(username. password)" class="btn btn-primary btn-block" type="button" id="sign-in" value="Sign In">Search</button>
+		<label style="text-align:center;margin-top:5px">or</label>
+	    <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+		<input class="btn btn-primary btn-block" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+	</form>
+</div>
