@@ -28,16 +28,56 @@
         };*/
 
         function registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription) {
+            var newUser;
 
-            var newUser = {
-                "firstName":firstName,
-                "lastName":lastName,
-                "username":username,
-                "password":password,
-                "email": email,
-                "dob": dob,
-                "fanDescription": userDescription
-            };
+            if (userType === "fan")
+            {
+                newUser = {
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "username":username,
+                    "password":password,
+                    "email": email,
+                    "dob": dob,
+                    "fanDescription": userDescription
+                };
+            }
+            else if (userType === "critic")
+            {
+                newUser = {
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "username":username,
+                    "password":password,
+                    "email": email,
+                    "dob": dob,
+                    "criticDescription": userDescription
+                };
+            }
+            else if (userType === "adrecruiter")
+            {
+                newUser = {
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "username":username,
+                    "password":password,
+                    "email": email,
+                    "dob": dob,
+                    "adrecruiterDescription": userDescription
+                };
+            }
+            else if (userType === "theatremanager")
+            {
+                newUser = {
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "username":username,
+                    "password":password,
+                    "email": email,
+                    "dob": dob,
+                    "theatremanagerDescription": userDescription
+                };
+            }
 
             $http
                 .post(localpath+url+userType, newUser)

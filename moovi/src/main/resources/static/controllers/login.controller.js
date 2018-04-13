@@ -32,10 +32,18 @@
             $http
                 .get(localpath+url+userType+"?username="+username)
                 .then(function (response) {
-                    alert("Successfully logged in as " + username);
-                    console.log(response);
                     $scope.user = response.data;
-                    window.location = redirectToURL;
+                    if ($scope.data == null){
+                        alert ("Please register first!");
+                    }
+                    else
+                    {
+                        alert("Successfully logged in as " + username);
+                        console.log(response);
+                        //$scope.user = response.data;
+                        window.location = redirectToURL;
+                    }
+
                 }, function(){
                     alert("Please register first!");
                 });
