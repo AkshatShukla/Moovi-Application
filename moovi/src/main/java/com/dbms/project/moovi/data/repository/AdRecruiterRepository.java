@@ -12,4 +12,8 @@ public interface AdRecruiterRepository extends CrudRepository<AdRecruiter, Long>
 
     @Query("SELECT a.userId FROM AdRecruiter a WHERE a.username=:username")
     long findAdRecruiterIdByUsername(@Param("username") String u);
+
+    @Query("SELECT a FROM AdRecruiter a WHERE a.username=:username AND a.password=:password")
+    Iterable<AdRecruiter> findAdRecruiterByCredential(@Param("username") String username,
+                                                      @Param("password") String password);
 }

@@ -26,9 +26,10 @@ public class AdRecruiterService extends Utils {
     }
 
     @GetMapping("/api/adrecruiter")
-    public List<AdRecruiter> findAllAdRecruiters(@RequestParam(name="username", required = false) String username){
-        if(username != null)
-            return (List<AdRecruiter>) adRecruiterRepository.findAdRecruiterByUsername(username);
+    public List<AdRecruiter> findAllAdRecruiters(@RequestParam(name="username", required = false) String username,
+                                                 @RequestParam(name = "password", required = false) String password){
+        if(username != null && password != null)
+            return (List<AdRecruiter>) adRecruiterRepository.findAdRecruiterByCredential(username, password);
         return (List<AdRecruiter>) adRecruiterRepository.findAll();
     }
 

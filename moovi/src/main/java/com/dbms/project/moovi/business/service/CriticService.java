@@ -34,9 +34,10 @@ public class CriticService extends Utils {
 	
 	@GetMapping("/api/critic")
     public List<Critic> findAllCritics(
-    		@RequestParam(name = "username", required = false) String username) {
-        if (username != null)
-            return (List<Critic>) criticRepository.findCriticByUsername(username);
+    		@RequestParam(name = "username", required = false) String username,
+            @RequestParam(name = "password", required = false) String password) {
+        if (username != null && password != null)
+            return (List<Critic>) criticRepository.findCriticByCredentials(username, password);
         return (List<Critic>) criticRepository.findAll();
     }
 	

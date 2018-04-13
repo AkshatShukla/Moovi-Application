@@ -7,6 +7,8 @@ import com.dbms.project.moovi.data.repository.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class TheatreManagerService extends Utils {
@@ -16,6 +18,14 @@ public class TheatreManagerService extends Utils {
 
     @Autowired
     private TheatreRepository theatreRepository;
+
+    @GetMapping("/api/theatremanager")
+    public List<TheatreManager> findManagerByCredential(@RequestParam(name = "username", required = false) String username,
+                                                        @RequestParam(name = "password", required = false) String password){
+        if(username != null && password != null)
+            return (List<TheatreManager>) theatreManagerRepository.findManagerByCredential(username, password);
+        return (List<TheatreManager>) theatreManagerRepository.findAll();
+    }
 
     @PostMapping("/api/theatremanager")
     public TheatreManager createTheatreManager(@RequestBody TheatreManager theatreManager) {
