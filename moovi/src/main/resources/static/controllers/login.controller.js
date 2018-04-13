@@ -35,7 +35,7 @@
                     alert("Successfully logged in as " + username);
                     console.log(response);
                     $scope.user = response.data;
-                    window.location = "../index.html";
+                    window.location = redirectToURL;
                 }, function(){
                     alert("Please register first!");
                 });

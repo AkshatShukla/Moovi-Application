@@ -34,7 +34,7 @@
             .when("/register", {
                     templateUrl: "views/register.html",
                     controller: "RegisterController",
-                    controllerAs: "register",
+                    controllerAs: "register"
             })
     }
 })();
