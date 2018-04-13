@@ -44,12 +44,12 @@
                 .then(function (response) {
                     $scope.user = response.data;
                     alert("Successfully registered!");
+                    window.location = "../views/login.html";
                 });
 
             console.log(username);
             console.log(password);
             console.log(userType);
         }
-
     }
 })();
