@@ -39,6 +39,7 @@
                     }
                     else
                     {
+                        localStorage.setItem('username',username);
                         alert("Successfully logged in as " + username);
                         console.log(response);
                         window.location = localpath;

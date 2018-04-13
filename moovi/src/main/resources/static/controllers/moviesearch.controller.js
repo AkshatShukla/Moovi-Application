@@ -49,6 +49,7 @@
                     $scope.movies = response.data;
                 });
             console.log(title);
+            console.log(localStorage.getItem();
         }
 
     }
