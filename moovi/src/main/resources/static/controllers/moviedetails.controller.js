@@ -5,6 +5,6 @@
     
     function MovieDetailsController($routeParams) {
         var movieName = $routeParams.movieName;
-        console.log("hello from details" + movieName);
+        alert("hello from details" + movieName);
     }
 })();

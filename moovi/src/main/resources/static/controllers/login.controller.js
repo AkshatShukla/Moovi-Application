@@ -41,7 +41,7 @@
                     {
                         alert("Successfully logged in as " + username);
                         console.log(response);
-                        window.location = redirectToURL;
+                        window.location = localpath;
                     }
 
                 }, function(){
