@@ -36,17 +36,22 @@ public class AdRecruiterService extends Utils {
     public void AdRecruiterRecruitsActor(
             @PathVariable("username") String username,
             @PathVariable("actorId") long actorId){
-
-		Actor actor = (Actor) actorRepository.findActorById(actorId);
-        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
-        adRecruiter.recruitsActor(actor);
-        adRecruiterRepository.save(adRecruiter);
+        if(actorRepository.findById(actorId).isPresent()
+                && adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).isPresent()) {
+            Actor actor = actorRepository.findById(actorId).get();
+            AdRecruiter adRecruiter = adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).get();
+            adRecruiter.recruitsActor(actor);
+            adRecruiterRepository.save(adRecruiter);
+        }
     }
 
     @GetMapping("/api/recruit/adrecruiter/{username}/actorsrecruited")
     public List<Actor> getListOfActors(
             @PathVariable("username") String username){
-        AdRecruiter adRecruiter = (AdRecruiter) adRecruiterRepository.findAdRecruiterByUsername(username);
-        return adRecruiter.getRecruitedActors();
+        if (adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).isPresent()) {
+            AdRecruiter adRecruiter = adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).get();
+            return adRecruiter.getRecruitedActors();
+        }
+        return null;
     }
 }
