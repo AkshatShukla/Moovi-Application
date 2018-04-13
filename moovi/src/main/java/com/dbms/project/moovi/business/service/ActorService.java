@@ -159,6 +159,10 @@ public class ActorService extends Utils{
                         object.put("actorPopularity","-");
                     else
                         object.put("actorPopularity", jsonObject.get("popularity"));
+                    if (jsonObject.get("profile_path") == null)
+                        object.put("profilePicture","-");
+                    else
+                        object.put("profilePicture",imgUrl+jsonObject.get("profile_path").toString());
 
                     object.put("actorName",jsonObject.get("name"));
                     object.put("actorId", jsonObject.get("id"));

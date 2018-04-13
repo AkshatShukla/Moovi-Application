@@ -22,6 +22,7 @@ public class Actor {
     private String imdbId;
     private String biography;
     private String actorPopularity;
+    private String profilePicture;
 
     @ManyToMany(mappedBy="recruitedActors")
     @JsonIgnore
@@ -117,6 +118,14 @@ public class Actor {
 
     public void setActorPopularity(String actorPopularity) {
         this.actorPopularity = actorPopularity;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public void actorRecruitedBy(AdRecruiter adRecruiter) {
