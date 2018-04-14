@@ -58,12 +58,17 @@
             })
             .when("/listOfFansYouFollow", {
                 templateUrl: "views/listOfFansYouFollow.html",
-                controller: "FanSearchController",
-                controllerAs: "fs"
+                controller: "FanFollowingController",
+                controllerAs: "ff"
+            })
+            .when("/listCriticsYouFollow", {
+                templateUrl: "views/listOfCriticsYouFollow.html",
+                controller: "CriticFollowingController",
+                controllerAs: "cf"
             })
             .when("/movieForAdmin", {
                 templateUrl:"views/movieForAdmin.html",
-                controller:"EditMovieConroller",
+                controller:"EditMovieController",
                 controllerAs:"em"
             })
             .otherwise({

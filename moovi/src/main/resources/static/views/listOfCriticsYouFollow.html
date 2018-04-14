@@ -1,0 +1,26 @@
+<div class="container-fluid" ng-controller="CriticFollowingController as cf">
+    <h1>Critic Search</h1>
+    <h2>{{allCriticsHeading}}</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Critic Name</th>
+            <th scope="col">Critic Username</th>
+            <th scope="col">Critic Description</th>
+            <th scope="col">Critic birth date</th>
+            <th scope="col">Critic email id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat = "critic in critics | filter:criticUsername">
+            <td>{{critic.firstName}} {{critic.lastName}}</td>
+            <input ng-model="criticUsername" type="text" class="form-control" placeholder="Search Critic By Username"
+                   aria-label="Search Critic username" aria-describedby="basic-addon2">
+            <td>{{critic.username}}</td>
+            <td>{{critic.criticDescription}}</td>
+            <td>{{critic.dob}}</td>
+            <td>{{critic.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
