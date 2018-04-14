@@ -375,6 +375,6 @@ public class MovieService extends Utils {
             Movie movie = movieRepository.findById(movieId).get();
             return movie.getMovieReview();
         }
-        return null
+        return null;
     }
 }
