@@ -7,6 +7,21 @@
         var vm = this;
         var localpath = "http://localhost:8080/";
         var url = "api/theatre";
+
+        //vm.populateMovieData = populateMovieData;
+
+        $scope.$on('$viewContentLoaded',function (){
+            var movieUrl = "/api/search/movie?nowPlaying=true";
+            $http
+                .get(movieUrl)
+                .then(function (value) {
+                    $scope.movies = value.data;
+                })
+
+        });
+
+
+
         vm.registerTheatreForTheatreManager = registerTheatreForTheatreManager;
 
         /*$scope.myKeyPress = function(keyEvent,name) {
@@ -14,8 +29,8 @@
                 searchActorByName(name);
         };*/
 
-        function registerTheatreForTheatreManager(theatreName, location, noOfScreens) {
-
+        function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieName) {
+            alert(movieName);
             var newTheatre = {
                 "theatreName":theatreName,
                 "location":location,
@@ -86,15 +101,16 @@
                         });
                     }
 
-                    var i;
+                    createScreen();
 
-                    for (i = 0; i < noOfScreens; i++) {
-                        createScreen();
-                    }
 
+                    //var linkScreenToMovieURL = localpath+"api/screen/"+$scope.screenResponse.screenId+"/movie/"+{movieId}
 
             });
         }
+
+        // var movieid = $scope.movies.movieId;
+        // alert(movieid);
 
     }
 })();

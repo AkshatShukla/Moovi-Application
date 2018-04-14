@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form ng-controller="ManageTheatreController as theatre">
+<form ng-controller="ManageTheatreController as theatre" >
 
     <h1>Buy Theatre</h1>
 
@@ -20,11 +20,28 @@
             <input ng-model="location" type="text" name="Location" id="location" class="form-control input-lg" placeholder="Enter the location for your theatre">
         </div>
         <div class="form-group">
-            <input ng-model="noOfScreens" type="text" name="No. Of Screens" id="noOfScreens" class="form-control input-lg" placeholder="Enter the no. of screens you wish to have">
+            <label for="field1">
+                <span>No. Of Screens</span>
+                <select name="Select no. Of Screens" class="select-field" ng-model="noOfScreens">
+                    <option value="1">1</option>
+                </select>
+            </label>
         </div>
+
+        <div class="form-group" ng-controller="ManageTheatreController as theatre">
+            <label for="field2">
+                <span>Now Playing Movies:</span>
+                <select name="Select movie" class="select-field" ng-model="movieName">
+                    <option ng-repeat="movie in movies"
+                            value="{{movie.movieName}}">{{movie.movieName}}
+                    </option>
+                </select>
+            </label>
+        </div>
+
         </span>
     </fieldset>
-    <button class="btn btn-primary" ng-click="theatre.registerTheatreForTheatreManager(theatreName, location, noOfScreens)" type="submit">Buy</button>
+    <button class="btn btn-primary" ng-click="theatre.registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieName)" type="submit">Register My Theatre</button>
 </form>
 
 </body>
