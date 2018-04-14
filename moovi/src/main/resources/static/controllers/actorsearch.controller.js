@@ -9,17 +9,6 @@
         var url = "/api/search/actor";
         vm.searchActorByName = searchActorByName;
 
-        // $window.onload = function () {
-        //     var nowPlayingUrl = "?nowPlaying=true";
-        //     $scope.myVal = false;
-        //     $http
-        //         .get(url+nowPlayingUrl)
-        //         .then(function (value) {
-        //             $scope.nowplayingheading = "Now Playing Movies";
-        //             $scope.movies = value.data;
-        //         })
-        // };
-
         $scope.$on('$viewContentLoaded', function()
         {
             $scope.myVal = false;
@@ -48,6 +37,20 @@
                     $scope.actors = response.data;
                 });
             console.log(name);
+        }
+
+        vm.followThisActor = followThisActor;
+
+        function followThisActor(actorId) {
+            var username = localStorage.getItem("username");
+            var followUrl = localpath+"api/follow/fan/"+username+"/movie/"+actorId;
+
+            $http
+                .post(followUrl)
+                .then(function () {
+
+                    alert("Actor followed");
+                })
         }
 
     }
