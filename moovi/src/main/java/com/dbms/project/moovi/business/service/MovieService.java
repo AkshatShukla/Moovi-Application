@@ -82,11 +82,16 @@ public class MovieService extends Utils {
                 JSONParser parse = new JSONParser();
                 JSONObject jobj = (JSONObject)parse.parse(inline.toString());
                 JSONArray jsonarr_1 = (JSONArray) jobj.get("results");
-
-                long[] idArray = new long[5];
+                long[] idArray;
+                int n= jsonarr_1.size();
+                if(n>5){
+                    idArray = new long[5];
+                }
+                else
+                    idArray = new long[jsonarr_1.size()];
 
                 //Get data for Results array
-                for(int i=0;i<5;i++)
+                for(int i=0;i<idArray.length;i++)
                 {
                     //Store the JSON objects in an array
                     //Get the index of the JSON object and print the values as per the index
@@ -198,11 +203,16 @@ public class MovieService extends Utils {
                     System.out.println(inline);
 
                     JSONArray array = (JSONArray) jsonObject1.get("cast");
-                    long[] idArray1 = new long[array.size()];
+                    int t = array.size();
+                    long[] idArray1;
+                    if(t > 5)
+                        idArray1 = new long[5];
+                    else
+                        idArray1 = new long[array.size()];
 
                     Actor actor = new Actor();
 
-                    for(int i = 0; i < 5; i++){
+                    for(int i = 0; i < idArray1.length; i++){
                         JSONObject jsonObject2 = (JSONObject) array.get(i);
                         long actorId = (long) jsonObject2.get("id");
                         String getActor = "https://api.themoviedb.org/3/person/"+actorId+"?api_key="+apiKey+"&language=en-US";
