@@ -17,6 +17,7 @@
             <th scope="col">Date of Birth</th>
             <th scope="col">WebsiteUrl</th>
             <th scope="col">Description</th>
+            <th scope="col">Follow</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,7 @@
             <td>{{critic.dob}}</td>
             <td>{{critic.websiteUrl}}}</td>
             <td>{{critic.criticDescription}}</td>
+            <td><button type="button" class="btn btn-success" ng-click="cr.followThisCritic(critic.username)">Follow</button></td>
         </tr>
         </tbody>
     </table>

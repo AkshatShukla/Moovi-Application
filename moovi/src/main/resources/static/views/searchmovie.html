@@ -23,6 +23,7 @@
             <th scope="col">Like Movie</th>
             <th scope="col">Dislike Movie</th>
             <th scope="col">Write Review</th>
+            <th scope="col">Recommend This Movie</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
             <td><button type="button" class="btn btn-success" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
             <td><button type="button" class="btn btn-danger" ng-click="model.dislikeThisMovie(movie.movieId)">Dislike</button></td>
             <td><button type="button" class="btn btn-danger" ng-click="model.changeToReviewView(movie.movieName,movie.movieId)">Write Review</button></td>
+            <td><button type="button" class="btn btn-basic" ng-click="model.recommendThisMovie(movie.movieId)">Recommend</button></td>
         </tr>
         </tbody>
     </table>

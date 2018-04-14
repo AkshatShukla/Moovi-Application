@@ -24,6 +24,11 @@ public class ReviewService {
     @Autowired
     private CriticRepository criticRepository;
 
+    @GetMapping("/api/review")
+    public List<Review> findAllReview(){
+        return (List<Review>) reviewRepository.findAll();
+    }
+
     @PostMapping("/api/review")
     public Review createUser(@RequestBody Review review) {
         return reviewRepository.save(review);

@@ -9,17 +9,6 @@
         var url = "/api/search/movie";
         vm.searchMovieByTitle = searchMovieByTitle;
 
-        // $window.onload = function () {
-        //     var nowPlayingUrl = "?nowPlaying=true";
-        //     $scope.myVal = false;
-        //     $http
-        //         .get(url+nowPlayingUrl)
-        //         .then(function (value) {
-        //             $scope.nowplayingheading = "Now Playing Movies";
-        //             $scope.movies = value.data;
-        //         })
-        // };
-
         $scope.$on('$viewContentLoaded', function()
         {
             var nowPlayingUrl = "?nowPlaying=true";
@@ -75,7 +64,20 @@
                 .post(dislikeUrl)
                 .then(function () {
                     alert("Movie Disliked");
-                })
+                });
+        }
+
+        vm.recommendThisMovie = recommendThisMovie;
+
+        function recommendThisMovie(movieId) {
+            var username = localStorage.getItem("username");
+            var recommendMovieURL = localpath+"api/recommend/critic/"+username+"/movie/"+movieId;
+
+            $http
+                .post(recommendMovieURL)
+                .then(function () {
+                    alert(username +" recommended a movie");
+                });
         }
 
         vm.changeToReviewView = changeToReviewView;
