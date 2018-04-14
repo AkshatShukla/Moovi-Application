@@ -30,7 +30,6 @@
         };*/
 
         function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieId) {
-            alert(movieId);
             var newTheatre = {
                 "theatreName":theatreName,
                 "location":location,
@@ -87,13 +86,29 @@
                                     $scope.screenResponse = angular.fromJson(response2.data);
                                     //$scope.theatreResponse = angular.fromJson(response.data);
 
-                                    var linkingScreenToTheatreURL = localpath + "api/screen/" + $scope.screenResponse.screenId + "/theatre/" + $scope.theatreResponse.theatreId;
+                                    var screenId = $scope.screenResponse.screenId;
+
+                                    var linkingScreenToTheatreURL = localpath + "api/screen/" + screenId + "/theatre/" + $scope.theatreResponse.theatreId;
 
                                     $http
                                         .post(linkingScreenToTheatreURL)
-                                        .then(function (response) {
-                                            //$scope.theatre = response;
+                                        .then(function () {
                                             alert("screen assigned to this Theatre!");
+
+                                            vm.linkScreenToMovie = linkScreenToMovie;
+
+                                            function linkScreenToMovie() {
+
+                                                var linkScreenToMovieURL = localpath + "api/screen/" + screenId + "/movie/" + movieId;
+
+                                                $http
+                                                    .post(linkScreenToMovieURL)
+                                                    .then(function () {
+                                                        alert("screen mapped to movie!");
+                                                    });
+                                            }
+
+                                            linkScreenToMovie();
                                         });
                                 }
 
@@ -104,13 +119,8 @@
                     createScreen();
 
 
-                    //var linkScreenToMovieURL = localpath+"api/screen/"+$scope.screenResponse.screenId+"/movie/"+{movieId}
+        });
 
-            });
         }
-
-        // var movieid = $scope.movies.movieId;
-        // alert(movieid);
-
     }
 })();
