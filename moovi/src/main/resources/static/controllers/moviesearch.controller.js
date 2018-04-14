@@ -60,9 +60,21 @@
 
             $http
                 .post(likeUrl)
-                .then(function (response) {
-
+                .then(function () {
                     alert("Movie Liked");
+                })
+        }
+
+        vm.dislikeThisMovie = dislikeThisMovie;
+
+        function dislikeThisMovie(movieId) {
+            var username = localStorage.getItem("username");
+            var dislikeUrl = localpath+"api/dislike/fan/"+username+"/movie/"+movieId;
+
+            $http
+                .post(dislikeUrl)
+                .then(function () {
+                    alert("Movie Disliked");
                 })
         }
 

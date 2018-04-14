@@ -21,6 +21,7 @@
             <th scope="col">Release Status</th>
             <th scope="col">IMDb Link</th>
             <th scope="col">Like Movie</th>
+            <th scope="col">Dislike Movie</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
             <td>{{movie.releaseStatus}}</td>
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
             <td><button type="button" class="btn btn-success" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="model.dislikeThisMovie(movie.movieId)">Dislike</button></td>
         </tr>
         </tbody>
     </table>
