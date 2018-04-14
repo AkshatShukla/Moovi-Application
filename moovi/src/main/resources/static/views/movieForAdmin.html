@@ -41,7 +41,7 @@
             <td>{{movie.releaseStatus}}</td>
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
             <td><button type="button" class="btn btn-success" ng-click="em.likeThisMovie(movie.movieId)">Edit</button></td>
-            <td><button type="button" class="btn btn-danger" ng-click="em.dislikeThisMovie(movie.movieId)">Delete</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="em.deleteMovie(movie.movieId)">Delete</button></td>
         </tbody>
     </table>
 </div>
