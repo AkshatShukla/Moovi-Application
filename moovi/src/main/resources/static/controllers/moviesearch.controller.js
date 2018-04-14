@@ -10,16 +10,18 @@
         vm.searchMovieByTitle = searchMovieByTitle;
 
         $scope.userT = localStorage.getItem("userType");
-        alert($scope.userT);
 
+        $scope.loading = "Loading Movies...";
 
         $scope.$on('$viewContentLoaded', function()
         {
             var nowPlayingUrl = "?nowPlaying=true";
             $scope.myVal = false;
+            $scope.myVal1 = false;
             $http
                 .get(url+nowPlayingUrl)
                 .then(function (value) {
+                    $scope.myVal1 = true;
                     $scope.nowplayingheading = "Now Playing Movies";
                     $scope.movies = value.data;
                 })
@@ -35,6 +37,7 @@
             //var url = "https://api.themoviedb.org/3/search/movie?api_key=878a88feb1d8acab0c9883e805657264&query="+title;
             var findByTitle = "?movieName="+title;
             $scope.myVal = true;
+            $scope.myVal1 = false;
             $http
                 .get(url+findByTitle)
                 .then(function (response) {
