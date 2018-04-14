@@ -41,5 +41,10 @@
                 controller: "ManageTheatreController",
                 controllerAs: "theatre"
             })
+            .when("/review", {
+                templateUrl: "views/review.html",
+                controller: "ReviewController",
+                controllerAs: "rev"
+            })
     }
 })();

@@ -78,5 +78,11 @@
                 })
         }
 
+        vm.changeToReviewView = changeToReviewView;
+
+        function changeToReviewView(movieName) {
+            localStorage.setItem("movieName",movieName);
+            window.location = "#!/review";
+        }
     }
 })();
