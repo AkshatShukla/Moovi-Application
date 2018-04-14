@@ -9,7 +9,7 @@
         var localpath = "http://localhost:8080/";
         var url = "/api/critic";
         vm.searchCriticByUsername = searchCriticByUsername;
-        console.log("Hi Critic");
+
         $scope.$on('$viewContentLoaded', function()
         {
             $scope.myVal = false;
@@ -29,7 +29,6 @@
         };
 
         function searchCriticByUsername(username) {
-            //var url = "https://api.themoviedb.org/3/search/movie?api_key=878a88feb1d8acab0c9883e805657264&query="+title;
             var findByName = "?username="+username;
             $scope.myVal = true;
             $http
@@ -38,8 +37,19 @@
                     console.log(response);
                     $scope.critics = response.data;
                 });
-            console.log(name);
         }
 
+        vm.followThisCritic = followThisCritic;
+
+        function followThisCritic(criticUsername) {
+            var username = localStorage.getItem("username");
+            var followCriticURL = localpath+"api/follow/fan/"+username+"/critic/"+criticUsername;
+
+            $http
+                .post(followCriticURL)
+                .then(function () {
+                    alert(username +" followed a critic: "+criticUsername);
+                });
+        }
     }
 })();
