@@ -9,6 +9,8 @@
         var url = "/api/search/actor";
         vm.searchActorByName = searchActorByName;
 
+        $scope.userT = localStorage.getItem("userType");
+
         $scope.$on('$viewContentLoaded', function()
         {
             $scope.myVal = false;
