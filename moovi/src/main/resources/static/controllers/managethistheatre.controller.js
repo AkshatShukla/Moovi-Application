@@ -29,8 +29,8 @@
                 searchActorByName(name);
         };*/
 
-        function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieName) {
-            alert(movieName);
+        function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieId) {
+            alert(movieId);
             var newTheatre = {
                 "theatreName":theatreName,
                 "location":location,
