@@ -46,5 +46,10 @@
                 controller: "ReviewController",
                 controllerAs: "rev"
             })
+            .when("/mypage", {
+                templateUrl: "views/mypage.html",
+                controller: "MyPageController",
+                controllerAs: "mp"
+            })
     }
 })();
