@@ -40,6 +40,11 @@ public class MovieService extends Utils {
     @Autowired
     private ActorRepository actorRepository;
 
+    @GetMapping("/api/movie")
+    public List<Movie> findAllMovie(){
+        return (List<Movie>) movieRepository.findAll();
+    }
+
     @GetMapping("/api/search/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public JSONArray getMovies(@RequestParam(name = "movieName",required = false) String movieName,

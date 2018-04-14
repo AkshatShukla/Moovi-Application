@@ -9,6 +9,8 @@ import com.dbms.project.moovi.data.repository.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class ScreenService {
@@ -21,6 +23,11 @@ public class ScreenService {
 
     @Autowired
     private TheatreRepository theatreRepository;
+
+    @GetMapping("/api/screen")
+    public List<Screen> findAllScreen(){
+        return (List<Screen>) screenRepository.findAll();
+    }
 
     @PostMapping("/api/screen")
     public Screen createScreen(@RequestBody Screen screen){

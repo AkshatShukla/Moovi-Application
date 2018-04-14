@@ -7,6 +7,8 @@ import com.dbms.project.moovi.data.repository.TheatreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class TheatreService {
@@ -16,6 +18,11 @@ public class TheatreService {
 
     @Autowired
     private TheatreManagerRepository theatreManagerRepository;
+
+    @GetMapping("/api/theatre")
+    public List<Theatre> findAllTheatre(){
+        return (List<Theatre>) theatreRepository.findAll();
+    }
 
     @PostMapping("/api/theatre")
     public Theatre createTheatre(@RequestBody Theatre theatre) {
