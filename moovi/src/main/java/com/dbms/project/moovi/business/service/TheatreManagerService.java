@@ -44,4 +44,14 @@ public class TheatreManagerService extends Utils {
             theatreManagerRepository.save(theatreManager);
         }
     }
+
+    @GetMapping("/api/manager/{username}/theatremanaged")
+    public List<Theatre> listOfTheatreManaged(
+            @PathVariable("username") String username){
+        if(theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).isPresent()) {
+            TheatreManager manager = theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).get();
+            return manager.getListOfTheatresManaged();
+        }
+        return null;
+    }
 }

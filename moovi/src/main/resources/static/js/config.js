@@ -51,5 +51,10 @@
                 controller: "MyPageController",
                 controllerAs: "mp"
             })
+            .when("/admin", {
+                templateUrl: "views/admin.html",
+                controller: "AdminController",
+                controllerAs: "ad"
+            })
     }
 })();
