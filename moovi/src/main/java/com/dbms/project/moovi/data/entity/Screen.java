@@ -16,7 +16,7 @@ public class Screen {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int screenId;
+    private long screenId;
 	
 	@ManyToOne()
 	@JsonIgnore
@@ -30,11 +30,11 @@ public class Screen {
 		super();
 	}
 
-	public int getScreenId() {
+	public long getScreenId() {
 		return screenId;
 	}
 
-	public void setScreenId(int screenId) {
+	public void setScreenId(long screenId) {
 		this.screenId = screenId;
 	}
 

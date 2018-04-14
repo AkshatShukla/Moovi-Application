@@ -232,7 +232,12 @@ public class Movie {
     	this.listOfGenres.add(genre);
     	if(genre.getMovie() != this) {
     		genre.setMovie(this);
+        }
     }
-}
-    		
+
+    public void castActors(Actor actor){
+	    this.listOfActors.add(actor);
+	    if(!actor.getListOfMovies().contains(this))
+	        actor.getListOfMovies().add(this);
+    }
 }

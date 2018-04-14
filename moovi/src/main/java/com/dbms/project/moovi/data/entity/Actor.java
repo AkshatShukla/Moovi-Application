@@ -1,10 +1,6 @@
 package com.dbms.project.moovi.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,6 +16,8 @@ public class Actor {
     private String dob;
     private String dod;
     private String imdbId;
+
+    @Column(columnDefinition = "TEXT")
     private String biography;
     private String actorPopularity;
     private String profilePicture;

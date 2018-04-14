@@ -5,16 +5,14 @@ import com.dbms.project.moovi.data.entity.Critic;
 import com.dbms.project.moovi.data.entity.Fan;
 import com.dbms.project.moovi.data.entity.Movie;
 import com.dbms.project.moovi.data.entity.Review;
-import com.dbms.project.moovi.data.repository.CriticRepository;
-import com.dbms.project.moovi.data.repository.FanRepository;
-import com.dbms.project.moovi.data.repository.MovieRepository;
-import com.dbms.project.moovi.data.repository.ReviewRepository;
+import com.dbms.project.moovi.data.repository.*;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -38,6 +36,9 @@ public class MovieService extends Utils {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ActorRepository actorRepository;
 
     @GetMapping("/api/search/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -77,10 +78,10 @@ public class MovieService extends Utils {
                 JSONObject jobj = (JSONObject)parse.parse(inline.toString());
                 JSONArray jsonarr_1 = (JSONArray) jobj.get("results");
 
-                long[] idArray = new long[jsonarr_1.size()];
+                long[] idArray = new long[5];
 
                 //Get data for Results array
-                for(int i=0;i<jsonarr_1.size();i++)
+                for(int i=0;i<5;i++)
                 {
                     //Store the JSON objects in an array
                     //Get the index of the JSON object and print the values as per the index
@@ -111,7 +112,7 @@ public class MovieService extends Utils {
 //                    }
                 }
 
-                //Movie movie = new Movie();
+                Movie movie = new Movie();
                 for (long movieId:idArray) {
                     String findMovieUrlString = "https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey+"&language=en-US";
 
@@ -126,8 +127,8 @@ public class MovieService extends Utils {
                     {
                         inline.append(scanner.nextLine());
                     }
-                    System.out.println("\nJSON data in string format");
-                    System.out.println(inline);
+//                    System.out.println("\nJSON data in string format");
+//                    System.out.println(inline);
                     scanner.close();
                     jobj1 = (JSONObject)parse.parse(inline.toString());
                     JSONObject jsonObject = new JSONObject();
@@ -163,7 +164,7 @@ public class MovieService extends Utils {
                     jsonObject.put("releaseStatus",jobj1.get("status"));
 
                     //Movie Saving to Database Code
-                    /*
+
                     movie.setMovieId((Long) jsonObject.get("movieId"));
                     movie.setMovieName((String) jsonObject.get("movieName"));
                     movie.setImdbId((String) jsonObject.get("imdbId"));
@@ -175,11 +176,98 @@ public class MovieService extends Utils {
                     movie.setRevenue((Long) jsonObject.get("revenue"));
                     movie.setReleaseStatus((String) jsonObject.get("releaseStatus"));
                     movieRepository.save(movie);
-                    */
+
+                    String findMovieCreditUrlString = "https://api.themoviedb.org/3/movie/"+movieId+"/credits?api_key="+apiKey+"&language=en-US";
+
+                    URL findMovieCreditUrl = new URL(findMovieCreditUrlString);
+                    HttpURLConnection conn2 = (HttpURLConnection)findMovieCreditUrl.openConnection();
+                    conn2.setRequestMethod("GET");
+                    conn2.connect();
+
+                    inline = new StringBuilder();
+                    Scanner scanner1 = new Scanner(findMovieCreditUrl.openStream());
+                    while(scanner1.hasNext())
+                        inline.append(scanner1.nextLine());
+                    scanner1.close();
+                    JSONObject jsonObject1 = (JSONObject) parse.parse(inline.toString());
+                    System.out.println(inline);
+
+                    JSONArray array = (JSONArray) jsonObject1.get("cast");
+                    long[] idArray1 = new long[array.size()];
+
+                    Actor actor = new Actor();
+
+                    for(int i = 0; i < 5; i++){
+                        JSONObject jsonObject2 = (JSONObject) array.get(i);
+                        long actorId = (long) jsonObject2.get("id");
+                        String getActor = "https://api.themoviedb.org/3/person/"+actorId+"?api_key="+apiKey+"&language=en-US";
+                        URL url = new URL(getActor);
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                        httpURLConnection.setRequestMethod("GET");
+                        httpURLConnection.connect();
+                        inline = new StringBuilder();
+                        Scanner scanner2 = new Scanner(url.openStream());
+                        while (scanner2.hasNext())
+                            inline.append(scanner2.nextLine());
+                        scanner2.close();
+                        JSONObject jsonObject3 = (JSONObject) parse.parse(inline.toString());
+                        JSONObject object = new JSONObject();
+
+                        if(jsonObject3.get("birthday") == null)
+                            object.put("dob","-");
+                        else
+                            object.put("dob", jsonObject3.get("birthday"));
+                        if(jsonObject3.get("deathday") == null)
+                            object.put("dod","-");
+                        else
+                            object.put("dod", jsonObject3.get("deathday"));
+                        if(jsonObject3.get("imdb_id") == null)
+                            object.put("imdbId","-");
+                        else
+                            object.put("imdbId", jsonObject3.get("imdb_id"));
+                        if(jsonObject3.get("biography") == null)
+                            object.put("biography","-");
+                        else
+                            object.put("biography", jsonObject3.get("biography"));
+                        if(jsonObject3.get("popularity") == null)
+                            object.put("actorPopularity","-");
+                        else
+                            object.put("actorPopularity", jsonObject3.get("popularity"));
+                        if (jsonObject3.get("profile_path") == null)
+                            object.put("profilePicture","-");
+                        else
+                            object.put("profilePicture",imgUrl+jsonObject3.get("profile_path").toString());
+
+                        object.put("actorName",jsonObject3.get("name"));
+                        object.put("actorId", jsonObject3.get("id"));
+
+                        actor.setActorId((Long) object.get("actorId"));
+                        actor.setActorName((String) object.get("actorName"));
+                        actor.setProfilePicture((String) object.get("profilePicture"));
+                        actor.setActorPopularity(object.get("actorPopularity").toString());
+                        actor.setBiography((String) object.get("biography"));
+                        actor.setDob((String) object.get("dob"));
+                        actor.setDod((String) object.get("dod"));
+                        actor.setImdbId((String) object.get("imdbId"));
+
+                        actorRepository.save(actor);
+
+                        String actorToMovieMapping = "http://localhost:8080/api/cast/movie/"+movieId+"/actor/"+actorId;
+                        URL url1 = new URL(actorToMovieMapping);
+
+                        HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+                        connection.setRequestMethod("POST");
+                        connection.connect();
+                        int responseCode3 = connection.getResponseCode();
+                        System.out.println("response code: "+responseCode3);
+                        if(responseCode3 != 200)
+                            throw new RuntimeException("HttpResponseCode: " +responseCode);
+                    }
                     jsonArray.add(jsonObject);
+                    Thread.sleep(1000);
                 }
             }
-        } catch (ParseException | IOException e) {
+        } catch (ParseException | IOException | InterruptedException e) {
             e.printStackTrace();
         }
         return jsonArray;
@@ -194,6 +282,19 @@ public class MovieService extends Utils {
             Movie movie = movieRepository.findById(movieId).get();
             Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
             movie.likedByFan(fan);
+            movieRepository.save(movie);
+        }
+    }
+
+    @PostMapping("/api/cast/movie/{movieId}/actor/{actorId}")
+    public void castActor(
+            @PathVariable("movieId") long movieId,
+            @PathVariable("actorId") long actorId){
+        if(movieRepository.findById(movieId).isPresent()
+                && actorRepository.findById(actorId).isPresent()){
+            Movie movie = movieRepository.findById(movieId).get();
+            Actor actor = actorRepository.findById(actorId).get();
+            movie.castActors(actor);
             movieRepository.save(movie);
         }
     }

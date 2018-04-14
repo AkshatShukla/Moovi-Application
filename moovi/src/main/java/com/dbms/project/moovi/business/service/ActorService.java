@@ -123,6 +123,7 @@ public class ActorService extends Utils{
                     JSONObject jsonObject2 = (JSONObject)results.get(i);
                     idArray[i] = (long) jsonObject2.get("id");
                 }
+                Actor actor = new Actor();
                 for(long actorId: idArray){
                     String getActor = "https://api.themoviedb.org/3/person/"+actorId+"?api_key="+apiKey+"&language=en-US";
                     URL url1 = new URL(getActor);
@@ -138,7 +139,6 @@ public class ActorService extends Utils{
                     scanner.close();
                     jsonObject = (JSONObject) parse.parse(inline.toString());
                     JSONObject object = new JSONObject();
-                    double l=0;
                     if(jsonObject.get("birthday") == null)
                         object.put("dob","-");
                     else
@@ -166,6 +166,18 @@ public class ActorService extends Utils{
 
                     object.put("actorName",jsonObject.get("name"));
                     object.put("actorId", jsonObject.get("id"));
+
+                    actor.setActorId((Long) object.get("actorId"));
+                    actor.setActorName((String) object.get("actorName"));
+                    actor.setProfilePicture((String) object.get("profilePicture"));
+                    actor.setActorPopularity(object.get("actorPopularity").toString());
+                    actor.setBiography((String) object.get("biography"));
+                    actor.setDob((String) object.get("dob"));
+                    actor.setDod((String) object.get("dod"));
+                    actor.setImdbId((String) object.get("imdbId"));
+
+                    actorRepository.save(actor);
+
                     jsonArray.add(object);
                 }
             }
