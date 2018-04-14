@@ -9,6 +9,10 @@
         var url = "/api/search/movie";
         vm.searchMovieByTitle = searchMovieByTitle;
 
+        $scope.userT = localStorage.getItem("userType");
+        alert($scope.userT);
+
+
         $scope.$on('$viewContentLoaded', function()
         {
             var nowPlayingUrl = "?nowPlaying=true";

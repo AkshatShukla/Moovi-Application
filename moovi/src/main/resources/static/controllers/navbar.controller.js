@@ -6,7 +6,7 @@
     function NavbarController($scope) {
         var vm = this;
         $scope.typeRole = localStorage.getItem("userType");
-        alert($scope.typeRole);
+        //alert($scope.typeRole);
         console.log($scope.typeRole);
         $scope.foo = null;
 

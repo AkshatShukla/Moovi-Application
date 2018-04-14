@@ -20,10 +20,10 @@
             <th scope="col">Runtime</th>
             <th scope="col">Release Status</th>
             <th scope="col">IMDb Link</th>
-            <th scope="col">Like Movie</th>
-            <th scope="col">Dislike Movie</th>
-            <th scope="col">Write Review</th>
-            <th scope="col">Recommend This Movie</th>
+            <th scope="col" ng-show="userT==='fan'">Like Movie</th>
+            <th scope="col" ng-show="userT==='fan'">Dislike Movie</th>
+            <th scope="col" ng-show="userT==='critic'">Write Review</th>
+            <th scope="col" ng-show="userT==='critic'">Recommend This Movie</th>
         </tr>
         </thead>
         <tbody>
@@ -37,10 +37,10 @@
             <td>{{movie.runtime}} minutes</td>
             <td>{{movie.releaseStatus}}</td>
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
-            <td><button type="button" class="btn btn-success" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
-            <td><button type="button" class="btn btn-danger" ng-click="model.dislikeThisMovie(movie.movieId)">Dislike</button></td>
-            <td><button type="button" class="btn btn-danger" ng-click="model.changeToReviewView(movie.movieName,movie.movieId)">Write Review</button></td>
-            <td><button type="button" class="btn btn-basic" ng-click="model.recommendThisMovie(movie.movieId)">Recommend</button></td>
+            <td><button type="button" class="btn btn-success" ng-show="userT==='fan'" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
+            <td><button type="button" class="btn btn-danger" ng-show="userT==='fan'" ng-click="model.dislikeThisMovie(movie.movieId)">Dislike</button></td>
+            <td><button type="button" class="btn btn-warning" ng-show="userT==='critic'" ng-click="model.changeToReviewView(movie.movieName,movie.movieId)">Write Review</button></td>
+            <td><button type="button" class="btn btn-primary" ng-show="userT==='critic'" ng-click="model.recommendThisMovie(movie.movieId)">Recommend</button></td>
         </tr>
         </tbody>
     </table>
