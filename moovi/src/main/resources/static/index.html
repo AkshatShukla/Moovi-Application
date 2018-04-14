@@ -32,10 +32,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="NavbarController">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="NavbarController as nc">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#!mypage">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#!mypage" ng-show="typeRole==='fan' || typeRole==='critic' || typeRole==='theatremanager' || typeRole==='adrecruiter'">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#!searchMovie">Search Movie</a>
@@ -49,14 +49,17 @@
             <li class="nav-item" ng-show="typeRole==='theatremanager'">
                 <a class="nav-link" href="#">Search Theatre</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="typeRole===null">
                 <a class="nav-link" href="#!login">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="typeRole===null">
                 <a class="nav-link" href="#!register">Registration</a>
             </li>
             <li class="nav-item" ng-show="typeRole==='theatremanager'">
                 <a class="nav-link" href="#!manageThisTheatre">Register a Theatre</a>
+            </li>
+            <li class="nav-item" ng-show="typeRole!==null" ng-click="nc.resetUserType()">
+                <a class="nav-link" href="#">Logout</a>
             </li>
         </ul>
     </div>
