@@ -18,6 +18,7 @@
     <script src="controllers/review.controller.js"></script>
     <script src="controllers/mypage.controller.js"></script>
     <script src="controllers/admin.controller.js"></script>
+    <script src="controllers/navbar.controller.js"></script>
     <meta charset="UTF-8">
     <title>Moovi</title>
 </head>
@@ -31,10 +32,10 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="NavbarController">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#/!">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#!mypage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#!searchMovie">Search Movie</a>
@@ -42,10 +43,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="#!searchActor">Search Actor</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="typeRole==='fan'">
                 <a class="nav-link" href="#!searchCritic">Search Critic</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="typeRole==='theatremanager'">
                 <a class="nav-link" href="#">Search Theatre</a>
             </li>
             <li class="nav-item">
@@ -54,7 +55,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#!register">Registration</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" ng-show="typeRole==='theatremanager'">
                 <a class="nav-link" href="#!manageThisTheatre">Register a Theatre</a>
             </li>
         </ul>

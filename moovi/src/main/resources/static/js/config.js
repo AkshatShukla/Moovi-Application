@@ -56,5 +56,8 @@
                 controller: "AdminController",
                 controllerAs: "ad"
             })
+            .otherwise({
+                templateUrl : "views/landingpage.html"
+            });
     }
 })();
