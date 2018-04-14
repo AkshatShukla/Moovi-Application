@@ -26,8 +26,15 @@
             <input ng-model="password" type="password" name="password" id="password" class="form-control input-lg" placeholder="Enter your Password">
         </div>
         <div class="form-group">
-            <input ng-model="userType" type="text" name="Type Of User" id="userType" class="form-control input-lg" placeholder="Enter fan/critic/adrecruiter/theatremanager">
+            <select ng-model="userType" type="text" name="Type Of User" id="userType" class="form-control input-lg">
+                <option value="" selected data-default>Choose your type of User</option>
+                <option value="fan">Fan</option>
+                <option value="critic">Critic</option>
+                <option value="adrecruiter">Advertisement Recruiter</option>
+                <option value="theatremanager">Theatre Manager</option>
+            </select>
         </div>
+
         <div class="form-group">
             <input ng-model="email" type="email" name="Email" id="email" class="form-control input-lg" placeholder="Enter your email id">
         </div>
