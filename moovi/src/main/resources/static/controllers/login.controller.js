@@ -26,11 +26,10 @@
             if (keyEvent.which === 13)
                 searchMovieByTitle(title);
         };*/
-        var redirectToURL = "../index.html";
         function checkIfValidUser(username, password, userType) {
 
             $http
-                .get(localpath+url+userType+"?username="+username)
+                .get(localpath+url+userType+"?username="+username+"&password="+password)
                 .then(function (response) {
                     $scope.user = response.data;
                     if (response.data.length === 0){

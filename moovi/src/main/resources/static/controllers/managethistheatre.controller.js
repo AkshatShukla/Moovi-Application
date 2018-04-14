@@ -7,6 +7,21 @@
         var vm = this;
         var localpath = "http://localhost:8080/";
         var url = "api/theatre";
+
+        //vm.populateMovieData = populateMovieData;
+
+        $scope.$on('$viewContentLoaded',function (){
+            var movieUrl = "/api/search/movie?nowPlaying=true";
+            $http
+                .get(movieUrl)
+                .then(function (value) {
+                    $scope.movies = value.data;
+                })
+
+        });
+
+
+
         vm.registerTheatreForTheatreManager = registerTheatreForTheatreManager;
 
         /*$scope.myKeyPress = function(keyEvent,name) {
@@ -14,8 +29,7 @@
                 searchActorByName(name);
         };*/
 
-        function registerTheatreForTheatreManager(theatreName, location, noOfScreens) {
-
+        function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieId) {
             var newTheatre = {
                 "theatreName":theatreName,
                 "location":location,
@@ -72,13 +86,29 @@
                                     $scope.screenResponse = angular.fromJson(response2.data);
                                     //$scope.theatreResponse = angular.fromJson(response.data);
 
-                                    var linkingScreenToTheatreURL = localpath + "api/screen/" + $scope.screenResponse.screenId + "/theatre/" + $scope.theatreResponse.theatreId;
+                                    var screenId = $scope.screenResponse.screenId;
+
+                                    var linkingScreenToTheatreURL = localpath + "api/screen/" + screenId + "/theatre/" + $scope.theatreResponse.theatreId;
 
                                     $http
                                         .post(linkingScreenToTheatreURL)
-                                        .then(function (response) {
-                                            //$scope.theatre = response;
+                                        .then(function () {
                                             alert("screen assigned to this Theatre!");
+
+                                            vm.linkScreenToMovie = linkScreenToMovie;
+
+                                            function linkScreenToMovie() {
+
+                                                var linkScreenToMovieURL = localpath + "api/screen/" + screenId + "/movie/" + movieId;
+
+                                                $http
+                                                    .post(linkScreenToMovieURL)
+                                                    .then(function () {
+                                                        alert("screen mapped to movie!");
+                                                    });
+                                            }
+
+                                            linkScreenToMovie();
                                         });
                                 }
 
@@ -86,15 +116,11 @@
                         });
                     }
 
-                    var i;
-
-                    for (i = 0; i < noOfScreens; i++) {
-                        createScreen();
-                    }
+                    createScreen();
 
 
-            });
+        });
+
         }
-
     }
 })();
