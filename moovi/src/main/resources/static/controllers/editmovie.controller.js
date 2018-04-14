@@ -6,7 +6,6 @@
     function EditMovieController($http, $scope) {
         var vm = this;
         var localpath = "http://localhost:8080/";
-        alert("hi from EditMovieController");
 
         vm.addMovie = addMovie;
 
@@ -42,7 +41,7 @@
                 .post(localpath+insertMovieUrl, newMovie)
                 .then(function (response) {
                     $scope.movie = response.data;
-                    alert("movie addeed");
+                    alert("movie added");
                     location.reload(true);
                 });
         }

@@ -6,6 +6,5 @@
     function AdminController($http, $scope) {
         var vm = this;
         var localpath = "http://localhost:8080/";
-        alert("hi from admin");
     }
 })();
