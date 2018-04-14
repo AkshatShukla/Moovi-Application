@@ -43,14 +43,26 @@
 
         function followThisActor(actorId) {
             var username = localStorage.getItem("username");
-            var followUrl = localpath+"api/follow/fan/"+username+"/movie/"+actorId;
+            var followUrl = localpath+"api/follow/fan/"+username+"/actor/"+actorId;
 
             $http
                 .post(followUrl)
                 .then(function () {
+                    alert(username+"followed an actor "+actorId);
+                });
+        }
 
-                    alert("Actor followed");
-                })
+        vm.recruitThisActor = recruitThisActor;
+
+        function recruitThisActor (actorId) {
+            var username = localStorage.getItem("username");
+            var recruitUrl = localpath+"api/recruit/adrecruiter/"+username+"/actor/"+actorId;
+
+            $http
+                .post(recruitUrl)
+                .then(function () {
+                    alert(username+" recruited actor "+actorId);
+                });
         }
 
     }

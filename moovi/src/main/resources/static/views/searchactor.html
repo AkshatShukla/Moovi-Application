@@ -19,6 +19,7 @@
             <th scope="col">Popularity Score</th>
             <th scope="col">IMDb Link</th>
             <th scope="col">Follow</th>
+            <th scope="col">Recruit</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
             <td>{{actor.actorPopularity}}</td>
             <td><a href="http://www.imdb.com/name/{{actor.imdbId}}">{{actor.actorName}} IMDb</a></td>
             <td><button type="button" class="btn btn-primary" ng-click="ac.followThisActor(actor.actorId)">Follow</button></td>
+            <td><button type="button" class="btn btn-success" ng-click="ac.recruitThisActor(actor.actorId)">Recruit</button></td>
         </tr>
         </tbody>
     </table>
