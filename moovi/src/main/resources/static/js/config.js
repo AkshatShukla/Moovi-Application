@@ -36,5 +36,10 @@
                     controller: "RegisterController",
                     controllerAs: "register"
             })
+            .when("/manageThisTheatre", {
+                templateUrl: "views/manageThisTheatre.html",
+                controller: "ManageTheatreController",
+                controllerAs: "theatre"
+            })
     }
 })();
