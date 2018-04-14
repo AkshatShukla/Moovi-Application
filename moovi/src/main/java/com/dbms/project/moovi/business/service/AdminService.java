@@ -5,6 +5,8 @@ import com.dbms.project.moovi.data.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class AdminService {
@@ -41,6 +43,14 @@ public class AdminService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping("/api/admin")
+    public List<Admin> findAllAdmin(@RequestParam(name = "username", required = false) String username,
+                                    @RequestParam(name = "password", required = false) String password){
+        if(username != null && password !=null)
+            return (List<Admin>) adminRepository.findAdminByCredentials(username, password);
+        return (List<Admin>) adminRepository.findAll();
+    }
 
     @PostMapping("/api/admin")
     public Admin createAdmin(@RequestBody Admin admin){
@@ -183,6 +193,30 @@ public class AdminService {
             Review review = reviewRepository.findById(reviewId).get();
             review.setNewReview(newReview);
             return reviewRepository.save(review);
+        }
+        return null;
+    }
+
+    @PutMapping("/api/edit/movie/{movieId}")
+    public Movie updateMovie(
+            @PathVariable("movieId") long movieId,
+            @RequestBody Movie newMovie){
+        if(movieRepository.findById(movieId).isPresent()){
+            Movie movie = movieRepository.findById(movieId).get();
+            movie.setMovie(newMovie);
+            return movieRepository.save(movie);
+        }
+        return null;
+    }
+
+    @PutMapping("/api/edit/actor/{actorId}")
+    public Actor updateActor(
+            @PathVariable("actorId") long actorId,
+            @RequestBody Actor newActor){
+        if(actorRepository.findById(actorId).isPresent()){
+            Actor actor = actorRepository.findById(actorId).get();
+            actor.setActor(newActor);
+            return actorRepository.save(actor);
         }
         return null;
     }

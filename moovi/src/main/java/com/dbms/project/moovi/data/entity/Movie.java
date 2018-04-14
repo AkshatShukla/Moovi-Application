@@ -240,4 +240,25 @@ public class Movie {
 	    if(!actor.getListOfMovies().contains(this))
 	        actor.getListOfMovies().add(this);
     }
+
+    public void setMovie(Movie newMovie){
+	    this.movieName = newMovie.movieName != null?
+                newMovie.movieName : this.movieName;
+	    this.imdbId = newMovie.imdbId != null?
+                newMovie.imdbId : this.imdbId;
+	    this.imdbRating = newMovie.imdbRating >= 0?
+                newMovie.imdbRating : this.imdbRating;
+	    this.overview = newMovie.overview != null?
+                newMovie.overview : this.overview;
+	    this.posterSRC = newMovie.posterSRC != null?
+                newMovie.posterSRC : this.posterSRC;
+	    this.releaseDate = newMovie.releaseDate != null?
+                newMovie.releaseDate : this.releaseDate;
+	    this.releaseStatus = newMovie.releaseStatus != null?
+                newMovie.releaseStatus : this.releaseStatus;
+	    this.revenue = newMovie.revenue >= 0?
+                newMovie.revenue : this.revenue;
+	    this.runtime = newMovie.runtime >= 0?
+                newMovie.runtime : this.runtime;
+    }
 }

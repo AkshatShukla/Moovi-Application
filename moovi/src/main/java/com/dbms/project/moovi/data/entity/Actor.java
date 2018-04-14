@@ -131,7 +131,6 @@ public class Actor {
         if(!adRecruiter.getRecruitedActors().contains(this)) {
             adRecruiter.getRecruitedActors().add(this);
         }
-
     }
 
     public void followedBy(Fan fan) {
@@ -139,6 +138,22 @@ public class Actor {
         if(!fan.getActorsFollowed().contains(this)) {
             fan.getActorsFollowed().add(this);
         }
+    }
 
+    public void setActor(Actor actor){
+        this.actorName = actor.actorName != null?
+                actor.actorName : this.actorName;
+        this.actorPopularity = actor.actorPopularity != null?
+                actor.actorPopularity : this.actorPopularity;
+        this.biography = actor.biography != null?
+                actor.biography : this.biography;
+        this.dob = actor.dob != null?
+                actor.dob : this.dob;
+        this.dod = actor.dod != null?
+                actor.dod : this.dod;
+        this.imdbId = actor.imdbId != null?
+                actor.imdbId : this.imdbId;
+        this.profilePicture = actor.profilePicture != null?
+                actor.profilePicture : this.profilePicture;
     }
 }
