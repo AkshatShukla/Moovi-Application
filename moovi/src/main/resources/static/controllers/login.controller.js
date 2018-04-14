@@ -42,8 +42,14 @@
                         alert("Successfully logged in as " + username);
                         console.log(response);
                         localStorage.setItem("userType",userType);
-                        window.location.href = localpath+"#!/mypage";
-                        location.reload(true);
+                        if(localStorage.getItem("userType")==='admin') {
+                            window.location.href = localpath+"#!/admin";
+                            location.reload(true);
+                        }
+                        else {
+                            window.location.href = localpath+"#!/mypage";
+                            location.reload(true);
+                        }
                     }
 
                 }, function(){

@@ -61,6 +61,11 @@
                 controller: "FanSearchController",
                 controllerAs: "fs"
             })
+            .when("/movieForAdmin", {
+                templateUrl:"views/movieForAdmin.html",
+                controller:"EditMovieConroller",
+                controllerAs:"em"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });
