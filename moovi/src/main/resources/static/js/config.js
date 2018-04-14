@@ -56,6 +56,11 @@
                 controller: "AdminController",
                 controllerAs: "ad"
             })
+            .when("/listOfFansYouFollow", {
+                templateUrl: "views/listOfFansYouFollow.html",
+                controller: "FanSearchController",
+                controllerAs: "fs"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });
