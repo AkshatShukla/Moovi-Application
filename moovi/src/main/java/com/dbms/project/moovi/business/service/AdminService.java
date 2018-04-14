@@ -1,11 +1,6 @@
 package com.dbms.project.moovi.business.service;
 
-import com.dbms.project.moovi.data.entity.AdRecruiter;
-import com.dbms.project.moovi.data.entity.Admin;
-import com.dbms.project.moovi.data.entity.Critic;
-import com.dbms.project.moovi.data.entity.Fan;
-import com.dbms.project.moovi.data.entity.Theatre;
-import com.dbms.project.moovi.data.entity.TheatreManager;
+import com.dbms.project.moovi.data.entity.*;
 import com.dbms.project.moovi.data.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +35,9 @@ public class AdminService {
 
     @Autowired
     private TheatreRepository theatreRepository;
+
+    @Autowired
+    private ScreenRepository screenRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -101,6 +99,22 @@ public class AdminService {
         }
     }
 
+    @DeleteMapping("/api/delete/theatre/{theatreId}")
+    public void deleteTheatre(
+            @PathVariable("theatreId") long theatreId){
+        if(theatreRepository.findById(theatreId).isPresent()){
+            theatreRepository.deleteById(theatreId);
+        }
+    }
+
+    @DeleteMapping("/api/delete/screen/{screenId}")
+    public void deleteScreen(
+            @PathVariable("screenId") long screenId){
+        if(screenRepository.findById(screenId).isPresent()){
+            screenRepository.deleteById(screenId);
+        }
+    }
+
     @PutMapping("/api/edit/fan/{username}")
     public Fan updateFan(
             @PathVariable("username") String username,
@@ -157,6 +171,18 @@ public class AdminService {
             Theatre theatre = theatreRepository.findById(theatreId).get();
             theatre.set(newTheatre);
             return theatreRepository.save(theatre);
+        }
+        return null;
+    }
+
+    @PutMapping("/api/edit/review/{reviewId}")
+    public Review updateReview(
+            @PathVariable("reviewId") long reviewId,
+            @RequestBody Review newReview){
+        if(reviewRepository.findById(reviewId).isPresent()){
+            Review review = reviewRepository.findById(reviewId).get();
+            review.setNewReview(newReview);
+            return reviewRepository.save(review);
         }
         return null;
     }

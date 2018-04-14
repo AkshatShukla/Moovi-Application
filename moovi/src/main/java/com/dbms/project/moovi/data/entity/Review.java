@@ -73,6 +73,13 @@ public class Review {
         if(!rmovie.getMovieReview().contains(this))
             rmovie.getMovieReview().add(this);
     }
+
+    public void setNewReview(Review newReview){
+        this.rating = newReview.rating != null?
+                newReview.rating : this.rating;
+        this.review = newReview.review != null?
+                newReview.review : this.review;
+    }
 }
 
 
