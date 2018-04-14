@@ -264,10 +264,10 @@ public class MovieService extends Utils {
                             throw new RuntimeException("HttpResponseCode: " +responseCode);
                     }
                     jsonArray.add(jsonObject);
-                    Thread.sleep(1000);
+                    //Thread.sleep(500);
                 }
             }
-        } catch (ParseException | IOException | InterruptedException e) {
+        } catch (ParseException | IOException e) {
             e.printStackTrace();
         }
         return jsonArray;
