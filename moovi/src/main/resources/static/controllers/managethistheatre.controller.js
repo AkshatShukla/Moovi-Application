@@ -41,25 +41,59 @@
                         $http
                             .post(linkingURL)
                             .then(function(response) {
-                                //$scope.theatre = response;
+                                $scope.theatre = response;
                                 alert("TheatreManager assigned to this Theatre!");
+
+
                             });
 
                     }
 
                     linkManagerToTheatreURL();
+
+                    vm.createScreen = createScreen;
+
+                    function createScreen() {
+
+                        var createScreenURL = localpath + "api/screen";
+
+                        var newScreen = {};
+
+                        $http
+                            .post(createScreenURL, newScreen)
+                            .then(function (response2) {
+                                $scope.screen = response2;
+                                alert(noOfScreens + " screens created!");
+
+                                vm.linkScreenToTheatreURL = linkScreenToTheatreURL;
+
+                                function linkScreenToTheatreURL() {
+
+                                    $scope.screenResponse = angular.fromJson(response2.data);
+                                    //$scope.theatreResponse = angular.fromJson(response.data);
+
+                                    var linkingScreenToTheatreURL = localpath + "api/screen/" + $scope.screenResponse.screenId + "/theatre/" + $scope.theatreResponse.theatreId;
+
+                                    $http
+                                        .post(linkingScreenToTheatreURL)
+                                        .then(function (response) {
+                                            //$scope.theatre = response;
+                                            alert("screen assigned to this Theatre!");
+                                        });
+                                }
+
+                                linkScreenToTheatreURL();
+                        });
+                    }
+
+                    var i;
+
+                    for (i = 0; i < noOfScreens; i++) {
+                        createScreen();
+                    }
+
+
             });
-
-
-
-
-            /*var createScreensURL = localpath+"/api/screen"
-            $http
-                .post(linkManagerToTheatreURL)
-                .then(function(response) {
-                    //$scope.theatre = response;
-                    alert("TheatreManager assigned to this Theatre!");
-                });*/
         }
 
     }
