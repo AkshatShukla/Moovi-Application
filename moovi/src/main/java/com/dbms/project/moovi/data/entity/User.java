@@ -22,7 +22,7 @@ public class User {
     protected String password;
 
     @Column(insertable = false, updatable = false)
-    private String dtype;
+    protected String dtype;
 
     @Column(unique = true)
     protected String email;
