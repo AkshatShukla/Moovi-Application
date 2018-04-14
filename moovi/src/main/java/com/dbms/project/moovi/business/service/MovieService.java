@@ -45,6 +45,11 @@ public class MovieService extends Utils {
         return (List<Movie>) movieRepository.findAll();
     }
 
+    @PostMapping("/api/movie")
+    public Movie createMovie(@RequestBody Movie movie){
+        return movieRepository.save(movie);
+    }
+
     @GetMapping("/api/search/movie")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public JSONArray getMovies(@RequestParam(name = "movieName",required = false) String movieName,

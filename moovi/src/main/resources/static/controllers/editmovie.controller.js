@@ -21,8 +21,41 @@
 
         });
 
-        function addMovie(movieName, overview, posterSrc, releaseDate, imdbRating, revenue, runtime, releaseStatus, imdbId) {
+        function addMovie(movieId, movieName, overview, posterSrc, releaseDate, imdbRating, revenue, runtime, releaseStatus, imdbId) {
+            var newMovie;
 
+            newMovie = {
+                "movieId":movieId,
+                "movieName":movieName,
+                "imdbId":imdbId,
+                "posterSRC":posterSrc,
+                "runtime":runtime,
+                "imdbRating":imdbRating,
+                "releaseDate":releaseDate,
+                "revenue":revenue,
+                "releaseStatus":releaseStatus,
+                "overview":overview
+            };
+
+            var insertMovieUrl = "api/movie";
+            $http
+                .post(localpath+insertMovieUrl, newMovie)
+                .then(function (response) {
+                    $scope.movie = response.data;
+                    alert("movie addeed");
+                    location.reload(true);
+                });
+        }
+
+        vm.deleteMovie = deleteMovie;
+
+        function deleteMovie(movieId) {
+            var deleteMovieUrl = "api/delete/movie/"+movieId;
+            $http
+                .delete(localpath+deleteMovieUrl)
+                .then(function () {
+                    location.reload(true);
+                })
         }
     }
 })();
