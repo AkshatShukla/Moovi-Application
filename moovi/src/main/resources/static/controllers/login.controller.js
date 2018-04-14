@@ -41,7 +41,9 @@
                         localStorage.setItem('username',username);
                         alert("Successfully logged in as " + username);
                         console.log(response);
+                        localStorage.setItem("userType",userType);
                         window.location.href = localpath+"#!/mypage";
+                        location.reload(true);
                     }
 
                 }, function(){
