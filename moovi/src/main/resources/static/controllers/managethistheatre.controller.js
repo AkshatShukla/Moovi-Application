@@ -20,20 +20,13 @@
 
         });
 
-
-
         vm.registerTheatreForTheatreManager = registerTheatreForTheatreManager;
 
-        /*$scope.myKeyPress = function(keyEvent,name) {
-            if (keyEvent.which === 13)
-                searchActorByName(name);
-        };*/
-
-        function registerTheatreForTheatreManager(theatreName, location, noOfScreens, movieId) {
+        function registerTheatreForTheatreManager(theatreName, location, movieId) {
             var newTheatre = {
                 "theatreName":theatreName,
                 "location":location,
-                "totalScreens":noOfScreens
+                "totalScreens": 1
             };
 
             var username = localStorage.getItem("username");
@@ -77,14 +70,13 @@
                             .post(createScreenURL, newScreen)
                             .then(function (response2) {
                                 $scope.screen = response2;
-                                alert(noOfScreens + " screens created!");
+                                alert("screen created!");
 
                                 vm.linkScreenToTheatreURL = linkScreenToTheatreURL;
 
                                 function linkScreenToTheatreURL() {
 
                                     $scope.screenResponse = angular.fromJson(response2.data);
-                                    //$scope.theatreResponse = angular.fromJson(response.data);
 
                                     var screenId = $scope.screenResponse.screenId;
 
