@@ -1,8 +1,8 @@
 <link href="../css/review.css" rel="stylesheet">
-<div ng-controller="ReviewController as rev">
+<div>
     <div class="form-style-2">
         <div class="form-style-2-heading">Write Review for {{mName}}</div>
-        <form action="" id="reviewForm">
+        <form id="reviewForm" ng-controller="ReviewController as rev">
             <label for="field4"><span>Rating</span><select name="field4" class="select-field" ng-model="field">
                 <option value="Excellent">Excellent</option>
                 <option value="Very Good">Very Good</option>

@@ -8,6 +8,7 @@
         var localpath = "http://localhost:8080/";
         var url = "/api/review";
         var name = localStorage.getItem("movieName");
+        var username = localStorage.getItem("username");
         $scope.mName = name;
         vm.writeReview = writeReview;
 
@@ -18,7 +19,11 @@
             };
             $http
                 .post(localpath+url,reviewForMovie)
-                .then(window.location.href = localpath+"#!/searchMovie");
+                .then(function () {
+                    window.location.href = localpath+"#!/searchMovie";
+
+                    alert("Review Posted");
+                });
         }
 
     }
