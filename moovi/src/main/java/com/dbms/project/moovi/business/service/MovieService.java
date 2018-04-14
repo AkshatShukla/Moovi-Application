@@ -367,4 +367,14 @@ public class MovieService extends Utils {
         }
         return null;
     }
+
+    @GetMapping("/api/movie/{movieId}/reviews")
+    public List<Review> listOfReviews(
+            @PathVariable("movieId") long movieId){
+        if(movieRepository.findById(movieId).isPresent()){
+            Movie movie = movieRepository.findById(movieId).get();
+            return movie.getMovieReview();
+        }
+        return null
+    }
 }

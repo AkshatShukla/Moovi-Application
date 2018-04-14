@@ -86,4 +86,14 @@ public class CriticService extends Utils {
         }
         return null;
 	}
+
+	@GetMapping("/api/critic/show/reviews/{username}")
+	public List<Review> listOfReviewsGiven(
+	        @PathVariable("username") String username){
+	    if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()){
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            return critic.getReviewedMovie();
+        }
+        return null;
+    }
 }
