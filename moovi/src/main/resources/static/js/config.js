@@ -61,7 +61,7 @@
                 controller: "FanFollowingController",
                 controllerAs: "ff"
             })
-            .when("/listCriticsYouFollow", {
+            .when("/listOfCriticsYouFollow", {
                 templateUrl: "views/listOfCriticsYouFollow.html",
                 controller: "CriticFollowingController",
                 controllerAs: "cf"
