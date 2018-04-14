@@ -2,8 +2,8 @@ package com.dbms.project.moovi.data.entity;
 
 public enum  Rating {
     Excellent,
-    VeryGood,
-    Good,
+    Superb,
+    Nice,
     Fair,
     Poor
 }

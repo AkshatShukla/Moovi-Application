@@ -38,7 +38,7 @@
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
             <td><button type="button" class="btn btn-success" ng-click="model.likeThisMovie(movie.movieId)">Like</button></td>
             <td><button type="button" class="btn btn-danger" ng-click="model.dislikeThisMovie(movie.movieId)">Dislike</button></td>
-            <td><button type="button" class="btn btn-danger" ng-click="model.changeToReviewView(movie.movieName)">Write Review</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="model.changeToReviewView(movie.movieName,movie.movieId)">Write Review</button></td>
         </tr>
         </tbody>
     </table>

@@ -80,8 +80,9 @@
 
         vm.changeToReviewView = changeToReviewView;
 
-        function changeToReviewView(movieName) {
+        function changeToReviewView(movieName,movieId) {
             localStorage.setItem("movieName",movieName);
+            localStorage.setItem("movieId",movieId);
             window.location = "#!/review";
         }
     }
