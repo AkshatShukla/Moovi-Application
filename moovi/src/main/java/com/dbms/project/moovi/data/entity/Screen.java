@@ -55,6 +55,9 @@ public class Screen {
 
 	public void setTheatre(Theatre theatre) {
 		this.theatre = theatre;
+		if(!theatre.getListOfScreens().contains(this)){
+			theatre.getListOfScreens().add(this);
+		}
 	}
 
 }
