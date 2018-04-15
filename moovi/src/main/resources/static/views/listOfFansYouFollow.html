@@ -9,6 +9,7 @@
             <th scope="col">Fan Description</th>
             <th scope="col">Fan birth date</th>
             <th scope="col">Fan email id</th>
+            <th scope="col" ng-show="usT==='fan' || usT==='admin'"> </th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
             <td>{{fan.fanDescription}}</td>
             <td>{{fan.dob}}</td>
             <td>{{fan.email}}</td>
+            <td><button type="button" class="btn btn-danger" ng-show="usT==='fan' || usT==='admin'" ng-click="ff.unfollowFan(fan.username)">Unfollow</button>
         </tr>
         </tbody>
     </table>
