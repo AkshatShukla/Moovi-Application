@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-controller="MovieLikedController as ml">
-    <h1>Movie Search</h1>
+    <h1>Liked Movies</h1>
     <h2>{{allMoviesLikedHeading}}</h2>
     <table class="table">
         <thead class="thead-dark">
@@ -25,7 +25,7 @@
             <td>${{movie.revenue}}</td>
             <td>{{movie.runtime}} minutes</td>
             <td>{{movie.releaseStatus}}</td>
-            <td><button type="button" class="btn btn-danger" ng-show="usT==='fan' || usT==='admin'" ng-click="ml.deleteMovie(movie.movieId)">Delete</button></td>
+            <td><button type="button" class="btn btn-danger" ng-show="usT==='fan' || usT==='admin'" ng-click="ml.deleteMovie(movie.movieId)">Remove</button></td>
         </tr>
         </tbody>
     </table>

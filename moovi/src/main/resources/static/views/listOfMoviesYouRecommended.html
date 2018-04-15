@@ -1,5 +1,5 @@
 <div class="container-fluid" ng-controller="MovieRecommendedController as mrc">
-    <h1>Movie Search</h1>
+    <h1>Recommended Movies</h1>
     <h2>{{allMoviesRecommendedHeading}}</h2>
     <table class="table">
         <thead class="thead-dark">
@@ -11,6 +11,7 @@
             <th scope="col">Movie revenue</th>
             <th scope="col">Movie runtime</th>
             <th scope="col">Release Status</th>
+            <th scope="col" ng-show="usT==='fan' || usT==='admin'"> </th>
         </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
             <td>${{movie.revenue}}</td>
             <td>{{movie.runtime}} minutes</td>
             <td>{{movie.releaseStatus}}</td>
+            <td><button type="button" class="btn btn-danger" ng-show="usT==='critic' || usT==='admin'" ng-click="mrc.deleteMovie(movie.movieId)">Remove</button></td>
         </tr>
         </tbody>
     </table>

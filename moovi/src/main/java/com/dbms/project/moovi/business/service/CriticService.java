@@ -110,11 +110,12 @@ public class CriticService extends Utils {
             Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username1)).get();
             Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
             critic.getFansFollowingCritics().remove(fan);
+            fan.getCriticsFollowed().remove(critic);
             criticRepository.save(critic);
         }
     }
 
-    @PostMapping("/api/delete/recommmed/critic/{criticName}/movie/{movieId}")
+    @PostMapping("/api/delete/recommend/critic/{criticName}/movie/{movieId}")
     public void deleteRecommendMovie(
             @PathVariable("criticName") String criticName,
             @PathVariable("movieId") long movieId){

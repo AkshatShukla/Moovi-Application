@@ -19,7 +19,7 @@
                 $http
                     .get(localpath+url1+localStorage.getItem("DirectedUserName")+url2)
                     .then(function (response) {
-                        $scope.allMoviesLikedHeading = "All Movies"+$scope.d+" Dislikes";
+                        $scope.allMoviesLikedHeading = "All Movies "+$scope.d+" Dislikes";
                         $scope.movies = response.data;
                         console.log(response);
                     })
@@ -57,6 +57,5 @@
                     location.reload(true);
                 })
         }
-
     }
 })();
