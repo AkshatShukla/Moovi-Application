@@ -11,35 +11,35 @@ public class Fan extends User {
 
 	private String fanDescription;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="ActorsFollowed",
 			joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
 			inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actorId"))
 	@JsonIgnore
 	private List<Actor> actorsFollowed;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="CriticsFollowed",
 			joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
 			inverseJoinColumns= @JoinColumn(name= "critic_id", referencedColumnName="userId"))
 	@JsonIgnore
 	private List<Critic> criticsFollowed;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="Likes",
 			joinColumns= @JoinColumn(name="fan_id", referencedColumnName="userId"),
 			inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movieId"))
 	@JsonIgnore
 	private List<Movie> likesMovies;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "Dislikes",
 			joinColumns = @JoinColumn(name = "fan_id", referencedColumnName = "userId"),
 			inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"))
 	@JsonIgnore
 	private List<Movie> dislikesMovies;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "FansFollowed",
 			joinColumns = @JoinColumn(name = "userId1", referencedColumnName = "userId"))
 	@JsonIgnore

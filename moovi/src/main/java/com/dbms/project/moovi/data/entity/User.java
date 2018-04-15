@@ -30,11 +30,11 @@ public class User {
     @Temporal(value = TemporalType.DATE)
     protected Date dob;
     
-    @OneToMany(mappedBy = "AUser")
+    @OneToMany(mappedBy = "AUser", cascade = CascadeType.ALL)
     @JsonIgnore
     protected List<Address> userAddresses;
     
-    @OneToMany(mappedBy = "PUser")
+    @OneToMany(mappedBy = "PUser", cascade = CascadeType.ALL)
     @JsonIgnore
     protected List<Phone> userPhoneNumbers;
 

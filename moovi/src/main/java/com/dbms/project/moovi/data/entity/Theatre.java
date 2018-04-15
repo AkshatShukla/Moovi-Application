@@ -21,7 +21,7 @@ public class Theatre {
 	@JsonIgnore
 	private TheatreManager theatreManager;
 	
-	@OneToMany(mappedBy = "theatre")
+	@OneToMany(mappedBy = "theatre", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Screen> listOfScreens;
 

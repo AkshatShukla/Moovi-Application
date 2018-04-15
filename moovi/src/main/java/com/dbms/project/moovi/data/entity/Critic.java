@@ -13,7 +13,7 @@ public class Critic extends User{
 
     private String websiteUrl;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="Recommend",
     joinColumns= @JoinColumn(name="critic_id", referencedColumnName="userId"),
     inverseJoinColumns= @JoinColumn(name= "movie_id", referencedColumnName="movieId"))
@@ -24,7 +24,7 @@ public class Critic extends User{
     @JsonIgnore
     private List<Fan> fansFollowingCritics;
 
-    @OneToMany(mappedBy = "critic")
+    @OneToMany(mappedBy = "critic", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Review> reviewedMovie;
 

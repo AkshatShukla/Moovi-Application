@@ -41,15 +41,15 @@ public class Movie {
     @JsonIgnore
     private List<Actor> listOfActors;
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Genre> listOfGenres;
 
-    @OneToMany(mappedBy = "rmovie")
+    @OneToMany(mappedBy = "rmovie", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Review> movieReview;
     
-    @OneToMany(mappedBy = "screenHasMovie")
+    @OneToMany(mappedBy = "screenHasMovie", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Screen> moviePlayingInScreen;
     

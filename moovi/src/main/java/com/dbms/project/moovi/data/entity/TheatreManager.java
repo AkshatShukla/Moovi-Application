@@ -2,6 +2,7 @@ package com.dbms.project.moovi.data.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class TheatreManager extends User {
 	
-	@OneToMany(mappedBy = "theatreManager")
+	@OneToMany(mappedBy = "theatreManager", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Theatre> listOfTheatresManaged;
 	
