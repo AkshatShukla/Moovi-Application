@@ -106,6 +106,16 @@
                 controller: "MovieReviewedController",
                 controllerAs: "mrv"
             })
+            .when("/listOfActorsYouRecruited", {
+                templateUrl: "views/listOfActorsYouRecruited.html",
+                controller: "ActorsRecruitedController",
+                controllerAs: "acr"
+            })
+            .when("/listOfTheatresManaged", {
+                templateUrl: "views/listOfTheatresManaged.html",
+                controller: "TheatresManagedController",
+                controllerAs: "tm"
+            })
             .when("/editMovieForAdmin", {
                 templateUrl: "views/editMovieForAdmin.html",
                 controller: "EditMovieController",
