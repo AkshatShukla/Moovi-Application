@@ -87,5 +87,13 @@
                     location.reload(true);
                 });
         }
+
+        vm.changeViewToAdRecruiterMyPage = changeViewToAdRecruiterMyPage;
+
+        function changeViewToAdRecruiterMyPage(recruiterUsername, recruiterDtype) {
+            localStorage.setItem("DirectedUserName",recruiterUsername);
+            localStorage.setItem("DirectedUserType", recruiterDtype);
+            window.location = "#!/mypage";
+        }
     }
 })();

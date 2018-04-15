@@ -8,6 +8,7 @@
             <th scope="col">Actor Biography</th>
             <th scope="col">Actor Picture</th>
             <th scope="col">Actor birth date</th>
+            <th scope="col" ng-show="usT==='adrecruiter' || usT==='admin'"> </th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
             <td>{{actor.biography}}</td>
             <td><img ng-src="{{actor.profilePicture}}" height="150px"></td>
             <td>{{actor.dob}}</td>
+            <td><button type="button" class="btn btn-danger" ng-show="usT==='adrecruiter' || usT==='admin'" ng-click="acr.deleteActor(actor.actorId)">Remove</button></td>
         </tr>
         </tbody>
     </table>
