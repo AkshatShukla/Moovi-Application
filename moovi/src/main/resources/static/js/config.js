@@ -91,6 +91,11 @@
                 controller: "FansFollowedController",
                 controllerAs: "ffb"
             })
+            .when("/listOfFansWhoFollowYouOfFan", {
+                templateUrl: "views/listOfFansWhoFollowYouOfFan.html",
+                controller: "FansFollowedOfFanController",
+                controllerAs: "fffb"
+            })
             .when("/listOfMoviesYouRecommended", {
                 templateUrl: "views/listOfMoviesYouRecommended.html",
                 controller: "MovieRecommendedController",
