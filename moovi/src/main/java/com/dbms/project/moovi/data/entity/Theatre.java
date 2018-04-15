@@ -14,7 +14,7 @@ public class Theatre {
     private long theatreId;
 	
 	private String theatreName;
-	private Long totalScreens;
+	//private Long totalScreens;
 	private String location;
 	
 	@ManyToOne()
@@ -44,13 +44,13 @@ public class Theatre {
 		this.theatreName = theatreName;
 	}
 
-	public long getTotalScreens() {
+	/*public long getTotalScreens() {
 		return totalScreens;
 	}
 
 	public void setTotalScreens(long totalScreens) {
 		this.totalScreens = totalScreens;
-	}
+	}*/
 
 	public String getLocation() {
 		return location;
@@ -81,8 +81,8 @@ public class Theatre {
 	public void set(Theatre newTheatre) {
 		this.theatreName = newTheatre.theatreName != null?
 				newTheatre.theatreName : this.theatreName;
-		this.totalScreens = newTheatre.totalScreens != null?
-				newTheatre.totalScreens : this.totalScreens;
+		/*this.totalScreens = newTheatre.totalScreens != null?
+				newTheatre.totalScreens : this.totalScreens;*/
 		this.location = newTheatre.location != null?
 				newTheatre.location : this.location;
 	}

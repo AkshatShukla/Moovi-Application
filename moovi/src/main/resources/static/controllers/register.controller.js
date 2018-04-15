@@ -9,24 +9,6 @@
         var url = "/api/";
         vm.registerUserInDb = registerUserInDb;
 
-        /*$scope.$on('$viewContentLoaded', function()
-        {
-            var nowPlayingUrl = "?nowPlaying=true";
-            $scope.myVal = false;
-            $http
-                .get(url+nowPlayingUrl)
-                .then(function (value) {
-                    $scope.nowplayingheading = "Now Playing Movies";
-                    $scope.movies = value.data;
-                })
-
-        });
-
-        $scope.myKeyPress = function(keyEvent,title) {
-            if (keyEvent.which === 13)
-                searchMovieByTitle(title);
-        };*/
-
         function registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription, websiteURL) {
             var newUser;
 
@@ -86,9 +68,10 @@
                 .then(function (response) {
                     $scope.user = response.data;
                     alert("Successfully registered!");
-                    //window.location = "../views/login.html";
                     window.location = redirectToURL;
-                });
+                }, function(error){
+                alert("Please try registering again with different credentials!");
+            });
 
             console.log(username);
             console.log(password);
