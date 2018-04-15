@@ -27,8 +27,7 @@ public class User {
     @Column(unique = true)
     protected String email;
 
-    @Temporal(value = TemporalType.DATE)
-    protected Date dob;
+    protected String dob;
     
     @OneToMany(mappedBy = "AUser", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -114,11 +113,11 @@ public class User {
         this.email = email;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 }
