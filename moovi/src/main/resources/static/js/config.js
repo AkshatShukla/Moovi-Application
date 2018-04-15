@@ -16,6 +16,11 @@
                 controller: "ActorSearchController",
                 controllerAs: "ac"
             })
+            .when("/searchFan", {
+                templateUrl: "views/searchfan.html",
+                controller: "FanSearchController",
+                controllerAs: "fs"
+            })
             .when("/searchCritic", {
                 templateUrl: "views/searchcritic.html",
                 controller: "CriticSearchController",
@@ -80,6 +85,11 @@
                 templateUrl: "views/listOfMoviesYouDisliked.html",
                 controller: "MovieDislikedController",
                 controllerAs: "mdl"
+            })
+            .when("/listOfFansWhoFollowYou", {
+                templateUrl: "views/listOfFansWhoFollowYou.html",
+                controller: "FansFollowedController",
+                controllerAs: "ffb"
             })
             .when("/movieForAdmin", {
                 templateUrl:"views/movieForAdmin.html",
