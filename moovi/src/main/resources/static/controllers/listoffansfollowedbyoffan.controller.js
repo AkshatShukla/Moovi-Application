@@ -53,7 +53,7 @@
 
         function unfollowFan(fanUsername) {
             $http
-                .post(unfollowURL+fanUsername+url3+url4)
+                .post(localpath+unfollowURL+fanUsername+url3+url4)
                 .then(function (response) {
                     $scope.allFansHeading = "All Fans Who Follow You";
                     $scope.fans = response.data;

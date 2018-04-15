@@ -6,6 +6,7 @@
         <tr>
             <th scope="col">Theatre Name</th>
             <th scope="col">Theatre Location</th>
+            <th scope="col" ng-show="usT==='theatremanager' || usT==='admin'"> </th>
         </tr>
         </thead>
         <tbody>
@@ -14,6 +15,7 @@
             <input ng-model="theatreName" type="text" class="form-control" placeholder="Search Theatre By Name"
                    aria-label="Search Theatre Name" aria-describedby="basic-addon2">
             <td>{{theatre.location}}</td>
+            <td><button type="button" class="btn btn-danger" ng-show="usT==='theatremanager' || usT==='admin'" ng-click="tm.unRegisterTheatre(theatre.theatreId)">Unregister</button></td>
         </tr>
         </tbody>
     </table>

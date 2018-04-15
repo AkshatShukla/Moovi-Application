@@ -20,7 +20,7 @@
                 $http
                     .get(localpath + url1 + localStorage.getItem("DirectedUserName") + url2)
                     .then(function (response) {
-                        $scope.allFansHeading = "All Fans Who Follow" + localStorage.getItem("DirectedUserName");
+                        $scope.allFansHeading = "All Fans Who Follow " + localStorage.getItem("DirectedUserName");
                         $scope.fans = response.data;
                         console.log(response);
                     })

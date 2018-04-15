@@ -86,5 +86,13 @@
                     location.reload(true);
                 });
         }
+
+        vm.changeViewToTheatreManagerMyPage = changeViewToTheatreManagerMyPage;
+
+        function changeViewToTheatreManagerMyPage(theatremanagerUsername, theatremanagerDtype) {
+            localStorage.setItem("DirectedUserName",theatremanagerUsername);
+            localStorage.setItem("DirectedUserType", theatremanagerDtype);
+            window.location = "#!/mypage";
+        }
     }
 })();
