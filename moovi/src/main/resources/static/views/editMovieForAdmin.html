@@ -30,17 +30,17 @@
             <td><button type="button" class="btn btn-success" ng-click="em.addMovie(movieId, movieName, overview, posterSrc, releaseDate, imdbRating, revenue, runtime, releaseStatus, imdbId)">Add</button></td>
         </tr>
         <tr ng-show="eBox">
-            <td>{{moId}}</td>
-            <td><input type="text" ng-model="movieName" placeholder="Movie Name"></td>
-            <td><input type="text" ng-model="overview" placeholder="Overview"></td>
-            <td><input type="text" ng-model="posterSrc" placeholder="Poster Src"></td>
-            <td><input type="text" ng-model="releaseDate" placeholder="Release Date"></td>
-            <td><input type="text" ng-model="imdbRating" placeholder="IMDb Rating"></td>
-            <td><input type="text" ng-model="revenue" placeholder="Revenue"></td>
-            <td><input type="text" ng-model="runtime" placeholder="Runtime"></td>
-            <td><input type="text" ng-model="releaseStatus" placeholder="Release Status"></td>
-            <td><input type="text" ng-model="imdbId" placeholder="IMDb Id"></td>
-            <td><button type="button" class="btn btn-primary" ng-click="em.updateMovie(moId, movieName, overview, posterSrc, releaseDate, imdbRating, revenue, runtime, releaseStatus, imdbId)">Submit Changes</button></td>
+            <td>{{moId.movieId}}</td>
+            <td><input type="text" ng-model="movieName1" placeholder="Movie Name" value="{{moId.movieName}}"></td>
+            <td><input type="text" ng-model="overview1" placeholder="Overview" value="{{moId.overview}}"></td>
+            <td><input type="text" ng-model="posterSrc1" placeholder="Poster Src" value="{{moId.posterSRC}}"></td>
+            <td><input type="text" ng-model="releaseDate1" placeholder="Release Date" value="{{moId.movieName}}"></td>
+            <td><input type="number" ng-model="imdbRating1" placeholder="IMDb Rating" value="{{moId.imdbRating}}"></td>
+            <td><input type="number" ng-model="revenue1" placeholder="Revenue" value="{{moId.revenue}}"></td>
+            <td><input type="number" ng-model="runtime1" placeholder="Runtime" value="{{moId.runtime}}"></td>
+            <td><input type="text" ng-model="releaseStatus1" placeholder="Release Status" value="{{moId.releaseStatus}}"></td>
+            <td><input type="text" ng-model="imdbId1" placeholder="IMDb Id" value="{{moId.imdbId}}"></td>
+            <td><button type="button" class="btn btn-primary" ng-click="em.updateMovie(moId.movieId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1)">Submit Changes</button></td>
         </tr>
         <tr ng-repeat = "movie in movies">
             <td>{{movie.movieId}}</td>
@@ -53,7 +53,7 @@
             <td>{{movie.runtime}} minutes</td>
             <td>{{movie.releaseStatus}}</td>
             <td><a href="http://www.imdb.com/title/{{movie.imdbId}}">{{movie.movieName}} IMDb</a></td>
-            <td><button type="button" class="btn btn-success" ng-click="em.showEditBoxes(movie.movieId)">Edit</button></td>
+            <td><button type="button" class="btn btn-success" ng-click="em.showEditBoxes(movie)">Edit</button></td>
             <td><button type="button" class="btn btn-danger" ng-click="em.deleteMovie(movie.movieId)">Delete</button></td>
         </tbody>
     </table>

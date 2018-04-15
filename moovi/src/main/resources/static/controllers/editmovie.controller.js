@@ -48,9 +48,9 @@
 
         vm.showEditBoxes = showEditBoxes;
         $scope.eBox = false;
-        function showEditBoxes(movieId){
+        function showEditBoxes(movie){
             $scope.eBox = true;
-            $scope.moId = movieId;
+            $scope.moId = movie;
             console.log($scope.moId);
         }
 
@@ -63,6 +63,36 @@
                 .then(function () {
                     location.reload(true);
                 })
+        }
+
+        vm.updateMovie = updateMovie;
+
+        function updateMovie(moId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1) {
+            var updateMovie;
+
+            updateMovie = {
+                "movieName":movieName1,
+                "imdbId":imdbId1,
+                "posterSRC":posterSrc1,
+                "runtime":runtime1,
+                "imdbRating":imdbRating1,
+                "releaseDate":releaseDate1,
+                "revenue":revenue1,
+                "releaseStatus":releaseStatus1,
+                "overview":overview1
+            };
+
+            console.log(imdbRating1 + " " +revenue1+" "+runtime1);
+
+            var updateMovieUrl = "api/edit/movie/"+moId;
+
+            $http
+                .put(localpath+updateMovieUrl, updateMovie)
+                .then(function (response) {
+                    $scope.movie = response.data;
+                    alert("movie updated");
+                    location.reload(true);
+                });
         }
     }
 })();
