@@ -9,6 +9,7 @@
         var url = "/api/review";
         var movieId = localStorage.getItem("movieId");
         var username = localStorage.getItem("username");
+        var name = localStorage.getItem("movieName");
         $scope.mName = name;
         vm.writeReview = writeReview;
 
@@ -39,30 +40,7 @@
 
                             });
                     }
-
-
-
                     linkCriticToReview();
-
-                    // $timeout(function() { $scope.displayErrorMsg = false;}, 2000);
-                    //
-                    // vm.linkMovieReview = linkMovieReview;
-
-                    // function linkMovieReview() {
-                    //     $scope.reviewResponse = angular.fromJson(response.data);
-                    //     console.log(movieId);
-                    //     var movieLinkingURL = localpath+"api/reviews/review/"+$scope.reviewResponse.reviewId+"/movie/"+movieId;
-                    //
-                    //     $http
-                    //         .post(movieLinkingURL)
-                    //         .then(function(response) {
-                    //             $scope.review = response;
-                    //             alert("Review assigned to this Movie!");
-                    //
-                    //         });
-                    // }
-                    //
-                    // linkMovieReview();
                 });
         }
 
