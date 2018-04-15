@@ -51,7 +51,7 @@
             $http
                 .post(localpath + unfollowURL + fanUsername)
                 .then(function (response) {
-                    $scope.allFansHeading = "All Critics You Follow";
+                    $scope.allFansHeading = "All Fans You Follow";
                     $scope.fans = response.data;
                     alert("Fan unfollowed");
                     location.reload(true);
