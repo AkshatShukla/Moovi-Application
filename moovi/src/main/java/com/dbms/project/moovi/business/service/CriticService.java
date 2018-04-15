@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dbms.project.moovi.data.entity.Movie;
 import com.dbms.project.moovi.data.entity.Review;
+import com.dbms.project.moovi.data.repository.FanRepository;
 import com.dbms.project.moovi.data.repository.MovieRepository;
 import com.dbms.project.moovi.data.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CriticService extends Utils {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private FanRepository fanRepository;
 	
 	@PostMapping("/api/critic")
 	public Critic createCritic(@RequestBody Critic critic) {
@@ -95,5 +99,32 @@ public class CriticService extends Utils {
             return critic.getReviewedMovie();
         }
         return null;
+    }
+
+    @PostMapping("/api/delete/unfollow/critic/{username1}/fan/{username2}")
+    public void deleteFans(
+            @PathVariable("username1") String username1,
+            @PathVariable("username2") String username2){
+	    if(criticRepository.findById(criticRepository.findCriticIdByUsername(username1)).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username2)).isPresent()){
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username1)).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
+            critic.getFansFollowingCritics().remove(fan);
+            criticRepository.save(critic);
+        }
+    }
+
+    @PostMapping("/api/delete/recommmed/critic/{criticName}/movie/{movieId}")
+    public void deleteRecommendMovie(
+            @PathVariable("criticName") String criticName,
+            @PathVariable("movieId") long movieId){
+	    if (criticRepository.findById(criticRepository.findCriticIdByUsername(criticName)).isPresent()
+                && movieRepository.findById(movieId).isPresent()){
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(criticName)).get();
+            Movie movie = movieRepository.findById(movieId).get();
+            critic.getRecommendedMovies().remove(movie);
+            movie.getRecommendedBy().remove(critic);
+            criticRepository.save(critic);
+        }
     }
 }
