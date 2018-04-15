@@ -44,9 +44,11 @@
         <div class="form-group">
             <input ng-model="userDescription" type="text" name="Description" id="userDescryption" class="form-control input-lg" placeholder="Tell something about yourself">
         </div>
-        </span>
+        <div class="form-group" ng-show="userType==='critic'">
+            <input ng-model="websiteURL" type="text" name="websiteURL" id="websiteURL" class="form-control input-lg" placeholder="Enter website URL">
+        </div>
     </fieldset>
-    <button class="btn btn-primary" ng-click="register.registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription)" type="submit">Sign Up</button>
+    <button class="btn btn-primary" ng-click="register.registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription, websiteURL)" type="submit">Sign Up</button>
 </form>
 
 </body>

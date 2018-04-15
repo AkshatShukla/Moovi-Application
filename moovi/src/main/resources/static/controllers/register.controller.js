@@ -27,7 +27,7 @@
                 searchMovieByTitle(title);
         };*/
 
-        function registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription) {
+        function registerUserInDb(firstName, lastName, username, password, userType, email, dob, userDescription, websiteURL) {
             var newUser;
 
             if (userType === "fan")
@@ -51,7 +51,8 @@
                     "password":password,
                     "email": email,
                     "dob": dob,
-                    "criticDescription": userDescription
+                    "criticDescription": userDescription,
+                    "websiteUrl": websiteURL
                 };
             }
             else if (userType === "adrecruiter")
