@@ -221,4 +221,18 @@ public class FanService extends Utils {
         }
         return null;
     }
+
+    @PostMapping("/api/delete/following/fanfollowing/{username1}/fanfollowed/{username2}")
+    public Fan unfollowFan(
+            @PathVariable("username1") String username1,
+            @PathVariable("username2") String username2){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username1)).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username2)).isPresent()){
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username1)).get();
+            Fan fan1 = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
+            fan.getFollowingFans().remove(fan1);
+            return fanRepository.save(fan);
+        }
+        return null;
+    }
 }
