@@ -46,7 +46,7 @@ public class MovieService extends Utils {
     }
 
     @GetMapping("/api/movie/{movieId}")
-    public Movie findMovieNameFromMovieId(@PathVariable("movieId") long movieId){
+    public Movie findMovieFromMovieId(@PathVariable("movieId") long movieId){
         if(movieRepository.findById(movieId).isPresent()){
             return movieRepository.findById(movieId).get();
         }

@@ -59,4 +59,13 @@ public class ReviewService {
             reviewRepository.save(review);
         }
     }
+
+    @GetMapping("/api/review/{reviewId}/movie")
+    public Movie getMovieByReview(@PathVariable("reviewId") long reviewId){
+        if(reviewRepository.findById(reviewId).isPresent()){
+            Review review = reviewRepository.findById(reviewId).get();
+            return review.getRmovie();
+        }
+        return null;
+    }
 }
