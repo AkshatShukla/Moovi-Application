@@ -5,13 +5,9 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col">Movie Name</th>
-            <th scope="col">Movie Review by you</th>
-            <th scope="col">Movie Rating by you</th>
             <th scope="col">Movie Poster</th>
             <th scope="col">Movie IMDB Rating</th>
             <th scope="col">Movie revenue</th>
-            <th scope="col">Movie runtime</th>
-            <th scope="col">Release Status</th>
         </tr>
         </thead>
         <tr ng-repeat = "movie in movies | filter:movieName">
@@ -21,8 +17,6 @@
             <td><img ng-src="{{movie.posterSRC}}" height="150px"></td>
             <td>{{movie.imdbRating}}</td>
             <td>${{movie.revenue}}</td>
-            <td>{{movie.runtime}} minutes</td>
-            <td>{{movie.releaseStatus}}</td>
         </tr>
         </tbody>
     </table>
