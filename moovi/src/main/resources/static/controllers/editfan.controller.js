@@ -91,8 +91,9 @@
 
         vm.changeViewToFanMyPage = changeViewToFanMyPage;
 
-        function changeViewToFanMyPage(fanUserName) {
-            localStorage.setItem("fanUsername",fanUserName);
+        function changeViewToFanMyPage(fanUserName, fanDtype) {
+            localStorage.setItem("DirectedUserName",fanUserName);
+            localStorage.setItem("DirectedUserType", fanDtype);
             window.location = "#!/mypage";
         }
     }

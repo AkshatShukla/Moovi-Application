@@ -12,15 +12,15 @@
 
         $scope.usT = localStorage.getItem("userType");
         $scope.fanname = localStorage.getItem("username");
-        $scope.fanname1 = localStorage.getItem("fanUsername");
+        $scope.fanname1 = localStorage.getItem("DirectedUserName");
 
         $scope.$on('$viewContentLoaded', function()
         {
             if ($scope.usT === 'admin') {
                 $http
-                    .get(localpath+url1+localStorage.getItem("fanUsername")+url2)
+                    .get(localpath+url1+localStorage.getItem("DirectedUserName")+url2)
                     .then(function (response) {
-                        $scope.allActorsHeading = "All Actors You Follow";
+                        $scope.allActorsHeading = "All Actors"+localStorage.getItem("DirectedUserName")+" Follows";
                         $scope.actors = response.data;
                         console.log(response);
                     })

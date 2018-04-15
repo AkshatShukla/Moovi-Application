@@ -90,5 +90,13 @@
                     location.reload(true);
                 });
         }
+
+        vm.changeViewToCriticMyPage = changeViewToCriticMyPage;
+
+        function changeViewToCriticMyPage(criticUsername, criticDtype) {
+            localStorage.setItem("DirectedUserName",criticUsername);
+            localStorage.setItem("DirectedUserType", criticDtype);
+            window.location = "#!/mypage";
+        }
     }
 })();
