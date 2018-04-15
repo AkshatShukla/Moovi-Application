@@ -9,7 +9,6 @@
                 templateUrl: "views/searchmovie.html",
                 controller: "MovieSearchController",
                 controllerAs: "model"
-
             })
             .when("/searchActor", {
                 templateUrl: "views/searchactor.html",
@@ -150,6 +149,11 @@
                 templateUrl: "views/editTheatreForAdmin.html",
                 controller: "EditTheatreController",
                 controllerAs: "et"
+            })
+            .when("/editTheatreManagerForAdmin", {
+                templateUrl: "views/editTheatreManagerForAdmin.html",
+                controller: "EditTheatreManagerController",
+                controllerAs: "etm"
             })
             .otherwise({
                 templateUrl : "views/landingpage.html"
