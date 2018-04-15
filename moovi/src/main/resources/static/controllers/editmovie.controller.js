@@ -41,7 +41,7 @@
                 .post(localpath+insertMovieUrl, newMovie)
                 .then(function (response) {
                     $scope.movie = response.data;
-                    alert("movie added");
+                    alert("Movie Added");
                     location.reload(true);
                 });
         }
@@ -90,7 +90,7 @@
                 .put(localpath+updateMovieUrl, updateMovie)
                 .then(function (response) {
                     $scope.movie = response.data;
-                    alert("movie updated");
+                    alert("Movie Updated");
                     location.reload(true);
                 });
         }
