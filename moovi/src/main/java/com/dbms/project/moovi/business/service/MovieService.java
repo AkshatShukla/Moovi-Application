@@ -45,6 +45,14 @@ public class MovieService extends Utils {
         return (List<Movie>) movieRepository.findAll();
     }
 
+    @GetMapping("/api/movie/{movieId}")
+    public Movie findMovieNameFromMovieId(@PathVariable("movieId") long movieId){
+        if(movieRepository.findById(movieId).isPresent()){
+            return movieRepository.findById(movieId).get();
+        }
+        return null;
+    }
+
     @PostMapping("/api/movie")
     public Movie createMovie(@RequestBody Movie movie){
         return movieRepository.save(movie);
