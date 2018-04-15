@@ -101,7 +101,7 @@
                 controller: "MovieReviewedController",
                 controllerAs: "mrv"
             })
-            .when("/movieForAdmin", {
+            .when("/editMovieForAdmin", {
                 templateUrl:"views/editMovieForAdmin.html",
                 controller:"EditMovieController",
                 controllerAs:"em"
