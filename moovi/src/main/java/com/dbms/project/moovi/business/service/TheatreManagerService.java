@@ -64,8 +64,7 @@ public class TheatreManagerService extends Utils {
             TheatreManager theatreManager = theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).get();
             Theatre theatre = theatreRepository.findById(theatreId).get();
             theatreManager.getListOfTheatresManaged().remove(theatre);
-            theatre.setTheatreManager(null);
-            theatreManagerRepository.save(theatreManager);
+            theatreRepository.delete(theatre);
         }
     }
 }
