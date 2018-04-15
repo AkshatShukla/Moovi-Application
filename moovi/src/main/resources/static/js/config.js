@@ -131,6 +131,16 @@
                 controller: "EditFanController",
                 controllerAs: "ef"
             })
+            .when("/editCriticForAdmin", {
+                templateUrl: "views/editCriticForAdmin.html",
+                controller: "EditCriticController",
+                controllerAs: "ec"
+            })
+            .when("/editAdRecruiterForAdmin", {
+                templateUrl: "views/editAdRecruiterForAdmin.html",
+                controller: "EditAdRecruiterController",
+                controllerAs: "ead"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });

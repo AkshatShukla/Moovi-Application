@@ -55,9 +55,9 @@
         vm.deleteFan = deleteFan;
 
         function deleteFan(fname) {
-            var deleteMovieUrl = "api/delete/fan/"+fname;
+            var deleteFanUrl = "api/delete/fan/"+fname;
             $http
-                .delete(localpath+deleteMovieUrl)
+                .delete(localpath+deleteFanUrl)
                 .then(function () {
                     location.reload(true);
                 })
