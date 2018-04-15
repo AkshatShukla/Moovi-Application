@@ -66,6 +66,21 @@
                 controller: "CriticFollowingController",
                 controllerAs: "cf"
             })
+            .when("/listOfActorsYouFollow", {
+                templateUrl: "views/listOfActorsYouFollow.html",
+                controller: "ActorFollowingController",
+                controllerAs: "af"
+            })
+            .when("/listOfMoviesYouLiked", {
+                templateUrl: "views/listOfMoviesYouLiked.html",
+                controller: "MovieLikedController",
+                controllerAs: "ml"
+            })
+            .when("/listOfMoviesYouDisliked", {
+                templateUrl: "views/listOfMoviesYouDisliked.html",
+                controller: "MovieDislikedController",
+                controllerAs: "mdl"
+            })
             .when("/movieForAdmin", {
                 templateUrl:"views/movieForAdmin.html",
                 controller:"EditMovieController",
