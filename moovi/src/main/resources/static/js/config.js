@@ -85,8 +85,8 @@
                 controller: "MovieDislikedController",
                 controllerAs: "mdl"
             })
-            .when("/listOfFansWhoFollowYou", {
-                templateUrl: "views/listOfFansWhoFollowYou.html",
+            .when("/listOfFansWhoFollowYouOfCritic", {
+                templateUrl: "views/listOfFansWhoFollowYouOfCritic.html",
                 controller: "FansFollowedController",
                 controllerAs: "ffb"
             })
