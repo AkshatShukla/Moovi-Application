@@ -55,4 +55,18 @@ public class AdRecruiterService extends Utils {
         }
         return null;
     }
+
+    @PostMapping("/api/delete/recruiter/{username}/actor/{actorId}")
+    public void deleteRecruitedActor(
+            @PathVariable("username") String username,
+            @PathVariable("actorId") long actorId){
+        if(adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).isPresent()
+                && actorRepository.findById(actorId).isPresent()){
+            AdRecruiter adRecruiter = adRecruiterRepository.findById(adRecruiterRepository.findAdRecruiterIdByUsername(username)).get();
+            Actor actor = actorRepository.findById(actorId).get();
+            adRecruiter.getRecruitedActors().remove(actor);
+            actor.getRecruitedBy().remove(adRecruiter);
+            adRecruiterRepository.save(adRecruiter);
+        }
+    }
 }

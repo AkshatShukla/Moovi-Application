@@ -54,4 +54,18 @@ public class TheatreManagerService extends Utils {
         }
         return null;
     }
+
+    @PostMapping("/api/delete/theatremanager/{username}/theatre/{theatreId}")
+    public void deleteManagedTheatre(
+            @PathVariable("username") String username,
+            @PathVariable("theatreId") long theatreId){
+        if(theatreRepository.findById(theatreId).isPresent()
+                && theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).isPresent()){
+            TheatreManager theatreManager = theatreManagerRepository.findById(theatreManagerRepository.findManagerIdByUsername(username)).get();
+            Theatre theatre = theatreRepository.findById(theatreId).get();
+            theatreManager.getListOfTheatresManaged().remove(theatre);
+            theatre.setTheatreManager(null);
+            theatreManagerRepository.save(theatreManager);
+        }
+    }
 }
