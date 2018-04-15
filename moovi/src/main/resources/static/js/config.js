@@ -111,6 +111,11 @@
                 controller: "ActorsRecruitedController",
                 controllerAs: "acr"
             })
+            .when("/listOfTheatresManaged", {
+                templateUrl: "views/listOfTheatresManaged.html",
+                controller: "TheatresManagedController",
+                controllerAs: "tm"
+            })
             .when("/editMovieForAdmin", {
                 templateUrl: "views/editMovieForAdmin.html",
                 controller: "EditMovieController",
