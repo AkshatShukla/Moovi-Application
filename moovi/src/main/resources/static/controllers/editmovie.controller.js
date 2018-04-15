@@ -46,6 +46,14 @@
                 });
         }
 
+        vm.showEditBoxes = showEditBoxes;
+        $scope.eBox = false;
+        function showEditBoxes(movieId){
+            $scope.eBox = true;
+            $scope.moId = movieId;
+            console.log($scope.moId);
+        }
+
         vm.deleteMovie = deleteMovie;
 
         function deleteMovie(movieId) {
