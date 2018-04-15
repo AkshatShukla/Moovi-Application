@@ -64,7 +64,7 @@
                     "password":password,
                     "email": email,
                     "dob": dob,
-                    "adrecruiterDescription": userDescription
+                    "recruiterDescription": userDescription
                 };
             }
             else if (userType === "theatremanager")

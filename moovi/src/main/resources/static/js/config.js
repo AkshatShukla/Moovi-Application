@@ -131,6 +131,26 @@
                 controller: "EditFanController",
                 controllerAs: "ef"
             })
+            .when("/editCriticForAdmin", {
+                templateUrl: "views/editCriticForAdmin.html",
+                controller: "EditCriticController",
+                controllerAs: "ec"
+            })
+            .when("/editAdRecruiterForAdmin", {
+                templateUrl: "views/editAdRecruiterForAdmin.html",
+                controller: "EditAdRecruiterController",
+                controllerAs: "ead"
+            })
+            .when("/editReviewForAdmin", {
+                templateUrl: "views/editReviewForAdmin.html",
+                controller: "EditReviewController",
+                controllerAs: "er"
+            })
+            .when("/editTheatreForAdmin", {
+                templateUrl: "views/editTheatreForAdmin.html",
+                controller: "EditTheatreController",
+                controllerAs: "et"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });
