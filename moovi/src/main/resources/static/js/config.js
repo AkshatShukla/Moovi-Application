@@ -91,6 +91,16 @@
                 controller: "FansFollowedController",
                 controllerAs: "ffb"
             })
+            .when("/listOfMoviesYouRecommended", {
+                templateUrl: "views/listOfMoviesYouRecommended.html",
+                controller: "MovieRecommendedController",
+                controllerAs: "mrc"
+            })
+            .when("/listOfMoviesYouReviewed", {
+                templateUrl: "views/listOfMoviesYouReviewed.html",
+                controller: "MovieReviewedController",
+                controllerAs: "mrv"
+            })
             .when("/movieForAdmin", {
                 templateUrl:"views/movieForAdmin.html",
                 controller:"EditMovieController",
