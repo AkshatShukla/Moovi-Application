@@ -165,4 +165,60 @@ public class FanService extends Utils {
         }
         return null;
     }
+
+    @PostMapping("/api/delete/unfollow/fan/{username}/actor/{actorId}")
+    public Fan unfollowActor(
+            @PathVariable("username") String username,
+            @PathVariable("actorId") long actorId){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()
+                && actorRepository.findById(actorId).isPresent()){
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            Actor actor = actorRepository.findById(actorId).get();
+            fan.getActorsFollowed().remove(actor);
+            return fanRepository.save(fan);
+        }
+        return null;
+    }
+
+    @PostMapping("/api/delete/dislike/fan/{username}/movie/{movieId}")
+    public Fan undoDislike(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()
+                && movieRepository.findById(movieId).isPresent()){
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            Movie movie = movieRepository.findById(movieId).get();
+            fan.getDislikesMovies().remove(movie);
+            return fanRepository.save(fan);
+        }
+        return null;
+    }
+
+    @PostMapping("/api/delete/like/fan/{username}/movie/{movieId}")
+    public Fan undoLike(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()
+                && movieRepository.findById(movieId).isPresent()){
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            Movie movie = movieRepository.findById(movieId).get();
+            fan.getLikesMovies().remove(movie);
+            return fanRepository.save(fan);
+        }
+        return null;
+    }
+
+    @PostMapping("/api/delete/unfollow/fan/{username}/critic/{username1}")
+    public Fan unfollowCritic(
+            @PathVariable("username") String username,
+            @PathVariable("username1") String username1){
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()
+                && criticRepository.findById(criticRepository.findCriticIdByUsername(username1)).isPresent()){
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username1)).get();
+            fan.getCriticsFollowed().remove(critic);
+            return fanRepository.save(fan);
+        }
+        return null;
+    }
 }
