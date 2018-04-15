@@ -88,5 +88,12 @@
                     location.reload(true);
                 });
         }
+
+        vm.changeViewToFanMyPage = changeViewToFanMyPage;
+
+        function changeViewToFanMyPage(fanUserName) {
+            localStorage.setItem("fanUsername",fanUserName);
+            window.location = "#!/mypage";
+        }
     }
 })();

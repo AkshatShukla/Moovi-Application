@@ -10,17 +10,51 @@
         var url1 = "api/follow/fan/";
         var url2 = "/actorfollowed";
 
+        $scope.usT = localStorage.getItem("userType");
+        $scope.fanname = localStorage.getItem("username");
+        $scope.fanname1 = localStorage.getItem("fanUsername");
+
         $scope.$on('$viewContentLoaded', function()
         {
+            if ($scope.usT === 'admin') {
+                $http
+                    .get(localpath+url1+localStorage.getItem("fanUsername")+url2)
+                    .then(function (response) {
+                        $scope.allActorsHeading = "All Actors You Follow";
+                        $scope.actors = response.data;
+                        console.log(response);
+                    })
+            }
+            else {
+                $http
+                    .get(localpath+url1+localStorage.getItem("username")+url2)
+                    .then(function (response) {
+                        $scope.allActorsHeading = "All Actors You Follow";
+                        $scope.actors = response.data;
+                        console.log(response);
+                    })
+            }
+
+        });
+        var unfollowURL;
+        if ($scope.usT === 'admin') {
+            unfollowURL = "api/delete/unfollow/fan/"+$scope.fanname1+"/actor/";
+        }
+        else {
+            unfollowURL = "api/delete/unfollow/fan/"+$scope.fanname+"/actor/";
+        }
+
+        vm.unfollowActor = unfollowActor;
+
+        function unfollowActor(actorId) {
             $http
-                .get(localpath+url1+localStorage.getItem("username")+url2)
+                .post(localpath+unfollowURL+actorId)
                 .then(function (response) {
                     $scope.allActorsHeading = "All Actors You Follow";
                     $scope.actors = response.data;
-                    console.log(response);
+                    alert("Actor unfollowed");
+                    location.reload(true);
                 })
-
-        });
-
+        }
     }
 })();

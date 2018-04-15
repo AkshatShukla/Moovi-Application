@@ -7,5 +7,6 @@
         var vm = this;
 
         $scope.uT = localStorage.getItem("userType");
+        $scope.f = localStorage.getItem("fanUsername");
     }
 })();
