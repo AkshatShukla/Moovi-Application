@@ -10,6 +10,7 @@
     <script src="js/config.js"></script>
     <script src="controllers/moviesearch.controller.js"></script>
     <script src="controllers/actorsearch.controller.js"></script>
+    <script src="controllers/fansearch.controller.js"></script>
     <script src="controllers/criticsearch.controller.js"></script>
     <script src="controllers/moviedetails.controller.js"></script>
     <script src="controllers/login.controller.js"></script>
@@ -24,6 +25,7 @@
     <script src="controllers/listofactorsfollowing.controller.js"></script>
     <script src="controllers/listofmoviesliked.controller.js"></script>
     <script src="controllers/listofmoviesdisliked.controller.js"></script>
+    <script src="controllers/listoffansfollowedbyofcritic.controller.js"></script>
     <script src="controllers/editmovie.controller.js"></script>
     <meta charset="UTF-8">
     <title>Moovi</title>
@@ -51,6 +53,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#!searchActor">Search Actor</a>
+            </li>
+            <li class="nav-item" ng-show="typeRole==='fan'">
+                <a class="nav-link" href="#!searchFan">Search Fan</a>
             </li>
             <li class="nav-item" ng-show="typeRole==='fan'">
                 <a class="nav-link" href="#!searchCritic">Search Critic</a>
