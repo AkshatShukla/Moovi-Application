@@ -102,9 +102,19 @@
                 controllerAs: "mrv"
             })
             .when("/editMovieForAdmin", {
-                templateUrl:"views/editMovieForAdmin.html",
-                controller:"EditMovieController",
-                controllerAs:"em"
+                templateUrl: "views/editMovieForAdmin.html",
+                controller: "EditMovieController",
+                controllerAs: "em"
+            })
+            .when("/editActorForAdmin", {
+                templateUrl: "views/editActorForAdmin.html",
+                controller: "EditActorController",
+                controllerAs: "ea"
+            })
+            .when("/editFanForAdmin", {
+                templateUrl: "views/editFanForAdmin.html",
+                controller: "EditFanController",
+                controllerAs: "ef"
             })
             .otherwise({
                 templateUrl : "views/landingpage.html"
