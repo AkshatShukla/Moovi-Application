@@ -114,7 +114,7 @@ public class FanService extends Utils {
         return null;
     }
 
-    @GetMapping("api/follow/fan/{username}/moviesliked")
+    @GetMapping("api/like/fan/{username}/moviesliked")
     public List<Movie> listOfMoviesLiked(
             @PathVariable("username") String username){
         if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
@@ -124,7 +124,7 @@ public class FanService extends Utils {
         return null;
     }
 
-    @GetMapping("api/follow/fan/{username}/moviesdisliked")
+    @GetMapping("api/dislike/fan/{username}/moviesdisliked")
     public List<Movie> listOfMoviesDisliked(
             @PathVariable("username") String username){
         if(fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
