@@ -141,6 +141,16 @@
                 controller: "EditAdRecruiterController",
                 controllerAs: "ead"
             })
+            .when("/editReviewForAdmin", {
+                templateUrl: "views/editReviewForAdmin.html",
+                controller: "EditReviewController",
+                controllerAs: "er"
+            })
+            .when("/editTheatreForAdmin", {
+                templateUrl: "views/editTheatreForAdmin.html",
+                controller: "EditTheatreController",
+                controllerAs: "et"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });
