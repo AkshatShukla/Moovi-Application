@@ -29,7 +29,7 @@
                     function linkCriticToReview() {
                         $scope.reviewResponse = angular.fromJson(response.data);
 
-                        var criticLinkingURL = localpath+"api/reviews/review/"+$scope.reviewResponse.reviewId+"/critic/"+username;
+                        var criticLinkingURL = localpath+"api/reviews/review/"+$scope.reviewResponse.reviewId+"/critic/"+username+"/movie/"+movieId;
 
                         $http
                             .post(criticLinkingURL)
@@ -40,25 +40,29 @@
                             });
                     }
 
+
+
                     linkCriticToReview();
 
-                    vm.linkMovieReview = linkMovieReview;
+                    // $timeout(function() { $scope.displayErrorMsg = false;}, 2000);
+                    //
+                    // vm.linkMovieReview = linkMovieReview;
 
-                    function linkMovieReview() {
-                        $scope.reviewResponse = angular.fromJson(response.data);
-                        console.log(movieId);
-                        var movieLinkingURL = localpath+"api/reviews/review/"+$scope.reviewResponse.reviewId+"/movie/"+movieId;
-
-                        $http
-                            .post(movieLinkingURL)
-                            .then(function(response) {
-                                $scope.review = response;
-                                alert("Review assigned to this Movie!");
-
-                            });
-                    }
-
-                    linkMovieReview();
+                    // function linkMovieReview() {
+                    //     $scope.reviewResponse = angular.fromJson(response.data);
+                    //     console.log(movieId);
+                    //     var movieLinkingURL = localpath+"api/reviews/review/"+$scope.reviewResponse.reviewId+"/movie/"+movieId;
+                    //
+                    //     $http
+                    //         .post(movieLinkingURL)
+                    //         .then(function(response) {
+                    //             $scope.review = response;
+                    //             alert("Review assigned to this Movie!");
+                    //
+                    //         });
+                    // }
+                    //
+                    // linkMovieReview();
                 });
         }
 

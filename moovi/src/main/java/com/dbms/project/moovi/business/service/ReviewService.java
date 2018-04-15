@@ -47,15 +47,19 @@ public class ReviewService {
         }
     }
 
-    @PostMapping("/api/reviews/review/{reviewId}/critic/{username}")
+    @PostMapping("/api/reviews/review/{reviewId}/critic/{username}/movie/{movieId}")
     public void reviewedByCritic(
             @PathVariable("username") String username,
-            @PathVariable("reviewId") long reviewId){
+            @PathVariable("reviewId") long reviewId,
+            @PathVariable("movieId") long movieId){
         if(criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()
-                && reviewRepository.findById(reviewId).isPresent()) {
+                && reviewRepository.findById(reviewId).isPresent()
+                && movieRepository.findById(movieId).isPresent()) {
             Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            Movie movie = movieRepository.findById(movieId).get();
             Review review = reviewRepository.findById(reviewId).get();
             review.setCritic(critic);
+            review.setRmovie(movie);
             reviewRepository.save(review);
         }
     }
