@@ -67,8 +67,24 @@
 
         vm.updateMovie = updateMovie;
 
-        function updateMovie(moId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1) {
+        function updateMovie(moId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1, oldImdb, oldrevenue, oldruntime) {
             var updateMovie;
+            var imdbInput = document.getElementById('f1');
+            var revenueInput = document.getElementById('f2');
+            var runtimeInput = document.getElementById('f3');
+
+            console.log(imdbInput.value + " " +revenueInput.value+" "+runtimeInput.value);
+
+            if (imdbRating1 === undefined)
+                imdbRating1 = imdbInput.value;
+
+            if (revenue1 === undefined)
+                revenue1 = revenueInput.value;
+
+            if (runtime1 === undefined)
+                runtime1 = runtimeInput.value;
+
+            console.log("new:"+imdbRating1 + " " +revenue1+" "+runtime1);
 
             updateMovie = {
                 "movieName":movieName1,
@@ -82,7 +98,7 @@
                 "overview":overview1
             };
 
-            console.log(imdbRating1 + " " +revenue1+" "+runtime1);
+            console.log(oldImdb + " " +revenue1+" "+runtime1);
 
             var updateMovieUrl = "api/edit/movie/"+moId;
 

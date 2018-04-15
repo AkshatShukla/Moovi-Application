@@ -35,12 +35,12 @@
             <td><input type="text" ng-model="overview1" placeholder="Overview" value="{{moId.overview}}"></td>
             <td><input type="text" ng-model="posterSrc1" placeholder="Poster Src" value="{{moId.posterSRC}}"></td>
             <td><input type="text" ng-model="releaseDate1" placeholder="Release Date" value="{{moId.movieName}}"></td>
-            <td><input type="number" ng-model="imdbRating1" placeholder="IMDb Rating" value="{{moId.imdbRating}}"></td>
-            <td><input type="number" ng-model="revenue1" placeholder="Revenue" value="{{moId.revenue}}"></td>
-            <td><input type="number" ng-model="runtime1" placeholder="Runtime" value="{{moId.runtime}}"></td>
+            <td><input type="number" ng-model="imdbRating1" id="f1" placeholder="IMDb Rating" value="{{moId.imdbRating}}"></td>
+            <td><input type="number" ng-model="revenue1" id="f2" placeholder="Revenue" value="{{moId.revenue}}"></td>
+            <td><input type="number" ng-model="runtime1" id="f3" placeholder="Runtime" value="{{moId.runtime}}"></td>
             <td><input type="text" ng-model="releaseStatus1" placeholder="Release Status" value="{{moId.releaseStatus}}"></td>
             <td><input type="text" ng-model="imdbId1" placeholder="IMDb Id" value="{{moId.imdbId}}"></td>
-            <td><button type="button" class="btn btn-primary" ng-click="em.updateMovie(moId.movieId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1)">Submit Changes</button></td>
+            <td><button type="button" class="btn btn-primary" ng-click="em.updateMovie(moId.movieId, movieName1, overview1, posterSrc1, releaseDate1, imdbRating1, revenue1, runtime1, releaseStatus1, imdbId1, moId.imdbRating, moId.revenue, moId.runtime)">Submit Changes</button></td>
         </tr>
         <tr ng-repeat = "movie in movies">
             <td>{{movie.movieId}}</td>
