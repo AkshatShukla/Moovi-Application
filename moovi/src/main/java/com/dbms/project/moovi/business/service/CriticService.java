@@ -81,6 +81,23 @@ public class CriticService extends Utils {
         return null;
     }
 
+    @GetMapping("/api/follow/fan/{fanUsername}/critic/{criticUsername}")
+    public Fan checkIfFanFollowsCritic(
+            @PathVariable("fanUsername") String fanUsername,
+            @PathVariable("criticUsername") String criticUsername) {
+        if(criticRepository.findById(criticRepository.findCriticIdByUsername(criticUsername)).isPresent() &&
+                fanRepository.findById(fanRepository.findFanIdByUsername(fanUsername)).isPresent()) {
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(criticUsername)).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(fanUsername)).get();
+            List <Fan> fanlist = critic.getFansFollowingCritics();
+            if (fanlist.contains(fan)) {
+                return fan;
+            }
+        }
+
+        return null;
+    }
+
     @GetMapping("/api/recommend/critic/{username}/recommendedmovies")
     public List<Movie> listOfRecommendedMovies(
             @PathVariable("username") String username){

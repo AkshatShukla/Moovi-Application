@@ -43,13 +43,36 @@
 
         function followThisCritic(criticUsername) {
             var username = localStorage.getItem("username");
-            var followCriticURL = localpath+"api/follow/fan/"+username+"/critic/"+criticUsername;
+            var url1 = localpath + "/api/follow/fan/" + localStorage.getItem("username") + "/critic/" + criticUsername;
+            var followCriticURL = localpath + "api/follow/fan/" + username + "/critic/" + criticUsername;
+            var count = 0;
+
+            $http
+                .get(url1)
+                .then(function (response) {
+                    //alert(username +" followed a critic: "+criticUsername);
+                    $scope.criticsfollowed = response.data;
+                    if (response.data === 1){
+                        count = 1;
+                    }
+                    else
+                    {
+                        count = response.data.length;
+                    }
+                });
+
+            if (count === 1) {
 
             $http
                 .post(followCriticURL)
                 .then(function () {
-                    alert(username +" followed a critic: "+criticUsername);
+                    alert(username + " followed a critic: " + criticUsername);
                 });
+            }
+            else
+            {
+                alert("You already follow this critic!");
+            }
         }
     }
 })();
