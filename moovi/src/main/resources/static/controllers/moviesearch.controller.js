@@ -94,5 +94,12 @@
             localStorage.setItem("movieId",movieId);
             window.location = "#!/review";
         }
+
+        vm.changeToDetailsView = changeToDetailsView;
+
+        function changeToDetailsView(movieId) {
+            localStorage.setItem("movieId",movieId);
+            window.location = "#!/movieDetails";
+        }
     }
 })();

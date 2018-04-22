@@ -67,5 +67,12 @@
                 });
         }
 
+        vm.changeToDetailsView = changeToDetailsView;
+
+        function changeToDetailsView(actorId) {
+            localStorage.setItem("actorId",actorId);
+            window.location = "#!/actorDetails";
+        }
+
     }
 })();

@@ -160,6 +160,16 @@
                 controller: "MovieRecommendationsListingController",
                 controllerAs: "mrcl"
             })
+            .when("/movieDetails", {
+                templateUrl: "views/movieDetails.html",
+                controller: "MovieDetailsController",
+                controllerAs: "mdc"
+            })
+            .when("/actorDetails", {
+                templateUrl: "views/actorDetails.html",
+                controller: "ActorDetailsController",
+                controllerAs: "adc"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });

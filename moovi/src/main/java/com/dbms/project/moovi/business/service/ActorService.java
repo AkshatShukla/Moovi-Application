@@ -4,6 +4,7 @@ import com.dbms.project.moovi.data.entity.Actor;
 import com.dbms.project.moovi.data.entity.AdRecruiter;
 import com.dbms.project.moovi.data.entity.Fan;
 
+import com.dbms.project.moovi.data.entity.Movie;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -47,7 +48,10 @@ public class ActorService extends Utils{
 
     @GetMapping("/api/actor/{actorId}")
     public Actor findActorById(@PathVariable(name = "actorId") long actorId) {
-        return (Actor) actorRepository.findActorById(actorId);
+        if(actorRepository.findById(actorId).isPresent()){
+            return actorRepository.findById(actorId).get();
+        }
+        return null;
     }
 
     @PostMapping("/api/recruit/actor/{actorId}/adrecruiter/{username}")
@@ -193,6 +197,15 @@ public class ActorService extends Utils{
         if(actorRepository.findById(actorId).isPresent()) {
             Actor actor = actorRepository.findById(actorId).get();
             return actor.getRecruitedBy();
+        }
+        return null;
+    }
+
+    @GetMapping("/api/actor/{actorId}/moviesActed")
+    public List<Movie> getMoviesActed (@PathVariable("actorId") long actorId){
+        if(actorRepository.findById(actorId).isPresent()){
+            Actor actor = actorRepository.findById(actorId).get();
+            return actor.getListOfMovies();
         }
         return null;
     }

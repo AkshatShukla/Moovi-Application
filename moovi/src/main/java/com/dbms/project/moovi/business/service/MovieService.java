@@ -405,4 +405,13 @@ public class MovieService extends Utils {
         }
         return null;
     }
+
+    @GetMapping("/api/movie/{movieId}/cast")
+    public List<Actor> getMovieCast (@PathVariable("movieId") long movieId){
+        if(movieRepository.findById(movieId).isPresent()){
+            Movie movie = movieRepository.findById(movieId).get();
+            return movie.getListOfActors();
+        }
+        return null;
+    }
 }

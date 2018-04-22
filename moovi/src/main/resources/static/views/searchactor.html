@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr ng-repeat = "actor in actors">
-            <td><a href="#/details/{{actor.imdbId}}">{{actor.actorName}}</a></td>
+            <td><button type="button" class="btn btn-light" ng-click="ac.changeToDetailsView(actor.actorId)">{{actor.actorName}}</button></td>
             <td>{{actor.biography}}</td>
             <td><img ng-src="{{actor.profilePicture}}" height="150px"></td>
             <td>{{actor.dob}}</td>
