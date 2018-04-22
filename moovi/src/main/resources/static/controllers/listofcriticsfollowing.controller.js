@@ -57,5 +57,15 @@
                     location.reload(true);
                 })
         }
+
+        vm.showRecommendedMovies = showRecommendedMovies;
+
+        function showRecommendedMovies(criticUsername) {
+
+            localStorage.setItem("criticClicked",criticUsername);
+            window.location = "#!/showListOfRecommendedMovies"
+        }
+        
+
     }
 })();

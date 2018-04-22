@@ -155,6 +155,11 @@
                 controller: "EditTheatreManagerController",
                 controllerAs: "etm"
             })
+            .when("/showListOfRecommendedMovies", {
+                templateUrl: "views/showListOfRecommendedMovies.html",
+                controller: "MovieRecommendationsListingController",
+                controllerAs: "mrcl"
+            })
             .otherwise({
                 templateUrl : "views/landingpage.html"
             });
