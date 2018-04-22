@@ -22,19 +22,19 @@ public class Movie {
     @Column(columnDefinition = "TEXT")
     private String overview;
 
-    @ManyToMany(mappedBy = "recommendedMovies")
+    @ManyToMany(mappedBy = "recommendedMovies", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Critic> recommendedBy;
 
-    @ManyToMany(mappedBy = "likesMovies")
+    @ManyToMany(mappedBy = "likesMovies", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Fan> likedByFans;
 
-    @ManyToMany(mappedBy = "dislikesMovies")
+    @ManyToMany(mappedBy = "dislikesMovies", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Fan> dislikedByFans;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MovieCast",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "movieId"),
             inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actorId"))

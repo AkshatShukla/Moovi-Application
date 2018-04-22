@@ -45,7 +45,7 @@ public class Fan extends User {
 	@JsonIgnore
 	private List<Fan> followingFans;
 
-	@ManyToMany(mappedBy = "followingFans")
+	@ManyToMany(mappedBy = "followingFans", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<Fan> followedByFans;
 

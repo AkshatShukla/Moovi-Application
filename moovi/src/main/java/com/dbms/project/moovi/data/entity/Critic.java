@@ -20,7 +20,7 @@ public class Critic extends User{
     @JsonIgnore
     private List<Movie> recommendedMovies;
     
-    @ManyToMany(mappedBy="criticsFollowed")
+    @ManyToMany(mappedBy="criticsFollowed", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Fan> fansFollowingCritics;
 

@@ -1,10 +1,6 @@
 package com.dbms.project.moovi.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,7 +10,7 @@ public class Genre {
 	@Id
     private int genreId;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Movie movie;
 

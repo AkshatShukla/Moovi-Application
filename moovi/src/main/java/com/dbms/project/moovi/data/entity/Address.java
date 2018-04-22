@@ -16,7 +16,7 @@ public class Address {
 	private String zip;	
 	private boolean isPrimary;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private User AUser;
 

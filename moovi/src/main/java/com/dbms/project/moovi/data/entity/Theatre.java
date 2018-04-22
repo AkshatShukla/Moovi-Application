@@ -17,7 +17,7 @@ public class Theatre {
 	//private Long totalScreens;
 	private String location;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private TheatreManager theatreManager;
 	

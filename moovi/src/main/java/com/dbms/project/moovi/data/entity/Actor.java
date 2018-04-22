@@ -22,15 +22,15 @@ public class Actor {
     private String actorPopularity;
     private String profilePicture;
 
-    @ManyToMany(mappedBy="recruitedActors")
+    @ManyToMany(mappedBy="recruitedActors", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<AdRecruiter> recruitedBy;
 
-    @ManyToMany(mappedBy="actorsFollowed")
+    @ManyToMany(mappedBy="actorsFollowed", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Fan> fansFollowingActor;
 
-    @ManyToMany(mappedBy="listOfActors")
+    @ManyToMany(mappedBy="listOfActors", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Movie> listOfMovies;
 

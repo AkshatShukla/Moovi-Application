@@ -4,17 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class AdRecruiter extends User{
 
     private String recruiterDescription;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="Recruit",
     joinColumns= @JoinColumn(name="recruiter_id", referencedColumnName="userId"),
     inverseJoinColumns= @JoinColumn(name= "actor_id", referencedColumnName="actorId"))

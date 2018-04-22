@@ -17,12 +17,12 @@ public class Review {
     @Enumerated(EnumType.STRING)
     private Rating rating;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "critic_id")
     @JsonIgnore
     private Critic critic;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     @JsonIgnore
     private Movie rmovie;

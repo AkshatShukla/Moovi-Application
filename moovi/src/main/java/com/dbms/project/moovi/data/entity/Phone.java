@@ -13,7 +13,7 @@ public class Phone {
 	private String phoneNumber;
 	private boolean isPrimary;
 	
-	@ManyToOne()
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private User PUser;
 
