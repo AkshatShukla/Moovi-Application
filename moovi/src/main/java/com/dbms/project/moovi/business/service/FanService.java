@@ -147,6 +147,23 @@ public class FanService extends Utils {
         }
     }
 
+    @GetMapping("/api/follow/fan1/{username1}/fan2/{username2}")
+    public Fan checkIfFanFollowsAnotherFan(
+            @PathVariable("username1") String username1,
+            @PathVariable("username2") String username2) {
+        if(fanRepository.findById(fanRepository.findFanIdByUsername(username1)).isPresent() &&
+                fanRepository.findById(fanRepository.findFanIdByUsername(username2)).isPresent()) {
+            Fan fan1 = fanRepository.findById(fanRepository.findFanIdByUsername(username1)).get();
+            Fan fan2 = fanRepository.findById(fanRepository.findFanIdByUsername(username2)).get();
+            List <Fan> fanlist = fan2.getFollowedByFans();
+            if (fanlist.contains(fan1) && !(fan1.getUsername().equals(fan2.getUsername()))) {
+                return fan1;
+            }
+        }
+
+        return null;
+    }
+
     @GetMapping("/api/follow/fan/{username}/fansfollowing")
     public List<Fan> getListOfFansFollowing(
             @PathVariable("username") String username){
