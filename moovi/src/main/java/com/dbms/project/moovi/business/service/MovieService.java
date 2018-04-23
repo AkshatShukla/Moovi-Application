@@ -314,19 +314,19 @@ public class MovieService extends Utils {
         }
     }
 
-    @GetMapping("/api/likes/movie/{movieId}/fan/{username}")
-    public Movie checkIfMovieLikedByFan(
+    @GetMapping("/api/check/like/fan/{username}/movie/{movieId}")
+    public Fan checkIfFanLikesMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
         if(movieRepository.findById(movieId).isPresent()
                 && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
             Movie movie = movieRepository.findById(movieId).get();
             Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
-            List<Movie> moviesLiked = fan.getLikesMovies();
+            List<Fan> fansWhoLike = movie.getLikedByFans();
 
-            if(moviesLiked.contains(movie))
+            if(fansWhoLike.contains(fan))
             {
-                return movie;
+                return fan;
             }
         }
 
@@ -359,19 +359,19 @@ public class MovieService extends Utils {
         }
     }
 
-    @GetMapping("/api/dislike/movie/{movieId}/fan/{username}")
-    public Movie checkIfMovieDislikedByFan(
+    @GetMapping("/api/check/dislike/fan/{username}/movie/{movieId}")
+    public Fan checkIfFanDislikesMovie(
             @PathVariable("username") String username,
             @PathVariable("movieId") long movieId) {
         if(movieRepository.findById(movieId).isPresent()
                 && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
             Movie movie = movieRepository.findById(movieId).get();
             Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
-            List<Movie> movieDisliked = fan.getDislikesMovies();
+            List<Fan> fansWhoDisliked = movie.getDislikedByFans();
 
-            if(movieDisliked.contains(movie))
+            if(fansWhoDisliked.contains(fan))
             {
-                return movie;
+                return fan;
             }
         }
 

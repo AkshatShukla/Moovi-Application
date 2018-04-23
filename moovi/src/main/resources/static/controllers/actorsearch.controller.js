@@ -45,12 +45,26 @@
 
         function followThisActor(actorId) {
             var username = localStorage.getItem("username");
+            var url1 = localpath+"api/check/follow/fan/"+username+"/actor/"+actorId;
             var followUrl = localpath+"api/follow/fan/"+username+"/actor/"+actorId;
 
             $http
-                .post(followUrl)
-                .then(function () {
-                    alert(username+"followed an actor "+actorId);
+                .get(url1)
+                .then(function (response) {
+                    $scope.fansWhoFollowedActor = response.data;
+
+                    if (response.data.length === 0) {
+
+                        $http
+                            .post(followUrl)
+                            .then(function () {
+                                alert("You now follow this actor");
+                            });
+                    }
+                    else {
+                        alert("You already follow this actor!");
+                    }
+
                 });
         }
 
@@ -58,12 +72,26 @@
 
         function recruitThisActor (actorId) {
             var username = localStorage.getItem("username");
+            var url1 = localpath + "api/check/recruit/adrecruiter/"+username+"/actor/"+actorId;
             var recruitUrl = localpath+"api/recruit/adrecruiter/"+username+"/actor/"+actorId;
 
             $http
-                .post(recruitUrl)
-                .then(function () {
-                    alert(username+" recruited actor "+actorId);
+                .get(url1)
+                .then(function (response) {
+                    $scope.adrecruitersWhoRecruitedActor = response.data;
+
+                    if (response.data.length === 0) {
+
+                        $http
+                            .post(recruitUrl)
+                            .then(function () {
+                                alert("You now recruited this actor");
+                            });
+                    }
+                    else {
+                        alert("You already have recruited this actor!");
+                    }
+
                 });
         }
 
