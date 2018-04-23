@@ -119,36 +119,25 @@
             var username = localStorage.getItem("username");
             var recommendMovieURL = localpath+"/api/check/recommend/critic/"+username+"/movie/"+movieId;
             var postURL = localpath+"/api/recommend/movie/"+movieId+"/critic/"+username;
-            var count = 0;
-
-            //console.log("username: "+username);
-            //console.log("movieID: "+movieId);
 
             $http
                 .get(recommendMovieURL)
                 .then(function (response) {
-                    $scope.criticsWhoRecommended = response.data;
-                    if (response.data === 1){
-                        count = 1;
-                    }
-                    else
-                    {
-                        count = response.data.length;
-                    }
-                });
+                    $scope.criticWhoRecommended = response.data;
 
-            console.log("count: "+count);
-            if (count === 1) {
-                $http
-                    .post(postURL)
-                    .then(function () {
-                        alert(username +" recommended a movie");
-                    });
-            }
-            else {
-                alert("You already recommended this movie!");
-            }
-        }
+                    if (response.data.length === 0) {
+
+                        $http
+                            .post(postURL)
+                            .then(function () {
+                                alert("You now recommended this movie");
+                            });
+                    }
+                    else {
+                        alert("You already recommended this movie!");
+                    }
+
+                });
 
         vm.changeToReviewView = changeToReviewView;
 
