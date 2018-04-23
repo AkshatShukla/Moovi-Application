@@ -44,7 +44,7 @@
         </tr>
         <tr ng-repeat = "movie in movies">
             <td>{{movie.movieId}}</td>
-            <td><a href="#/details/{{movie.movieName}}">{{movie.movieName}}</a></td>
+            <td>{{movie.movieName}}</a></td>
             <td>{{movie.overview}}</td>
             <td><img ng-src="{{movie.posterSRC}}" height="150px"></td>
             <td>{{movie.releaseDate}}</td>
