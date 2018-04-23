@@ -8,8 +8,6 @@
         var localpath = "http://localhost:8080/";
         var url = "api/theatre";
 
-        //vm.populateMovieData = populateMovieData;
-
         $scope.$on('$viewContentLoaded',function (){
             var movieUrl = "/api/search/movie?nowPlaying=true";
             $http
@@ -35,7 +33,6 @@
                 .post(createTheatreURL, newTheatre)
                 .then(function(response) {
                     $scope.theatre = response;
-                    //alert("Theatre created!");
 
                     vm.linkManagerToTheatreURL = linkManagerToTheatreURL;
 
@@ -49,9 +46,6 @@
                             .post(linkingURL)
                             .then(function(response) {
                                 $scope.theatre = response;
-                                //alert("TheatreManager assigned to this Theatre!");
-
-
                             });
 
                     }
@@ -70,7 +64,6 @@
                             .post(createScreenURL, newScreen)
                             .then(function (response2) {
                                 $scope.screen = response2;
-                                //alert("screen created!");
 
                                 vm.linkScreenToTheatreURL = linkScreenToTheatreURL;
 
@@ -85,7 +78,6 @@
                                     $http
                                         .post(linkingScreenToTheatreURL)
                                         .then(function () {
-                                            //alert("screen assigned to this Theatre!");
 
                                             vm.linkScreenToMovie = linkScreenToMovie;
 
@@ -96,7 +88,6 @@
                                                 $http
                                                     .post(linkScreenToMovieURL)
                                                     .then(function () {
-                                                        //alert("screen mapped to movie!");
                                                         alert("Successfully registered a theatre!")
                                                     });
                                             }
@@ -111,9 +102,7 @@
 
                     createScreen();
 
-
         });
-
         }
     }
 })();

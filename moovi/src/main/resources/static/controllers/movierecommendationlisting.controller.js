@@ -18,7 +18,6 @@
                     $scope.movieRecommendedHeading = "All movies recommended";
                     $scope.recommendedMovies = response.data;
                 })
-
         });
     }
 })();

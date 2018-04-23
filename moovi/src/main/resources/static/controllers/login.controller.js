@@ -9,23 +9,6 @@
         var url = "api/";
         vm.checkIfValidUser = checkIfValidUser;
 
-        /*$scope.$on('$viewContentLoaded', function()
-        {
-            var nowPlayingUrl = "?nowPlaying=true";
-            $scope.myVal = false;
-            $http
-                .get(url+nowPlayingUrl)
-                .then(function (value) {
-                    $scope.nowplayingheading = "Now Playing Movies";
-                    $scope.movies = value.data;
-                })
-
-        });
-
-        $scope.myKeyPress = function(keyEvent,title) {
-            if (keyEvent.which === 13)
-                searchMovieByTitle(title);
-        };*/
         function checkIfValidUser(username, password, userType) {
 
             $http
@@ -60,6 +43,5 @@
             console.log(password);
             console.log(userType);
         }
-
     }
 })();

@@ -20,5 +20,4 @@
             location.reload(true);
         }
     }
-
 })();

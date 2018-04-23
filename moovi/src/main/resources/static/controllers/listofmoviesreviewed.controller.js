@@ -33,15 +33,7 @@
                                 console.log(movieresponse);
                             });
                     }
-
                 });
-
-
-
-
-
         });
-
-
     }
 })();

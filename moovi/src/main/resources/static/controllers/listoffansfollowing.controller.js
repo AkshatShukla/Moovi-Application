@@ -57,8 +57,5 @@
                     location.reload(true);
                 })
         }
-
     }
-
-
 })();

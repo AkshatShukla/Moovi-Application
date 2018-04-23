@@ -33,7 +33,6 @@
         };
 
         function searchMovieByTitle(title) {
-            //var url = "https://api.themoviedb.org/3/search/movie?api_key=878a88feb1d8acab0c9883e805657264&query="+title;
             var findByTitle = "?movieName=" + title;
             $scope.myVal = true;
             $scope.myVal1 = false;

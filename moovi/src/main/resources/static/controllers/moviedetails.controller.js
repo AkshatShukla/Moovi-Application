@@ -22,22 +22,6 @@
                     $scope.cast = value.data;
                     console.log($scope.cast)
                 });
-
-            $http
-                .get(vidUrl)
-                .then(function (value) {
-                    // console.log(value.data);
-                    // var txt = value.data;
-                    // var jsonData = JSON.parse(txt);
-                    // for (var i in jsonData.results) {
-                    //     var x = jsonData.results[i].key;
-                    //     console.log(x);
-                    //     alert(x);
-                    //}
-                });
-
         });
-
-
     }
 })();

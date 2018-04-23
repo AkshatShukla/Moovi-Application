@@ -61,8 +61,5 @@
                     location.reload(true);
                 })
         }
-
-
-
     }
 })();

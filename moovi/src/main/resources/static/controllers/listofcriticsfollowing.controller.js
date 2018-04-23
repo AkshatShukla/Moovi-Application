@@ -65,7 +65,6 @@
             localStorage.setItem("criticClicked",criticUsername);
             window.location = "#!/showListOfRecommendedMovies"
         }
-        
 
     }
 })();

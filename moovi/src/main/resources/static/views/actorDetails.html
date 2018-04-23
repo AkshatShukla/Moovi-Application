@@ -12,16 +12,6 @@
         <h3>
             Casted In:
         </h3>
-        <!--
-        <div ng-repeat="actor in cast">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{actor.profilePicture}}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="https://www.imdb.com/name/{{actor.imdbId}}/">{{actor.actorName}}</a></h5>
-                </div>
-            </div>
-        </div>
-        -->
         <div class="card-group">
             <div class="card" ng-repeat="movie in movies">
                 <img class="card-img-top" src="{{movie.posterSRC}}" alt="Card image cap">
@@ -33,9 +23,4 @@
         </div>
     </div>
 </div>
-<!--
-<div>
-    <iframe width="540" height="310" frameborder="0" src="https://www.youtube.com/embed/SPHfeNgogVs" allowfullscreen></iframe>
-</div>
--->
 </body>

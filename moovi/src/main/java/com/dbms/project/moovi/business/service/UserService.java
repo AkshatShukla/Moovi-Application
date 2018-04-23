@@ -14,11 +14,6 @@ public class UserService extends Utils {
     @Autowired
     private UserRepository userRepository;
 
-//    @PostMapping("/api/user")
-//    public User createUser(@RequestBody User user) {
-//        return userRepository.save(user);
-//    }
-
     @GetMapping("/api/user")
     public Iterable<User> findAllUsers(@RequestParam(name = "username", required = false) String username) {
         if (username != null)

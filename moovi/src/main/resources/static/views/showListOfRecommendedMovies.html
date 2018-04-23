@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         <tr ng-repeat = "movie in recommendedMovies | filter:movieName">
-            <td><a href="#/details/{{movie.movieName}}">{{movie.movieName}}</a></td>
+            <td>{{movie.movieName}}</a></td>
             <input ng-model="movieName" type="text" class="form-control" placeholder="Search Movie By Name"
                    aria-label="Search Movie Name" aria-describedby="basic-addon2">
             <td>{{movie.overview}}</td>

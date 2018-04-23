@@ -36,13 +36,10 @@
                             .post(criticLinkingURL)
                             .then(function(response) {
                                 $scope.review = response;
-                                //alert("Review assigned to this Critic!");
-
                             });
                     }
                     linkCriticToReview();
                 });
         }
-
     }
 })();

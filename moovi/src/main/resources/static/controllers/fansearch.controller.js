@@ -42,35 +42,13 @@
 
         function followThisFan(fanUsername) {
             var username = localStorage.getItem("username");
-            var url1 = localpath + "/api/check/follow/fan1/" + localStorage.getItem("username") + "/fan2/" + fanUsername;
             var followFanURL = localpath + "api/follow/fan1/" + username + "/fan2/" + fanUsername;
-            //var count;
 
             $http
-                .get(url1)
-                .then(function (response) {
-                    $scope.fansfollowed = response.data;
-                    //$scope.count = response.data.length;
-
-                    console.log("username: "+response.data.username);
-                    if (response.data.username === 'undefined') {
-                        $http
-                            .post(followFanURL)
-                            .then(function () {
-                                alert(username + " followed a fan: " + fanUsername);
-                            });
-                    }
-                    else {
-                        if (localStorage.getItem("username") === fanUsername) {
-                            alert("You cannot follow yourself!");
-                        }
-                        else {
-                            alert("You already follow this fan!");
-                        }
-                    }
-
+                .post(followFanURL)
+                .then(function () {
+                alert(username + " followed a fan: " + fanUsername);
                 });
-
         }
     }
 })();

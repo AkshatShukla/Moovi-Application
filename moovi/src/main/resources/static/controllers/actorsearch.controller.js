@@ -29,7 +29,6 @@
         };
 
         function searchActorByName(name) {
-            //var url = "https://api.themoviedb.org/3/search/movie?api_key=878a88feb1d8acab0c9883e805657264&query="+title;
             var findByName = "?actorName="+name;
             $scope.myVal = true;
             $http

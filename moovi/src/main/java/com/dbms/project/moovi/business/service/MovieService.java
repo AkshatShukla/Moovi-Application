@@ -150,8 +150,7 @@ public class MovieService extends Utils {
                     {
                         inline.append(scanner.nextLine());
                     }
-//                    System.out.println("\nJSON data in string format");
-//                    System.out.println(inline);
+
                     scanner.close();
                     jobj1 = (JSONObject)parse.parse(inline.toString());
                     JSONObject jsonObject = new JSONObject();
@@ -292,7 +291,6 @@ public class MovieService extends Utils {
                             throw new RuntimeException("HttpResponseCode: " +responseCode);
                     }
                     jsonArray.add(jsonObject);
-                    //Thread.sleep(500);
                 }
             }
         } catch (ParseException | IOException e) {
