@@ -81,7 +81,7 @@ public class CriticService extends Utils {
         return null;
     }
 
-    @GetMapping("/api/follow/fan/{fanUsername}/critic/{criticUsername}")
+    @GetMapping("/api/check/follow/fan/{fanUsername}/critic/{criticUsername}")
     public Fan checkIfFanFollowsCritic(
             @PathVariable("fanUsername") String fanUsername,
             @PathVariable("criticUsername") String criticUsername) {

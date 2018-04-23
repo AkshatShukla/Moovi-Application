@@ -314,6 +314,25 @@ public class MovieService extends Utils {
         }
     }
 
+    @GetMapping("/api/likes/movie/{movieId}/fan/{username}")
+    public Movie checkIfMovieLikedByFan(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId) {
+        if(movieRepository.findById(movieId).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            List<Movie> moviesLiked = fan.getLikesMovies();
+
+            if(moviesLiked.contains(movie))
+            {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+
     @PostMapping("/api/cast/movie/{movieId}/actor/{actorId}")
     public void castActor(
             @PathVariable("movieId") long movieId,
@@ -339,7 +358,26 @@ public class MovieService extends Utils {
             movieRepository.save(movie);
         }
     }
-    
+
+    @GetMapping("/api/dislike/movie/{movieId}/fan/{username}")
+    public Movie checkIfMovieDislikedByFan(
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId) {
+        if(movieRepository.findById(movieId).isPresent()
+                && fanRepository.findById(fanRepository.findFanIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Fan fan = fanRepository.findById(fanRepository.findFanIdByUsername(username)).get();
+            List<Movie> movieDisliked = fan.getDislikesMovies();
+
+            if(movieDisliked.contains(movie))
+            {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+
     @PostMapping("/api/recommend/movie/{movieId}/critic/{username}")
     public void recommendMovie(
             @PathVariable("username") String username,
@@ -351,6 +389,25 @@ public class MovieService extends Utils {
             movie.recommendedByCritic(critic);
             movieRepository.save(movie);
         }
+    }
+
+    @GetMapping("/api/check/recommend/critic/{username}/movie/{movieId}")
+    public Critic checkIfCriticRecommendsMovie (
+            @PathVariable("username") String username,
+            @PathVariable("movieId") long movieId) {
+        if(movieRepository.findById(movieId).isPresent()
+                && criticRepository.findById(criticRepository.findCriticIdByUsername(username)).isPresent()) {
+            Movie movie = movieRepository.findById(movieId).get();
+            Critic critic = criticRepository.findById(criticRepository.findCriticIdByUsername(username)).get();
+            List<Critic> criticsWhoRecommended = movie.getRecommendedBy();
+
+            if(criticsWhoRecommended.contains(critic))
+            {
+                return critic;
+            }
+        }
+
+        return null;
     }
 
     @PostMapping("/api/reviews/movie/{movieId}/review/{reviewId}")

@@ -10,8 +10,7 @@
         var url = "/api/fan";
         vm.searchFanByUsername = searchFanByUsername;
 
-        $scope.$on('$viewContentLoaded', function()
-        {
+        $scope.$on('$viewContentLoaded', function () {
             $scope.myVal = false;
             $http
                 .get(url)
@@ -23,16 +22,16 @@
 
         });
 
-        $scope.myKeyPress = function(keyEvent,username) {
+        $scope.myKeyPress = function (keyEvent, username) {
             if (keyEvent.which === 13)
                 searchFanByUsername(username);
         };
 
         function searchFanByUsername(username) {
-            var findByName = "?username="+username;
+            var findByName = "?username=" + username;
             $scope.myVal = true;
             $http
-                .get(url+findByName)
+                .get(url + findByName)
                 .then(function (response) {
                     console.log(response);
                     $scope.fans = response.data;
@@ -43,40 +42,35 @@
 
         function followThisFan(fanUsername) {
             var username = localStorage.getItem("username");
-            var url1 = localpath + "/api/follow/fan1/" + localStorage.getItem("username") + "/fan2/" + fanUsername;
-            var followFanURL = localpath+"api/follow/fan1/"+username+"/fan2/"+fanUsername;
-            var count;
+            var url1 = localpath + "/api/check/follow/fan1/" + localStorage.getItem("username") + "/fan2/" + fanUsername;
+            var followFanURL = localpath + "api/follow/fan1/" + username + "/fan2/" + fanUsername;
+            //var count;
 
             $http
                 .get(url1)
                 .then(function (response) {
                     $scope.fansfollowed = response.data;
-                    if (response.data === 1){
-                        count = 1;
+                    //$scope.count = response.data.length;
+
+                    console.log("username: "+response.data.username);
+                    if (response.data.username === 'undefined') {
+                        $http
+                            .post(followFanURL)
+                            .then(function () {
+                                alert(username + " followed a fan: " + fanUsername);
+                            });
                     }
-                    else
-                    {
-                        count = response.data.length;
+                    else {
+                        if (localStorage.getItem("username") === fanUsername) {
+                            alert("You cannot follow yourself!");
+                        }
+                        else {
+                            alert("You already follow this fan!");
+                        }
                     }
+
                 });
 
-            if (count ===1) {
-                $http
-                    .post(followFanURL)
-                    .then(function () {
-                        alert(username + " followed a fan: " + fanUsername);
-                    });
-            }
-            else {
-                if(localStorage.getItem("username") === fanUsername)
-                {
-                    alert("You cannot follow yourself!");
-                }
-                else
-                {
-                    alert("You already follow this fan!");
-                }
-            }
         }
     }
 })();
