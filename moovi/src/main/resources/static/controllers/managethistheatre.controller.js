@@ -35,7 +35,7 @@
                 .post(createTheatreURL, newTheatre)
                 .then(function(response) {
                     $scope.theatre = response;
-                    alert("Theatre created!");
+                    //alert("Theatre created!");
 
                     vm.linkManagerToTheatreURL = linkManagerToTheatreURL;
 
@@ -49,7 +49,7 @@
                             .post(linkingURL)
                             .then(function(response) {
                                 $scope.theatre = response;
-                                alert("TheatreManager assigned to this Theatre!");
+                                //alert("TheatreManager assigned to this Theatre!");
 
 
                             });
@@ -70,7 +70,7 @@
                             .post(createScreenURL, newScreen)
                             .then(function (response2) {
                                 $scope.screen = response2;
-                                alert("screen created!");
+                                //alert("screen created!");
 
                                 vm.linkScreenToTheatreURL = linkScreenToTheatreURL;
 
@@ -85,7 +85,7 @@
                                     $http
                                         .post(linkingScreenToTheatreURL)
                                         .then(function () {
-                                            alert("screen assigned to this Theatre!");
+                                            //alert("screen assigned to this Theatre!");
 
                                             vm.linkScreenToMovie = linkScreenToMovie;
 
@@ -96,7 +96,8 @@
                                                 $http
                                                     .post(linkScreenToMovieURL)
                                                     .then(function () {
-                                                        alert("screen mapped to movie!");
+                                                        //alert("screen mapped to movie!");
+                                                        alert("Successfully registered a theatre!")
                                                     });
                                             }
 
